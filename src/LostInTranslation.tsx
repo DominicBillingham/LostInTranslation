@@ -23,6 +23,8 @@ interface QuizOption {
     reason: string;
 }
 
+// quick commit test
+
 function LostInTranslation() {
 
     const startingImage = "start.jpg";
