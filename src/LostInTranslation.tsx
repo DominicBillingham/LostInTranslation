@@ -35,12 +35,12 @@ function LostInTranslation() {
     const lastImageRef = useRef<string>(startingImage);
     
     async function FetchSceneFromJson(sceneName: string) {
-        const response = await fetch("/adventure.json");
+        const response = await fetch("adventure.json");
         const json: Scene[] = await response.json();
         sceneRef.current = json.find(s => s.sceneName === sceneName) ?? null;
     }
     async function FetchQuizFromJson(quizName: string) {
-        const response = await fetch("/quiz.json");
+        const response = await fetch("quiz.json");
         const json: Quiz[] = await response.json();
         quizRef.current = json.find(q => q.quizName === quizName) ?? null;
     }
@@ -100,7 +100,7 @@ function LostInTranslation() {
         setDisplayQuiz(false);
         
         const html = <img
-            src={startingImage}   
+            src={`${import.meta.env.BASE_URL}${startingImage}`}   
             alt="Story"
             className="w-full rounded-b-xl object-cover select-none relative h-[calc(100vh-220px)]"
         />
@@ -131,7 +131,10 @@ function LostInTranslation() {
             setDisplayScene(false);
             setDisplayQuiz(false);
             
-            await ChangeImages(image, lastImageRef.current);
+            const imgPath1 = `${import.meta.env.BASE_URL}${image}`
+            const imgPath2 = `${import.meta.env.BASE_URL}${lastImageRef.current}`
+
+            await ChangeImages(imgPath1, imgPath2);
             lastImageRef.current = image;
         }
         

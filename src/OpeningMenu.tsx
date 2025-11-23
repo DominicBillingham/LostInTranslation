@@ -94,7 +94,7 @@ export default function Options() {
                         <div className="relative mt-4 text-xl h-[calc(100vh-220px)]">
                             {/* Background start image to mirror main game layout */}
                             <img
-                                src="/start.jpg"
+                                src={`${import.meta.env.BASE_URL}start.jpg`}
                                 alt="Start"
                                 className="w-full rounded-b-xl object-cover select-none relative h-[calc(100vh-220px)]"
                             />

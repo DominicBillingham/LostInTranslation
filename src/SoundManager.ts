@@ -106,7 +106,7 @@ class SoundManager {
 
 
   // Start background music; default path is /audio/chill.mp3. Must be called from a user gesture to satisfy autoplay.
-  async startMusic(src: string = '/chill.mp3') {
+  async startMusic(src: string = `${import.meta.env.BASE_URL}chill.mp3`) {
     try {
       if (!this.musicEl) {
         this.musicEl = new Audio();
