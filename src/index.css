@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+.custom-font {
+    font-family: "Murecho", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/* Main body styling */
+body {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffafbd, #ffc3a0, #ff677d); /* Soft colors */
+    background-size: 200% 200%; /* Larger size for smoother transition */
+    animation: gradientFlow 30s ease infinite; /* Animation to make the gradient flow */
+    height: 100vh;
+}
+
+/* Animation for soft flowing gradient effect */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.continue-indicator {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    opacity: 1;
+    animation: fadeBlink 0.2s infinite;
+    cursor: pointer;
+    display: none;
+}
+
+@keyframes fadeBlink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#storyImage {
+    transition: opacity 1s ease-in-out; /* This adds a smooth transition for the opacity */
+    opacity: 1; /* Default visibility */
+}
+
+/* Tooltip CSS */
+.custom-tooltip {
+    position: relative;
+    cursor: pointer;
+    display: inline; /* Ensure it's inline with text */
+    color: coral;
+}
+
+.custom-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-gray-800);
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    z-index: 9999; /* Make sure the tooltip appears on top */
+}
+
+.custom-tooltip:hover::after {
+    visibility: visible;
+    opacity: 1;
+}
+
+.fade {
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.fade2 {
+    opacity: 0;
+    animation: fadeIn 0.7s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

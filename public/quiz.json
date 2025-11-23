@@ -1,0 +1,202 @@
+[
+    {
+        "quizName": "cinderellaQuiz1",
+        "nextOption": "cinderellaQuiz2",
+        "quizQuestion": "What does the expression 'fall on deaf ears' mean?",
+        "quizAnswers": [
+            {
+                "answerText": "Her ears fell off",
+                "isCorrectAnswer": false,
+                "reason": "It's a figurative expression, not literal."
+            },
+            {
+                "answerText": "No one listened to her",
+                "isCorrectAnswer": true,
+                "reason": "'Fall on deaf ears' means nobody paid attention to her."
+            },
+            {
+                "answerText": "She didn’t explain it well",
+                "isCorrectAnswer": false,
+                "reason": "The phrase is about the audience not listening, not the explanation."
+            }
+        ]
+    },
+    {
+        "quizName": "cinderellaQuiz2",
+        "nextOption": "cinderellaQuiz3",
+        "quizQuestion": "What does 'at the mercy of her stepmother' mean?",
+        "quizAnswers": [
+            {
+                "answerText": "Her stepmother is more powerful than her.",
+                "isCorrectAnswer": true,
+                "reason": "Being 'at the mercy' means she depends on someone stronger."
+            },
+            {
+                "answerText": "Her stepmother is more beautiful than her.",
+                "isCorrectAnswer": false,
+                "reason": "'At the mercy' refers to power or control, not beauty."
+            },
+            {
+                "answerText": "Her stepmother is weaker than her.",
+                "isCorrectAnswer": false,
+                "reason": "It's the opposite—the stepmother is stronger."
+            }
+        ]
+    },
+    {
+        "quizName": "cinderellaQuiz3",
+        "nextOption": "Ball",
+        "quizQuestion": "What did they do to Cinderella when they 'ridiculed' her?",
+        "quizAnswers": [
+            {
+                "answerText": "They stopped her from leaving.",
+                "isCorrectAnswer": false,
+                "reason": "That’s not what 'ridiculed' means."
+            },
+            {
+                "answerText": "They told her funny stories.",
+                "isCorrectAnswer": false,
+                "reason": "Ridiculing means mocking or making fun of her."
+            },
+            {
+                "answerText": "They mocked or made fun of her",
+                "isCorrectAnswer": true,
+                "reason": "'Ridicule' someone is to mock them or make fun of them."
+            }
+        ]
+    },
+
+    {
+        "quizName": "cinderellaQuiz4",
+        "nextOption": "cinderellaQuiz5",
+        "quizQuestion": "What did Cinderella’s clothing look like before the fairy transformed her?",
+        "quizAnswers": [
+            {
+                "answerText": "Rackety",
+                "isCorrectAnswer": false,
+                "reason": ""
+            },
+            {
+                "answerText": "Ratchet",
+                "isCorrectAnswer": false,
+                "reason": ""
+            },
+            {
+                "answerText": "Raggedy",
+                "isCorrectAnswer": true,
+                "reason": ""
+            }
+        ]
+    },
+    {
+        "quizName": "cinderellaQuiz5",
+        "nextOption": "cinderellaQuiz6",
+        "quizQuestion": "What did Cinderella do when she “Beamed” at her godmother?",
+        "quizAnswers": [
+            {
+                "answerText": "She laughed",
+                "isCorrectAnswer": false,
+                "reason": ""
+            },
+            {
+                "answerText": "She cried",
+                "isCorrectAnswer": false,
+                "reason": ""
+            },
+            {
+                "answerText": "She smiled",
+                "isCorrectAnswer": true,
+                "reason": ""
+            }
+        ]
+    },
+    {
+        "quizName": "cinderellaQuiz6",
+        "nextOption": "Prince",
+        "quizQuestion": "What did the fairy godmother do with her wand? ",
+        "quizAnswers": [
+            {
+                "answerText": "She beamed it",
+                "isCorrectAnswer": false,
+                "reason": ""
+            },
+            {
+                "answerText": "She swung it",
+                "isCorrectAnswer": false,
+                "reason": ""
+            },
+            {
+                "answerText": " She flicked it",
+                "isCorrectAnswer": true,
+                "reason": ""
+            }
+        ]
+    },
+
+    {
+        "quizName": "cinderellaQuiz7",
+        "nextOption": "cinderellaQuiz8",
+        "quizQuestion": "What does awestruck mean?",
+        "quizAnswers": [
+            {
+                "answerText": "Very impressed",
+                "isCorrectAnswer": true,
+                "reason": ""
+            },
+            {
+                "answerText": "Very happy",
+                "isCorrectAnswer": false,
+                "reason": ""
+            },
+            {
+                "answerText": "Distraught",
+                "isCorrectAnswer": false,
+                "reason": ""
+            }
+        ]
+    },
+    {
+        "quizName": "cinderellaQuiz8",
+        "nextOption": "cinderellaQuiz9",
+        "quizQuestion": "Why was the princess in a rush?",
+        "quizAnswers": [
+            {
+                "answerText": "She was hungry",
+                "isCorrectAnswer": false,
+                "reason": ""
+            },
+            {
+                "answerText": "Her stepsisters called her",
+                "isCorrectAnswer": false,
+                "reason": ""
+            },
+            {
+                "answerText": "The spell would wear off soon",
+                "isCorrectAnswer": true,
+                "reason": ""
+            }
+        ]
+    },
+    {
+        "quizName": "cinderellaQuiz9",
+        "nextOption": "End",
+        "quizQuestion": "Who did the prince marry?",
+        "quizAnswers": [
+            {
+                "answerText": "Cinderella’s stepmother",
+                "isCorrectAnswer": false,
+                "reason": ""
+            },
+            {
+                "answerText": "Cinderella’s stepsister",
+                "isCorrectAnswer": true,
+                "reason": ""
+            },
+            {
+                "answerText": "Cinderella",
+                "isCorrectAnswer": false,
+                "reason": ""
+            }
+        ]
+    }
+]

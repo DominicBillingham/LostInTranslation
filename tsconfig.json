@@ -1,0 +1,14 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "noEmit": true,             // Don’t emit JS if errors exist
+    "strict": false,            // Turn off strict mode
+    "skipLibCheck": true,       // Skip type checking of node_modules
+    "noImplicitAny": false,     // Allow variables to be `any`
+    "allowJs": true             // Allow JS files
+  }
+}
