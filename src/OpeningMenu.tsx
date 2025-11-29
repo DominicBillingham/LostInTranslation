@@ -101,13 +101,13 @@ export default function Options() {
 
                             {/* Overlay options card */}
                             <div
-                                className={`absolute inset-x-[3vh] bottom-[3vh] bg-white p-3 px-5 rounded-xl  text-gray-800 shadow-md z-10 transition-all duration-500 ease-out transform ${isLeaving ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0'}`}
+                                className={`absolute inset-x-[3vh] bottom-[3vh] bg-white p-[3vh] px-[5vh] rounded-xl  text-gray-800 shadow-md z-10 transition-all duration-500 ease-out transform ${isLeaving ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0'}`}
                             >
          
                                 
-                                <div className="flex flex-col gap-4">
+                                <div className="flex flex-col gap-[2vh]">
                                     {/* Username */}
-                                    <label className="flex flex-col gap-2">
+                                    <label className="flex flex-col gap-[1vh]">
                                         <span className=" text-gray-700">Username </span>
                                         <input
                                             type="text"
@@ -115,7 +115,7 @@ export default function Options() {
                                             onChange={(e) => setUsername(e.target.value)}
                                             placeholder="Enter your name"
                                             autoFocus
-                                            className="rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-300"
+                                            className="rounded-lg border border-gray-300 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-orange-300"
                                         />
                                     </label>
                                     
@@ -145,7 +145,7 @@ export default function Options() {
                                     </label>
 
                                     {/* Continue button */}
-                                    <div className="pt-6 flex justify-center py-2">
+                                    <div className="pt[2vh] flex justify-center py-[1.2vh]">
                                         <button
                                             type="button"
                                             onClick={onContinue}
