@@ -18,7 +18,7 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
     const [text, setText] = useState<ReactNode>("");
     const [displayOptions, setDisplayOptions] = useState(false);
     const indexRef = useRef(0);
-    const textBoxBottomClass = displayOptions ? 'bottom-[160px]' : 'bottom-[40px]';
+    const textBoxBottomClass = displayOptions ? 'bottom-[20vh]' : 'bottom-[10v]';
 
     const OnSpacePress = async (event) => {
         
@@ -120,7 +120,7 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
         <>
             <div
                 id="storyTextBox"
-                className={`  absolute ${textBoxBottomClass} left-[40px] right-[40px] bg-white/90 rounded-xl p-3 text-gray-800 text-sm sm:text-base md:text-lg h-[80px] shadow-md fade2 transition-all duration-500 ease-out transform`}
+                className={`  inset-x-[3vh] bottom-[3vh] absolute ${textBoxBottomClass}  bg-white/90 rounded-[1vh] p-[1vh] text-gray-800  h-[10vh] shadow-md fade2 transition-all duration-500 ease-out transform`}
             >
 
                 <p className="fade" key={refreshAnimations}>
@@ -137,12 +137,12 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
             </div>
 
             {displayOptions && (sceneRef.current?.options?.length ?? 0) > 0 && (
-                <div className={`absolute left-[40px] right-[40px] bottom-[37px] grid grid-cols-2 gap-2 z-10`}>
+                <div className={`absolute  inset-x-[3vh] bottom-[3vh] grid grid-cols-2 gap-2 z-10`}>
                     {(sceneRef.current?.options ?? []).slice(0, 4).map((opt, i) => (
                         <button
                             key={opt + i}
                             type="button"
-                            className="bg-orange-100/95 rounded-xl p-2 pl-3 text-gray-900 text-sm sm:text-base md:text-lg shadow-md hover:shadow-lg  border-[#FF7F50] border-3 text-left hover:cursor-pointer hover:bg-orange-200/95 fade "
+                            className="bg-orange-100/95 rounded-[1vh] p-[1vh] pl-3 text-gray-900 shadow-md hover:shadow-lg  border-[#FF7F50] border-3 text-left hover:cursor-pointer hover:bg-orange-200/95 fade "
                             onClick={() => MakeChoice(opt)}
                         >
                             {opt}

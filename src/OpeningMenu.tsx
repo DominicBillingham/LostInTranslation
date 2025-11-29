@@ -67,41 +67,41 @@ export default function Options() {
 
     return (
 
-        <div className="font-medium custom-font text-base">
+        <div className="font-medium custom-font text-[2.5vh]">
 
             {gameStarted &&
                 <LostInTranslation/>
             }
             
             {!gameStarted &&
-                <div className="flex-1 story-column max-w-[calc(100vh*(6/5))] m-auto mt-[2vh] ">
-                    <div className="bg-white rounded-xl shadow pt-4">
-                        <h1 className="text-2xl font-bold text-center pb-1 text-gray-800">
+                <div className="story-column max-w-[calc(100vh*(6/5))] m-auto h-[95vh] mt-[2.5vh]">
+                    <div className="bg-white rounded-[2vh] shadow pt-[2vh] h-full flex flex-col">
+                        <h1 className="text-[4.5vh] font-bold text-center text-gray-800">
                             Lost In Translation
                         </h1>
-                        <div className="border-b border-gray-300 w-1/2 mx-auto my-2"></div>
-                        <div className="text-center text-gray-600">
-                        <span>
-                          When you see ▼ press space to continue. Words{' '}
-                            <span className="text-coral custom-tooltip" data-tooltip="Just like this!">
-                            highlighted
-                          </span>{' '}
-                            give a hint when hovered over. <br/>
-                          When you are presented with a choice, click on the sentence you prefer to choose!
-                        </span>
+                        <div className="border-b border-gray-300 w-1/2 mx-auto my-[1vh]"></div>
+                        <div className="text-center text-gray-600 px-[2vh]">
+                            <span>
+                              When you see ▼ press space to continue. Words{' '}
+                                <span className="text-coral custom-tooltip" data-tooltip="Just like this!">
+                                highlighted
+                                </span>{' '}
+                                give a hint when hovered over.
+                                <br/>
+                              When you are presented with a choice, click on the sentence you prefer to choose!
+                            </span>
                         </div>
-                        
-                        <div className="relative mt-4 h-[calc(100vh-220px)]">
+                        <div className="relative mt-[3vh] flex-1 min-h-0">
                             {/* Background start image to mirror main game layout */}
                             <img
                                 src={`${import.meta.env.BASE_URL}start.jpg`}
                                 alt="Start"
-                                className="w-full rounded-b-xl object-cover select-none relative h-[calc(100vh-220px)]"
+                                className="w-full rounded-b-xl object-cover select-none relative h-full"
                             />
 
                             {/* Overlay options card */}
                             <div
-                                className={`absolute inset-x-[5vh] bottom-[5vh] bg-white p-3 px-5 rounded-xl  text-gray-800 shadow-md z-10 transition-all duration-500 ease-out transform ${isLeaving ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0'}`}
+                                className={`absolute inset-x-[3vh] bottom-[3vh] bg-white p-3 px-5 rounded-xl  text-gray-800 shadow-md z-10 transition-all duration-500 ease-out transform ${isLeaving ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0'}`}
                             >
          
                                 

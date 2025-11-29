@@ -64,7 +64,7 @@ function LostInTranslation() {
         const htmlFade = <img
             src={oldImageSrc ?? ""}
             alt="Story"
-            className="w-full rounded-b-xl object-cover h-[calc(100vh-220px)] select-none relative opacity-0 transition-opacity duration-[1500ms]"
+            className="w-full rounded-b-xl object-cover select-none relative h-full opacity-0 transition-opacity duration-[1500ms]"
         />
 
         setImageHmtl(htmlFade);
@@ -74,7 +74,7 @@ function LostInTranslation() {
         const htmlUnfade = <img
             src={imageSrc ?? ""}
             alt="Story"
-            className="w-full rounded-b-xl object-cover h-[calc(100vh-220px)] select-none relative opacity-100 transition-opacity duration-[1500ms]"
+            className="w-full rounded-b-xl object-cover select-none relative h-full opacity-100 transition-opacity duration-[1500ms]"
         />
 
         setImageHmtl(htmlUnfade);
@@ -107,7 +107,7 @@ function LostInTranslation() {
         const html = <img
             src={`${import.meta.env.BASE_URL}${startingImage}`}   
             alt="Story"
-            className="w-full rounded-b-xl object-cover select-none relative h-[calc(100vh-220px)]"
+            className="w-full rounded-b-xl object-cover select-none relative h-full"
         />
 
         lastImageRef.current = startingImage;
@@ -164,24 +164,25 @@ function LostInTranslation() {
     return (
 
         <>
-            <div className="flex-1 story-column max-w-[calc(100vh*(6/5))] ">
-                <div className="bg-white rounded-xl shadow pt-4">
-                    <h1 className="text-2xl md:text-3xl font-bold text-center pb-1 text-gray-800">  
+            <div className="story-column max-w-[calc(100vh*(6/5))] m-auto h-[95vh] mt-[2.5vh]">
+                <div className="bg-white rounded-[2vh] shadow pt-[2vh] h-full flex flex-col">
+                    <h1 className="text-[4.5vh] font-bold text-center text-gray-800">
                         Lost In Translation
                     </h1>
-                    <div className="border-b border-gray-300 w-1/2 mx-auto  my-2"></div>
-                    <div className="text-center text-gray-600 text-sm sm:text-base">
-                        <span>
-                          When you see ▼ press space to continue. Words{' '}
-                            <span className="text-coral custom-tooltip" data-tooltip="Just like this!">
-                            highlighted
-                          </span>{' '}
-                            give a hint when hovered over. <br/>
-                          When you are presented with a choice, click on the sentence you prefer to choose!
-                        </span>
+                    <div className="border-b border-gray-300 w-1/2 mx-auto my-[1vh]"></div>
+                    <div className="text-center text-gray-600 px-[2vh]">
+                            <span>
+                              When you see ▼ press space to continue. Words{' '}
+                                <span className="text-coral custom-tooltip" data-tooltip="Just like this!">
+                                highlighted
+                                </span>{' '}
+                                give a hint when hovered over.
+                                <br/>
+                              When you are presented with a choice, click on the sentence you prefer to choose!
+                            </span>
                     </div>
 
-                    <div id="storyContainer" className="relative mt-4 text-sm sm:text-base md:text-lg">
+                    <div className="relative mt-[3vh] flex-1 min-h-0">
                         
                         {imageHmtl}
                         

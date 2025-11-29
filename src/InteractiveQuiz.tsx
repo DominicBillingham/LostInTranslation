@@ -72,7 +72,7 @@ export default function InteractiveQuiz({quizRef, navigateToNode}) {
             {/* Primary question textbox moved further up */}
             <div
                 id="storyTextBox"
-                className="absolute bottom-[260px] left-[40px] right-[40px] bg-white/90 rounded-xl p-3 text-gray-800 text-sm sm:text-base md:text-lg h-[80px] shadow-md fade"
+                className="absolute bottom-[260px] left-[40px] right-[40px] bg-white/90 rounded-xl p-3 text-gray-800 h-[80px] shadow-md fade"
             >
 
                 <p className="fade" key={refreshAnimations}>
@@ -103,7 +103,7 @@ export default function InteractiveQuiz({quizRef, navigateToNode}) {
                             key={ans.answerText + i}
                             type="button"
                             disabled={!areOptionsEnabled}
-                            className="bg-orange-100/95 rounded-xl overflow-x-auto overflow-y-hidden whitespace-nowrap p-2 pl-3 text-gray-900 shadow-md hover:shadow-lg  border-[#FF7F50] border-3 text-left hover:cursor-pointer hover:bg-orange-200/95 fade text-sm sm:text-base md:text-lg"
+                            className="bg-orange-100/95 rounded-xl overflow-x-auto overflow-y-hidden whitespace-nowrap p-2 pl-3 text-gray-900 shadow-md hover:shadow-lg  border-[#FF7F50] border-3 text-left hover:cursor-pointer hover:bg-orange-200/95 fade "
                             onClick={() => ChooseAnswer(ans)}
                         >
                             {ans.answerText}
@@ -117,7 +117,7 @@ export default function InteractiveQuiz({quizRef, navigateToNode}) {
                 <div className="absolute left-[40px] right-[40px] bottom-[57px] z-10 flex justify-center">
                     <button
                         type="button"
-                        className="bg-orange-200/95 rounded-xl px-32 py-2 text-gray-900 text-sm sm:text-base md:text-lg shadow-md hover:shadow-lg border-[#FF7F50] border-3 text-center hover:cursor-pointer hover:bg-orange-300/95 fade"
+                        className="bg-orange-200/95 rounded-xl px-32 py-2 text-gray-900 shadow-md hover:shadow-lg border-[#FF7F50] border-3 text-center hover:cursor-pointer hover:bg-orange-300/95 fade"
                         onClick={Continue}
                     >
                         Continue
