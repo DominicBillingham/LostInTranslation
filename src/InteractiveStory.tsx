@@ -22,9 +22,11 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
 
     const OnSpacePress = async (event) => {
         
+        event.preventDefault();
+        
         if (event.key === ' ') {
 
-            event.preventDefault();
+
 
             if (sceneRef.current == null) return;
 

@@ -110,18 +110,21 @@ export default function InteractiveQuiz({quizRef, navigateToNode}) {
                     )}
                 </div>
 
-                {/* Continue button below options, centered */}
-                {!areOptionsEnabled && (
-                    <div className="mt-[1vh] flex justify-center">
-                        <button
-                            type="button"
-                            className="bg-orange-200/95 rounded-[1vh] px-[4vh] py-[1vh] text-gray-900 shadow-md hover:shadow-lg border-[#FF7F50] border-3 text-center hover:cursor-pointer hover:bg-orange-300/95 fade"
-                            onClick={Continue}
-                        >
-                            Continue
-                        </button>
-                    </div>
-                )}
+                {/* Continue button always visible; disabled until an answer is chosen */}
+                <div className="mt-[1vh] flex justify-center">
+                    <button
+                        type="button"
+                        disabled={areOptionsEnabled}
+                        className={`5 rounded-[1vh] px-[4vh] py-[1vh] text-gray-900 shadow-md border-[rgba(255,127,80,0.4)] border-3 text-center fade ${
+                            areOptionsEnabled
+                                ? 'pointer-events-none bg-orange-200/40  border-[#FF7F200] cursor-not-allowed'
+                                : 'hover:shadow-lg bg-orange-200/90 hover:bg-orange-300/95 hover:cursor-pointer  '
+                        }`}
+                        onClick={Continue}
+                    >
+                        Continue
+                    </button>
+                </div>
 
             </div>
         </>
