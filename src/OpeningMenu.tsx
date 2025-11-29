@@ -67,7 +67,7 @@ export default function Options() {
 
     return (
 
-        <div className="font-medium custom-font text-[2.5vh]">
+        <div className="font-medium custom-font text-[2.5vh] overflow-hidden">
 
             {gameStarted &&
                 <LostInTranslation/>
