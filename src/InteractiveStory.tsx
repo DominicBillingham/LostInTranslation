@@ -47,6 +47,7 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
                     
                     if (sceneRef.current.options.length > 0) {
                         setDisplayOptions(true);
+                        
                         return;
                     }
                     
@@ -118,38 +119,47 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
     
     return (
         <>
-            <div
-                id="storyTextBox"
-                className={`  inset-x-[3vh] bottom-[3vh] absolute ${textBoxBottomClass}  bg-white/90 rounded-[1vh] p-[1vh] ps-[2vh] text-gray-800  h-[10vh] shadow-md fade2 transition-all duration-500 ease-out transform`}
-            >
+            <div className="inset-x-[3vh] bottom-[3vh] absolute ">
 
-                <p className="fade" key={refreshAnimations}>
-                    {text}
-                </p>
+                <div
+                    id="storyTextBox"
+                    className={`relative bg-white/90 rounded-[1vh] p-[1vh] ps-[2vh] text-gray-800 h-[10vh] shadow-md fade2 transition-all duration-500 ease-out transform`}
+                >
 
-                {displayIndicator &&
-                    <div
-                        className="absolute bottom-[5px] right-[10px] opacity-100 animate-pulse cursor-pointer select-none"
-                    >
-                        ▼
-                    </div>
-                }
-            </div>
+                    <p className="fade" key={refreshAnimations}>
+                        {text}
+                    </p>
 
-            {displayOptions && (sceneRef.current?.options?.length ?? 0) > 0 && (
-                <div className={`absolute  inset-x-[3vh] bottom-[3vh] grid grid-cols-2 gap-[1vh]`}>
-                    {(sceneRef.current?.options ?? []).slice(0, 4).map((opt, i) => (
-                        <button
-                            key={opt + i}
-                            type="button"
-                            className="bg-orange-100/95 rounded-[1vh] p-[1vh] pl-3 text-gray-900 shadow-md hover:shadow-lg  border-[#FF7F50] border-3 text-left hover:cursor-pointer hover:bg-orange-200/95 fade "
-                            onClick={() => MakeChoice(opt)}
+                    {displayIndicator &&
+                        <div
+                            className="absolute bottom-[5px] right-[10px] opacity-100 animate-pulse cursor-pointer select-none"
                         >
-                            {opt}
-                        </button>
-                    ))}
+                            ▼
+                        </div>
+                    }
                 </div>
-            )}
+
+                {displayOptions && (sceneRef.current?.options?.length ?? 0) > 0 && (
+                    <div className={`grid grid-cols-2 gap-[1vh] mt-[1vh]`}>
+                        {(sceneRef.current?.options ?? []).slice(0, 4).map((opt, i) => (
+                            <button
+                                key={opt + i}
+                                type="button"
+                                className="bg-orange-100/95 rounded-[1vh] p-[1vh] pl-3 text-gray-900 shadow-md hover:shadow-lg  border-[#FF7F50] border-3 text-left hover:cursor-pointer hover:bg-orange-200/95 fade "
+                                onClick={() => MakeChoice(opt)}
+                            >
+                                {opt}
+                            </button>
+                        ))}
+                    </div>
+                )}
+                
+                
+            </div>
+            
+            
+            
+
         </>
         
     )
