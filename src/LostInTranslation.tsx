@@ -2,6 +2,11 @@
 import InteractiveStory from "./InteractiveStory.tsx";
 import InteractiveQuiz from "./InteractiveQuiz.tsx";
 
+// send data to the spreadsheet whenever a choice is made
+// log the data
+// fix it for smaller screen sizes
+
+
 interface Scene {
     sceneName: string;
     image?: string;
@@ -161,11 +166,11 @@ function LostInTranslation() {
         <>
             <div className="flex-1 story-column max-w-[calc(100vh*(6/5))] ">
                 <div className="bg-white rounded-xl shadow pt-4">
-                    <h1 className="text-3xl font-bold text-center pb-1 text-gray-800">  
+                    <h1 className="text-2xl md:text-3xl font-bold text-center pb-1 text-gray-800">  
                         Lost In Translation
                     </h1>
                     <div className="border-b border-gray-300 w-1/2 mx-auto  my-2"></div>
-                    <div className="text-center text-gray-600">
+                    <div className="text-center text-gray-600 text-sm sm:text-base">
                         <span>
                           When you see ▼ press space to continue. Words{' '}
                             <span className="text-coral custom-tooltip" data-tooltip="Just like this!">
@@ -176,7 +181,7 @@ function LostInTranslation() {
                         </span>
                     </div>
 
-                    <div id="storyContainer" className="relative mt-4 text-xl">
+                    <div id="storyContainer" className="relative mt-4 text-sm sm:text-base md:text-lg">
                         
                         {imageHmtl}
                         

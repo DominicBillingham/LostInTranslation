@@ -120,7 +120,7 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
         <>
             <div
                 id="storyTextBox"
-                className={`  absolute ${textBoxBottomClass} left-[40px] right-[40px] bg-white/90 rounded-xl p-3 text-gray-800 h-[80px] shadow-md fade2 transition-all duration-500 ease-out transform`}
+                className={`  absolute ${textBoxBottomClass} left-[40px] right-[40px] bg-white/90 rounded-xl p-3 text-gray-800 text-sm sm:text-base md:text-lg h-[80px] shadow-md fade2 transition-all duration-500 ease-out transform`}
             >
 
                 <p className="fade" key={refreshAnimations}>
@@ -142,7 +142,7 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
                         <button
                             key={opt + i}
                             type="button"
-                            className="bg-orange-100/95 rounded-xl p-2 pl-3 text-gray-900 shadow-md hover:shadow-lg  border-[#FF7F50] border-3 text-left hover:cursor-pointer hover:bg-orange-200/95 fade "
+                            className="bg-orange-100/95 rounded-xl p-2 pl-3 text-gray-900 text-sm sm:text-base md:text-lg shadow-md hover:shadow-lg  border-[#FF7F50] border-3 text-left hover:cursor-pointer hover:bg-orange-200/95 fade "
                             onClick={() => MakeChoice(opt)}
                         >
                             {opt}

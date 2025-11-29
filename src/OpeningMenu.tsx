@@ -67,19 +67,19 @@ export default function Options() {
 
     return (
 
-        <div className="flex flex-col md:flex-row gap-4 p-4 main-container justify-center m-1 font-medium custom-font text-xl">
+        <div className="font-medium custom-font text-base">
 
             {gameStarted &&
                 <LostInTranslation/>
             }
             
             {!gameStarted &&
-                <div className="flex-1 story-column max-w-[calc(100vh*(6/5))]  ">
+                <div className="flex-1 story-column max-w-[calc(100vh*(6/5))] m-auto mt-[2vh] ">
                     <div className="bg-white rounded-xl shadow pt-4">
-                        <h1 className="text-3xl font-bold text-center pb-1 text-gray-800">
+                        <h1 className="text-2xl font-bold text-center pb-1 text-gray-800">
                             Lost In Translation
                         </h1>
-                        <div className="border-b border-gray-300 w-1/2 mx-auto  my-2"></div>
+                        <div className="border-b border-gray-300 w-1/2 mx-auto my-2"></div>
                         <div className="text-center text-gray-600">
                         <span>
                           When you see ▼ press space to continue. Words{' '}
@@ -91,7 +91,7 @@ export default function Options() {
                         </span>
                         </div>
                         
-                        <div className="relative mt-4 text-xl h-[calc(100vh-220px)]">
+                        <div className="relative mt-4 h-[calc(100vh-220px)]">
                             {/* Background start image to mirror main game layout */}
                             <img
                                 src={`${import.meta.env.BASE_URL}start.jpg`}
@@ -101,61 +101,30 @@ export default function Options() {
 
                             {/* Overlay options card */}
                             <div
-                                className={`absolute inset-x-[160px] bottom-[160px] bg-white p-8 rounded-xl  text-gray-800 shadow-md z-10 text-1xl transition-all duration-500 ease-out transform ${isLeaving ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0'}`}
+                                className={`absolute inset-x-[5vh] bottom-[5vh] bg-white p-3 px-5 rounded-xl  text-gray-800 shadow-md z-10 transition-all duration-500 ease-out transform ${isLeaving ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0'}`}
                             >
-
-                                {/* Welcome */}
-                                <label className="flex flex-col gap-2 ">
-                                    <span className="text-2xl text-gray-800">Welcome!</span>
-                                    <span className="text-gray-600 text-md ">
-                                          Lost in Translation is a new, immersive way to learn languages. Choose a username and get started! Please note, username and story choices are logged. 
-                                        </span>
-                                </label>
-                                
-                                <br/>
+         
                                 
                                 <div className="flex flex-col gap-4">
                                     {/* Username */}
                                     <label className="flex flex-col gap-2">
-                                        <span className="text-lg text-gray-700">Username </span>
+                                        <span className=" text-gray-700">Username </span>
                                         <input
                                             type="text"
                                             value={username}
                                             onChange={(e) => setUsername(e.target.value)}
                                             placeholder="Enter your name"
                                             autoFocus
-                                            className="rounded-lg border border-gray-300 px-3 py-2 text-lg focus:outline-none focus:ring-2 focus:ring-orange-300"
+                                            className="rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-300"
                                         />
                                     </label>
-
-                                    {/* Sound slider */}
-                                    {/*<label className="flex flex-col gap-2">*/}
-                                    {/*    <div className="flex items-center justify-between">*/}
-                                    {/*        <span className="text-lg text-gray-700">Sound</span>*/}
-                                    {/*        <span className="text-lg text-gray-500">{soundVolume}%</span>*/}
-                                    {/*    </div>*/}
-                                    {/*    <input*/}
-                                    {/*        type="range"*/}
-                                    {/*        min={0}*/}
-                                    {/*        max={100}*/}
-                                    {/*        step={1}*/}
-                                    {/*        value={soundVolume}*/}
-                                    {/*        onChange={(e) => {*/}
-                                    {/*            const v = Number(e.target.value);*/}
-                                    {/*            setSoundVolume(v);*/}
-                                    {/*            Sound.setSoundVolume(v);*/}
-                                    {/*        }}*/}
-                                    {/*        onMouseUp={() => { void Sound.playClick(); }}*/}
-                                    {/*        onTouchEnd={() => { void Sound.playClick(); }}*/}
-                                    {/*        className="w-full accent-[#FF7F50]"*/}
-                                    {/*    />*/}
-                                    {/*</label>*/}
+                                    
 
                                     {/* Music slider */}
                                     <label className="flex flex-col gap-2">
                                         <div className="flex items-center justify-between">
-                                            <span className="text-lg text-gray-700">Music</span>
-                                            <span className="text-lg text-gray-500">{musicVolume}%</span>
+                                            <span className="text-gray-700">Music</span>
+                                            <span className=" text-gray-500">{musicVolume}%</span>
                                         </div>
                                         <input
                                             type="range"
