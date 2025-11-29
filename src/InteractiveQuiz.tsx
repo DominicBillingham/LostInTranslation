@@ -68,64 +68,62 @@ export default function InteractiveQuiz({quizRef, navigateToNode}) {
 
     return (
         <>
+            <div className="inset-x-[3vh] bottom-[3vh] absolute">
 
-            {/* Primary question textbox moved further up */}
-            <div
-                id="storyTextBox"
-                className="absolute bottom-[260px] left-[40px] right-[40px] bg-white/90 rounded-xl p-3 text-gray-800 h-[80px] shadow-md fade"
-            >
-
-                <p className="fade" key={refreshAnimations}>
-                    <span className={!areOptionsEnabled ? 'text-gray-500' : ''}>{quizText}</span>
-                    {!areOptionsEnabled && feedbackText && (
-                        <>
-                            <br/>
-                            {selectedIsCorrect !== null && (
-                                <>
-                                    <span className={selectedIsCorrect ? 'text-green-600 font-semibold' : 'text-red-600 font-semibold'}>
-                                        {selectedIsCorrect ? 'Correct - ' : 'Incorrect - '}
-                                    </span>
-                                    <span> </span>
-                                </>
-                            )}
-                            <span className="text-gray-800">{feedbackText}</span>
-                        </>
-                    )}
-                </p>
-
-            </div>
-            
-            {/* Options moved further up */}
-            <div className={`absolute  left-[40px] right-[40px] bottom-[140px] grid grid-cols-2 gap-2 z-10 ${!areOptionsEnabled ? 'pointer-events-none opacity-60 cursor-not-allowed' : ''}`}>
-                {Array.isArray(quizRef?.current?.quizAnswers) && quizRef.current.quizAnswers.length > 0 && (
-                    quizRef.current.quizAnswers.slice(0, 4).map((ans: QuizOption, i: number) => (
-                        <button
-                            key={ans.answerText + i}
-                            type="button"
-                            disabled={!areOptionsEnabled}
-                            className="bg-orange-100/95 rounded-xl overflow-x-auto overflow-y-hidden whitespace-nowrap p-2 pl-3 text-gray-900 shadow-md hover:shadow-lg  border-[#FF7F50] border-3 text-left hover:cursor-pointer hover:bg-orange-200/95 fade "
-                            onClick={() => ChooseAnswer(ans)}
-                        >
-                            {ans.answerText}
-                        </button>
-                    ))
-                )}
-            </div>
-
-            {/* Continue button below the feedback textbox, centered */}
-            {!areOptionsEnabled && (
-                <div className="absolute left-[40px] right-[40px] bottom-[57px] z-10 flex justify-center">
-                    <button
-                        type="button"
-                        className="bg-orange-200/95 rounded-xl px-32 py-2 text-gray-900 shadow-md hover:shadow-lg border-[#FF7F50] border-3 text-center hover:cursor-pointer hover:bg-orange-300/95 fade"
-                        onClick={Continue}
-                    >
-                        Continue
-                    </button>
+                <div
+                    id="storyTextBox"
+                    className={`relative bg-white/90 rounded-[1vh] p-[1vh] ps-[2vh] text-gray-800 h-[10vh] shadow-md fade2 transition-all duration-500 ease-out transform`}
+                >
+                    <p className="fade" key={refreshAnimations}>
+                        <span className={!areOptionsEnabled ? 'text-gray-500' : ''}>{quizText}</span>
+                        {!areOptionsEnabled && feedbackText && (
+                            <>
+                                <br/>
+                                {selectedIsCorrect !== null && (
+                                    <>
+                                        <span className={selectedIsCorrect ? 'text-green-600 font-semibold' : 'text-red-600 font-semibold'}>
+                                            {selectedIsCorrect ? 'Correct - ' : 'Incorrect - '}
+                                        </span>
+                                        <span> </span>
+                                    </>
+                                )}
+                                <span className="text-gray-800">{feedbackText}</span>
+                            </>
+                        )}
+                    </p>
                 </div>
-            )}
 
+                {/* Options */}
+                <div className={`grid grid-cols-2 gap-[1vh] mt-[1vh] ${!areOptionsEnabled ? 'pointer-events-none opacity-60 cursor-not-allowed' : ''}`}>
+                    {Array.isArray(quizRef?.current?.quizAnswers) && quizRef.current.quizAnswers.length > 0 && (
+                        quizRef.current.quizAnswers.slice(0, 4).map((ans: QuizOption, i: number) => (
+                            <button
+                                key={ans.answerText + i}
+                                type="button"
+                                disabled={!areOptionsEnabled}
+                                className="bg-orange-100/95 rounded-[1vh] p-[1vh] pl-3 text-gray-900 shadow-md hover:shadow-lg  border-[#FF7F50] border-3 text-left hover:cursor-pointer hover:bg-orange-200/95 fade "
+                                onClick={() => ChooseAnswer(ans)}
+                            >
+                                {ans.answerText}
+                            </button>
+                        ))
+                    )}
+                </div>
 
+                {/* Continue button below options, centered */}
+                {!areOptionsEnabled && (
+                    <div className="mt-[1vh] flex justify-center">
+                        <button
+                            type="button"
+                            className="bg-orange-200/95 rounded-[1vh] px-[4vh] py-[1vh] text-gray-900 shadow-md hover:shadow-lg border-[#FF7F50] border-3 text-center hover:cursor-pointer hover:bg-orange-300/95 fade"
+                            onClick={Continue}
+                        >
+                            Continue
+                        </button>
+                    </div>
+                )}
+
+            </div>
         </>
     )
 
