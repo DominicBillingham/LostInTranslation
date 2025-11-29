@@ -120,7 +120,7 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
         <>
             <div
                 id="storyTextBox"
-                className={`  inset-x-[3vh] bottom-[3vh] absolute ${textBoxBottomClass}  bg-white/90 rounded-[1vh] p-[1vh] text-gray-800  h-[10vh] shadow-md fade2 transition-all duration-500 ease-out transform`}
+                className={`  inset-x-[3vh] bottom-[3vh] absolute ${textBoxBottomClass}  bg-white/90 rounded-[1vh] p-[1vh] ps-[2vh] text-gray-800  h-[10vh] shadow-md fade2 transition-all duration-500 ease-out transform`}
             >
 
                 <p className="fade" key={refreshAnimations}>
@@ -137,7 +137,7 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
             </div>
 
             {displayOptions && (sceneRef.current?.options?.length ?? 0) > 0 && (
-                <div className={`absolute  inset-x-[3vh] bottom-[3vh] grid grid-cols-2 gap-2 z-10`}>
+                <div className={`absolute  inset-x-[3vh] bottom-[3vh] grid grid-cols-2 gap-[1vh]`}>
                     {(sceneRef.current?.options ?? []).slice(0, 4).map((opt, i) => (
                         <button
                             key={opt + i}
