@@ -168,39 +168,17 @@ function LostInTranslation({ storage }: { storage?: StorageAPI }) {
     return (
 
         <>
-            <div className="story-column max-w-[calc(100vh*(6/5))] m-auto h-[95vh] mt-[2.5vh]">
-                <div className="bg-white rounded-[2vh] shadow pt-[2vh] h-full flex flex-col">
-                    <h1 className="text-[4.5vh] font-bold text-center text-gray-800">
-                        Lost In Translation
-                    </h1>
-                    <div className="border-b border-gray-300 w-1/2 mx-auto my-[1vh]"></div>
-                    <div className="text-center text-gray-600 px-[2vh]">
-                            <span>
-                              When you see ▼ press space to continue. Words{' '}
-                                <span className="text-coral custom-tooltip" data-tooltip="Just like this!">
-                                highlighted
-                                </span>{' '}
-                                give a hint when hovered over.
-                                <br/>
-                              When you are presented with a choice, click on the sentence you prefer to choose!
-                            </span>
-                    </div>
-
-                    <div className="relative mt-[3vh] flex-1 min-h-0">
-                        
-                        {imageHmtl}
-                        
-                        {displayScene &&
-                            <InteractiveStory key={sceneKey} sceneRef={sceneRef} navigateToNode={NavgiateToNode} storage={storage} />
-                        }
-                        
-                        {displayQuiz &&
-                            <InteractiveQuiz key={quizKey} quizRef={quizRef} navigateToNode={NavgiateToNode} storage={storage}/>
-                        }
-                        
-                    </div>
-                </div>
-            </div>
+            
+            {imageHmtl}
+            
+            {displayScene &&
+                <InteractiveStory key={sceneKey} sceneRef={sceneRef} navigateToNode={NavgiateToNode} storage={storage} />
+            }
+            
+            {displayQuiz &&
+                <InteractiveQuiz key={quizKey} quizRef={quizRef} navigateToNode={NavgiateToNode} storage={storage}/>
+            }
+            
         </>
     )
 }
