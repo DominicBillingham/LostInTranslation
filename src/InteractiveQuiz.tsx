@@ -1,4 +1,4 @@
-﻿import {useEffect, useState, type RefObject} from "react";
+﻿import {useEffect, useRef, useState, type RefObject} from "react";
 import type {StorageAPI} from "./LocalStorage.ts";
 import type {Quiz, QuizOption} from "./Interfaces.ts";
 
@@ -9,6 +9,8 @@ export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} 
     const [quizText, setQuizText] = useState<string>('');
     const [feedbackText, setFeedbackText] = useState<string>('');
     const [selectedIsCorrect, setSelectedIsCorrect] = useState<boolean | null>(null);
+    // Timer to measure how long the player takes to answer after the options are displayed
+    const answerStartRef = useRef<number | null>(null);
 
     // Initialize quiz text when quizRef changes or when a new quiz is loaded
     useEffect(() => {
@@ -20,6 +22,8 @@ export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} 
             setSelectedIsCorrect(null);
             // bump key to refresh fade-in
             setRefreshAnimations((v) => v + 1);
+            // Start timing as soon as the question/options are (re)shown
+            answerStartRef.current = (typeof performance !== 'undefined' ? performance.now() : Date.now());
         }
 
     }, [quizRef]);
@@ -34,8 +38,19 @@ export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} 
         setSelectedIsCorrect(!!quizAnswer.isCorrectAnswer);
         setRefreshAnimations((v) => v + 1);
         
-        
-        void LocalStorage.logQuizChoice({question : quizRef.current.quizQuestion, answer: quizAnswer.answerText, wasCorrect : quizAnswer.isCorrectAnswer, timeMs: 1000})
+        // Compute elapsed time since options were displayed
+        const now = (typeof performance !== 'undefined' ? performance.now() : Date.now());
+        const started = answerStartRef.current;
+        const elapsed = started != null ? Math.max(0, Math.round(now - started)) : null;
+        // Log the quiz choice with measured time (if available)
+        void LocalStorage.logQuizChoice({
+            question: quizRef.current.quizQuestion,
+            answer: quizAnswer.answerText,
+            wasCorrect: quizAnswer.isCorrectAnswer,
+            timeMs: elapsed ?? undefined,
+        });
+        // Clear the timer after logging
+        answerStartRef.current = null;
         
         // Potentially navigate or handle correctness later using navigateToNode and isCorrectAnswer
     }
