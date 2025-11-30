@@ -56,7 +56,7 @@ export default function OpeningMenu() {
                     <div className="relative mt-[3vh] flex-1 min-h-0">
 
                         {gameStarted &&
-                            <LostInTranslation storage={LocalStorage}/>
+                            <LostInTranslation LocalStorage={LocalStorage}/>
                         }
 
                         {!gameStarted &&

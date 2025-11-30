@@ -1,5 +1,4 @@
 ﻿import {useEffect, useRef, useState, type ReactNode, type RefObject} from "react";
-import Sound from "./SoundManager.ts";
 import type {StorageAPI} from "./LocalStorage.ts";
 
 interface Scene {
@@ -11,7 +10,7 @@ interface Scene {
     hints?: Record<string, string>;
 }
 
-export default function InteractiveStory({ sceneRef, navigateToNode, storage } : {sceneRef? : any, navigateToNode : any, storage : StorageAPI}) {
+export default function InteractiveStory({ sceneRef, navigateToNode, LocalStorage } : {sceneRef? : any, navigateToNode : any, LocalStorage : StorageAPI}) {
 
     const [displayIndicator, setDisplayIndicator] = useState(true)
     const [refreshAnimations, setRefreshAnimations] = useState(0);
@@ -28,9 +27,7 @@ export default function InteractiveStory({ sceneRef, navigateToNode, storage } :
         event.preventDefault();
         
         if (event.key === ' ') {
-
-
-
+            
             if (sceneRef.current == null) return;
 
             const sentences = sceneRef.current.sentences;
@@ -90,7 +87,7 @@ export default function InteractiveStory({ sceneRef, navigateToNode, storage } :
         const elapsed = started != null ? Math.max(0, Math.round(now - started)) : null;
         
         // Send measured time (falls back to null if not available)
-        void storage.logStoryChoice({decision: sceneRef.current.sceneName, choice: choice, timeMs: elapsed ?? undefined});
+        void LocalStorage.logStoryChoice({decision: sceneRef.current.sceneName, choice: choice, timeMs: elapsed ?? undefined});
         
         // Clear timer immediately after logging
         optionsStartRef.current = null;

@@ -1,12 +1,7 @@
 ﻿import {useEffect, useRef, useState} from "react";
-import storage, { type StorageAPI } from "./LocalStorage.ts";
+import LocalStorage, { type StorageAPI } from "./LocalStorage.ts";
 import InteractiveStory from "./InteractiveStory.tsx";
 import InteractiveQuiz from "./InteractiveQuiz.tsx";
-
-// send data to the spreadsheet whenever a choice is made
-// log the data
-// fix it for smaller screen sizes
-
 
 interface Scene {
     sceneName: string;
@@ -31,7 +26,7 @@ interface QuizOption {
 
 // quick commit test
 
-function LostInTranslation({ storage }: { storage?: StorageAPI }) {
+function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
 
     const startingImage = "start.jpg";
     
@@ -79,9 +74,7 @@ function LostInTranslation({ storage }: { storage?: StorageAPI }) {
         />
 
         setImageHmtl(htmlUnfade);
-
         await new Promise(resolve => setTimeout(resolve, 1500));
-
     }
 
     const ResetKeyEvent = async (event) => {
@@ -92,12 +85,9 @@ function LostInTranslation({ storage }: { storage?: StorageAPI }) {
         }
     };
     
-    
     async function ResetGame() {
 
-
-        storage.incrementPlaythroughAttempts();
-
+        LocalStorage.incrementPlaythroughAttempts();
         await FetchSceneFromJson("Introduction");
         
         // Use functional updates to avoid stale closures and ensure key changes
@@ -161,24 +151,18 @@ function LostInTranslation({ storage }: { storage?: StorageAPI }) {
             setDisplayScene(false);
             setDisplayQuiz(true);
         }
-        
     }
     
-
     return (
 
         <>
-            
             {imageHmtl}
-            
             {displayScene &&
-                <InteractiveStory key={sceneKey} sceneRef={sceneRef} navigateToNode={NavgiateToNode} storage={storage} />
+                <InteractiveStory key={sceneKey} sceneRef={sceneRef} navigateToNode={NavgiateToNode} LocalStorage={LocalStorage} />
             }
-            
             {displayQuiz &&
-                <InteractiveQuiz key={quizKey} quizRef={quizRef} navigateToNode={NavgiateToNode} storage={storage}/>
+                <InteractiveQuiz key={quizKey} quizRef={quizRef} navigateToNode={NavgiateToNode} LocalStorage={LocalStorage}/>
             }
-            
         </>
     )
 }

@@ -1,5 +1,4 @@
 ﻿import {useEffect, useRef, useState, type MutableRefObject, type ReactNode} from "react";
-import Sound from "./SoundManager.ts";
 import type {StorageAPI} from "./LocalStorage.ts";
 interface Quiz {
     quizName: string;
@@ -14,7 +13,7 @@ interface QuizOption {
     reason: string;
 }
 
-export default function InteractiveQuiz({quizRef, navigateToNode, storage} : {quizRef: any, navigateToNode : any, storage : StorageAPI}) {
+export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} : {quizRef: any, navigateToNode : any, LocalStorage : StorageAPI}) {
 
 
     const [refreshAnimations, setRefreshAnimations] = useState(0);
@@ -48,7 +47,7 @@ export default function InteractiveQuiz({quizRef, navigateToNode, storage} : {qu
         setRefreshAnimations((v) => v + 1);
         
         
-        void storage.logQuizChoice({question : quizRef.current.quizName, answer: quizAnswer.answerText, timeMs: 1000})
+        void LocalStorage.logQuizChoice({question : quizRef.current.quizName, answer: quizAnswer.answerText, timeMs: 1000})
         
         // Potentially navigate or handle correctness later using navigateToNode and isCorrectAnswer
     }
