@@ -1,5 +1,6 @@
 ﻿import {useEffect, useRef, useState, type ReactNode, type RefObject} from "react";
 import Sound from "./SoundManager.ts";
+import type {StorageAPI} from "./storage.ts";
 
 interface Scene {
     sceneName: string;
@@ -10,7 +11,7 @@ interface Scene {
     hints?: Record<string, string>;
 }
 
-export default function InteractiveStory({ sceneRef, navigateToNode }) {
+export default function InteractiveStory({ sceneRef, navigateToNode, storage } : {sceneRef? : any, navigateToNode : any, storage : StorageAPI}) {
 
     const [displayIndicator, setDisplayIndicator] = useState(true)
     const [refreshAnimations, setRefreshAnimations] = useState(0);
@@ -18,6 +19,8 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
     const [text, setText] = useState<ReactNode>("");
     const [displayOptions, setDisplayOptions] = useState(false);
     const indexRef = useRef(0);
+    // Timer for measuring how long the player takes to choose once options are shown
+    const optionsStartRef = useRef<number | null>(null);
     const textBoxBottomClass = displayOptions ? 'bottom-[20vh]' : 'bottom-[10v]';
 
     const OnSpacePress = async (event) => {
@@ -49,7 +52,8 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
                     
                     if (sceneRef.current.options.length > 0) {
                         setDisplayOptions(true);
-                        
+                        // Start timing as soon as options are populated/displayed
+                        optionsStartRef.current = (typeof performance !== 'undefined' ? performance.now() : Date.now());
                         return;
                     }
                     
@@ -63,6 +67,9 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
         
         indexRef.current = 0;
         setDisplayIndicator(true);
+        // Reset options UI and any prior timer when (re)mounting the story
+        setDisplayOptions(false);
+        optionsStartRef.current = null;
         const firstSentence = sceneRef.current?.sentences?.[0];
         if (firstSentence) {
             void SetText(firstSentence);
@@ -77,8 +84,15 @@ export default function InteractiveStory({ sceneRef, navigateToNode }) {
     }, []);
     
     async function MakeChoice(choice: string) {
-        // Play a subtle click for button taps
-        void Sound.playClick();
+        // Compute elapsed time since options appeared
+        const now = (typeof performance !== 'undefined' ? performance.now() : Date.now());
+        const started = optionsStartRef.current;
+        const elapsed = started != null ? Math.max(0, Math.round(now - started)) : null;
+        // Send measured time (falls back to null if not available)
+        void storage.logStoryChoice({decision: sceneRef.current.sceneName, choice: choice, timeMs: elapsed ?? undefined});
+        // Clear timer immediately after logging
+        optionsStartRef.current = null;
+        setDisplayOptions(false);
         navigateToNode(choice);
     }
     

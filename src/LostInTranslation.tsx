@@ -1,4 +1,5 @@
 ﻿import {useEffect, useRef, useState} from "react";
+import storage, { type StorageAPI } from "./storage.ts";
 import InteractiveStory from "./InteractiveStory.tsx";
 import InteractiveQuiz from "./InteractiveQuiz.tsx";
 
@@ -30,7 +31,7 @@ interface QuizOption {
 
 // quick commit test
 
-function LostInTranslation() {
+function LostInTranslation({ storage }: { storage?: StorageAPI }) {
 
     const startingImage = "start.jpg";
     
@@ -93,7 +94,10 @@ function LostInTranslation() {
     
     
     async function ResetGame() {
-        
+
+
+        storage.incrementPlaythroughAttempts();
+
         await FetchSceneFromJson("Introduction");
         
         // Use functional updates to avoid stale closures and ensure key changes
@@ -187,7 +191,7 @@ function LostInTranslation() {
                         {imageHmtl}
                         
                         {displayScene &&
-                            <InteractiveStory key={sceneKey} sceneRef={sceneRef} navigateToNode={NavgiateToNode}/>
+                            <InteractiveStory key={sceneKey} sceneRef={sceneRef} navigateToNode={NavgiateToNode} storage={storage} />
                         }
                         
                         {displayQuiz &&

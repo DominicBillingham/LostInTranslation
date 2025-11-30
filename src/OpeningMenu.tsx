@@ -1,6 +1,7 @@
 ﻿import {useEffect, useState} from "react";
 import LostInTranslation from "./LostInTranslation.tsx";
 import Sound from "./SoundManager.ts";
+import storage from "./storage.ts";
 
 
 export default function Options() {
@@ -16,16 +17,13 @@ export default function Options() {
     useEffect(() => {
         // Load prefs from localStorage (with sensible defaults)
         try {
-            const storedName = localStorage.getItem("lit.username");
+            const storedName = storage.getUsername();
             if (storedName && storedName.trim() !== "") {
                 setUsername(storedName);
             }
 
-            const s = Number(localStorage.getItem("lit.soundVolume"));
-            const m = Number(localStorage.getItem("lit.musicVolume"));
-
-            const validS = Number.isNaN(s) ? 20 : Math.max(0, Math.min(100, s));
-            const validM = Number.isNaN(m) ? 20 : Math.max(0, Math.min(100, m));
+            const validS = storage.getSoundVolume(20);
+            const validM = storage.getMusicVolume(20);
 
             setSoundVolume(validS);
             setMusicVolume(validM);
@@ -34,9 +32,9 @@ export default function Options() {
             Sound.setSoundVolume(validS);
             Sound.setMusicVolume(validM);
 
-            // If no values were stored previously, persist defaults for next time
-            if (Number.isNaN(s)) localStorage.setItem("lit.soundVolume", String(validS));
-            if (Number.isNaN(m)) localStorage.setItem("lit.musicVolume", String(validM));
+            // Ensure defaults are persisted for next time
+            storage.setSoundVolume(validS);
+            storage.setMusicVolume(validM);
         } catch {}
 
     }, []);
@@ -46,13 +44,11 @@ export default function Options() {
         if (!name) return;
         try {
             // Persist simple preferences for later use (optional, non-breaking)
-            localStorage.setItem("lit.username", name);
-            localStorage.setItem("lit.soundVolume", String(soundVolume));
-            localStorage.setItem("lit.musicVolume", String(musicVolume));
+            storage.setUsername(name);
+            storage.setSoundVolume(soundVolume);
+            storage.setMusicVolume(musicVolume);
             // Increment playthrough attempts counter
-            const attemptsRaw = localStorage.getItem("lit.playthroughAttempts");
-            const attempts = Number.isNaN(Number(attemptsRaw)) ? 0 : parseInt(attemptsRaw ?? "0", 10);
-            localStorage.setItem("lit.playthroughAttempts", String((attempts || 0) + 1));
+            storage.incrementPlaythroughAttempts();
         } catch (e) {
             // Ignore storage errors silently
         }
@@ -70,7 +66,7 @@ export default function Options() {
         <div className="font-medium custom-font text-[2.5vh] overflow-hidden">
 
             {gameStarted &&
-                <LostInTranslation/>
+                <LostInTranslation storage={storage}/>
             }
             
             {!gameStarted &&
@@ -136,7 +132,7 @@ export default function Options() {
                                                 const v = Number(e.target.value);
                                                 setMusicVolume(v);
                                                 Sound.setMusicVolume(v);
-                                                try { localStorage.setItem("lit.musicVolume", String(v)); } catch {}
+                                                try { storage.setMusicVolume(v); } catch {}
                                             }}
                                             onMouseUp={() => { void Sound.playClick(); void Sound.startMusic(); }}
                                             onTouchEnd={() => { void Sound.playClick(); void Sound.startMusic(); }}

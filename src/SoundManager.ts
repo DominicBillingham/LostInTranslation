@@ -2,6 +2,8 @@
 // - Click SFX now plays an audio sample (note.mp3) from the public folder with slight variation each time.
 // - Background music uses an HTMLAudioElement, loops, and fails gracefully if asset missing.
 
+import storage from './storage.ts';
+
 class SoundManager {
   private static _instance: SoundManager | null = null;
 
@@ -21,12 +23,12 @@ class SoundManager {
   private initialized = false;
 
   private constructor() {
-    // Try to initialize volumes from localStorage
+    // Initialize volumes via centralized storage (safe defaults 20%)
     try {
-      const s = Number(localStorage.getItem('lit.soundVolume'));
-      const m = Number(localStorage.getItem('lit.musicVolume'));
-      if (!Number.isNaN(s)) this.sfxVolume01 = this.clamp01(s / 100);
-      if (!Number.isNaN(m)) this.musicVolume01 = this.clamp01(m / 100);
+      const s = storage.getSoundVolume(20);
+      const m = storage.getMusicVolume(20);
+      this.sfxVolume01 = this.clamp01(s / 100);
+      this.musicVolume01 = this.clamp01(m / 100);
     } catch {}
   }
 
