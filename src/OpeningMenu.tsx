@@ -7,6 +7,7 @@ export default function OpeningMenu() {
 
     const [gameStarted, setGameStarted] = useState(false);
     const [username, setUsername] = useState<string>("");
+    const [logKey, setLogKey] = useState<string>("");
     const [musicVolume, setMusicVolume] = useState<number>(20);
     const [isLeaving, setIsLeaving] = useState<boolean>(false);
 
@@ -14,6 +15,7 @@ export default function OpeningMenu() {
 
         LocalStorage.setUsername(username.trim());
         LocalStorage.setMusicVolume(musicVolume);
+        LocalStorage.setLogKey(logKey);
 
         setIsLeaving(true);
         await new Promise(resolve => setTimeout(resolve, 1350));
@@ -25,7 +27,9 @@ export default function OpeningMenu() {
     useEffect(() => {
 
         const storedName = LocalStorage.getUsername();
-        setUsername(storedName ?? " ");
+        setUsername(storedName ?? "");
+        const storedLogKey = LocalStorage.getLogKey();
+        setLogKey(storedLogKey ?? "");
         const storedMusicVolume = LocalStorage.getMusicVolume(20);
         setMusicVolume(storedMusicVolume);
 
@@ -87,6 +91,19 @@ export default function OpeningMenu() {
                                             />
                                         </label>
 
+                                        <label className="flex flex-col gap-[1vh]">
+                                            <span className=" text-gray-700">LogKey <span className="text-gray-400">(optional)</span></span>
+                                            <input
+                                                type="text"
+                                                value={logKey}
+                                                onChange={(e) => {
+                                                    setLogKey(e.target.value);
+                                                }}
+                                                placeholder="Enter your LogKey (optional)"
+                                                className={`rounded-lg border px-[2vh] py-[1vh] focus:outline-none focus:ring-2 border-gray-300 focus:ring-orange-300`}
+                                            />
+                                        </label>
+
                                         <label className="flex flex-col gap-2">
                                             <div className="flex items-center justify-between">
                                                 <span className="text-gray-700">Music</span>
@@ -116,10 +133,10 @@ export default function OpeningMenu() {
                                                 onClick={onContinue}
                                                 disabled={username.trim() === "" || isLeaving}
                                                 className={`rounded-xl px-10 py-2 text-gray-900 shadow-md border-[#FF7F50] border-3 text-center hover:shadow-lg ${username.trim() === "" || isLeaving ? 'bg-orange-100/10 cursor-not-allowed opacity-60' : 'bg-orange-200/95 hover:bg-orange-300/95 hover:cursor-pointer'}`}
-                                            >
-                                                Continue
-                                            </button>
-                                        </div>
+                                                >
+                                                    Continue
+                                                </button>
+                                            </div>
                                         
                                     </div>
                                 </div>

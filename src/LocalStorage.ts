@@ -1,6 +1,15 @@
 ﻿// Centralized, safe LocalStorage helper + logging utilities
 
-const API_URL = "https://script.google.com/macros/s/AKfycbx70-NNM0AhKeFOepp7g7MzJbDw90o_2xbqATVAyf8FsPJAcfFKw9Fl6Hh0G3JMXKqxWw/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwdFzmZpuSz86dAMFywtSzkDD2skGGuhnuJxzhhDbYDgAPKJznYLOW9xn8Y0-Ogep0B3A/exec";
+
+const KEYS = {
+    username: "username",
+    sound: "soundVolume",
+    music: "musicVolume",
+    plays: "playthroughAttempts",
+    logKey: "logKey",
+};
+
 
 type Nullable<T> = T | null | undefined;
 
@@ -13,9 +22,13 @@ export interface StorageAPI {
     // high-level helpers used by the app
     getUsername(): string | null;
     setUsername(name: string): void;
+    
+    getLogKey(): string | null;
+    setLogKey(name: string): void;
 
     getSoundVolume(defaultValue?: number): number; // 0..100
     setSoundVolume(value: number): void;           // clamps 0..100
+    
     getMusicVolume(defaultValue?: number): number; // 0..100
     setMusicVolume(value: number): void;           // clamps 0..100
 
@@ -60,21 +73,6 @@ function incrementCounter(key: string): number {
     return next;
 }
 
-// ---------- keys ----------
-const KEYS = {
-    username: "username",
-    sound: "soundVolume",
-    music: "musicVolume",
-    plays: "playthroughAttempts",
-};
-
-// For per-choice counters
-function storyCountKey(decision: string, choice: string) {
-    return `story:${decision}:${choice}:count`;
-}
-function quizCountKey(question: string, answer: string) {
-    return `quiz:${question}:${answer}:count`;
-}
 
 // ---------- network ----------
 async function postJson(url: string, body: unknown): Promise<void> {
@@ -83,7 +81,7 @@ async function postJson(url: string, body: unknown): Promise<void> {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body),
-            mode: "no-cors", // avoid CORS noise; request will be sent
+            mode: "no-cors"
         });
     } catch {
         // Silently ignore per requirement
@@ -105,6 +103,18 @@ export const storage: StorageAPI = {
         safeSet(KEYS.username, name);
     },
 
+    getLogKey() {
+        return safeGet(KEYS.logKey);
+    },
+    setLogKey(name: string) {
+        const v = (name ?? '').trim();
+        if (!v) {
+            safeRemove(KEYS.logKey);
+            return;
+        }
+        safeSet(KEYS.logKey, v);
+    },
+    
     getSoundVolume(defaultValue = 20) {
         return clamp(getNumber(KEYS.sound, defaultValue), 0, 100);
     },
@@ -129,7 +139,7 @@ export const storage: StorageAPI = {
     async logStoryChoice({ decision, choice, timeMs }: { decision: string; choice: string; timeMs?: Nullable<number> }) {
         try {
             const userId = this.getUsername() || "Anonymous";
-            const count = incrementCounter(storyCountKey(decision, choice));
+            const count = incrementCounter(decision);
             const payload = {
                 Type: "Story",
                 UserId: userId,
@@ -138,6 +148,7 @@ export const storage: StorageAPI = {
                 StoryDecisionCount: count,
                 TimeSpentChoosing: timeMs ?? null,
                 PlaythroughCount: this.getPlaythroughAttempts(0),
+                LogKey: this.getLogKey() || null,
             } as const;
             
             console.log(payload);
@@ -151,7 +162,7 @@ export const storage: StorageAPI = {
     async logQuizChoice({ question, answer, timeMs }: { question: string; answer: string; timeMs?: Nullable<number> }) {
         try {
             const userId = this.getUsername() || "Anonymous";
-            const count = incrementCounter(quizCountKey(question, answer));
+            const count = incrementCounter(question);
             const payload = {
                 Type: "Quiz",
                 UserId: userId,
@@ -160,6 +171,7 @@ export const storage: StorageAPI = {
                 QuizAnswerCount: count,
                 TimeSpentChoosing: timeMs ?? null,
                 PlaythroughCount: this.getPlaythroughAttempts(0),
+                LogKey: this.getLogKey() || null,
             } as const;
             
             console.log(payload);
