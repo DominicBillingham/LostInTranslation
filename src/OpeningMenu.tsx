@@ -1,58 +1,42 @@
 ﻿import {useEffect, useState} from "react";
 import LostInTranslation from "./LostInTranslation.tsx";
 import Sound from "./SoundManager.ts";
-import storage from "./storage.ts";
+import LocalStorage from "./LocalStorage.ts";
 
-
-export default function Options() {
-    
+export default function OpeningMenu() {
     
     const [gameStarted , setGameStarted] = useState(false);
     const [username, setUsername] = useState<string>("");
     const [musicVolume, setMusicVolume] = useState<number>(20);
     const [isLeaving, setIsLeaving] = useState<boolean>(false);
+    
+    async function onContinue() {
+        
+        LocalStorage.setUsername(username.trim());
+        LocalStorage.setMusicVolume(musicVolume);
+
+        setIsLeaving(true);
+        await new Promise(resolve => setTimeout(resolve, 1350));
+        
+        void Sound.startMusic();
+        setGameStarted(true);
+    }
 
     useEffect(() => {
         
-        // Load prefs from localStorage (with sensible defaults)
-        try {
-            
-            const storedName = storage.getUsername();
-            if (storedName && storedName.trim() !== "") {
-                setUsername(storedName);
-            }
-
-            const storedMusicVolume = storage.getMusicVolume(20);
-            setMusicVolume(storedMusicVolume);
-            
-        } catch {}
-
+        const storedName = LocalStorage.getUsername();
+        setUsername(storedName ?? " ");
+        const storedMusicVolume = LocalStorage.getMusicVolume(20);
+        setMusicVolume(storedMusicVolume);
+        
     }, []);
-
-    async function onContinue() {
-        const name = username.trim();
-        if (!name) return;
-        try {
-            // Persist simple preferences for later use (optional, non-breaking)
-            storage.setUsername(name);
-            storage.setMusicVolume(musicVolume);
-        } catch (e) {
-            // Ignore storage errors silently
-        }
-        // Click feedback and start looping music (will fail gracefully if asset missing)
-        void Sound.startMusic();
-        // Trigger exit animation then start game
-        setIsLeaving(true);
-        await new Promise(resolve => setTimeout(resolve, 1350));
-        setGameStarted(true);
-    }
 
     return (
 
         <div className="font-medium custom-font text-[2.5vh] overflow-hidden">
 
             {gameStarted &&
-                <LostInTranslation storage={storage}/>
+                <LostInTranslation storage={LocalStorage}/>
             }
             
             {!gameStarted &&
@@ -115,9 +99,9 @@ export default function Options() {
                                             step={1}
                                             value={musicVolume}
                                             onChange={(e) => {
-                                                const v = Number(e.target.value);
-                                                setMusicVolume(v);
-                                                try { storage.setMusicVolume(v); } catch {}
+                                                const volume = Number(e.target.value);
+                                                setMusicVolume(volume);
+                                                LocalStorage.setMusicVolume(volume);
                                             }}
                                             onMouseUp={() => { void Sound.startMusic(); }}
                                             className="w-full accent-[#FF7F50]"

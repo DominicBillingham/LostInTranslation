@@ -1,5 +1,5 @@
 ﻿import {useEffect, useRef, useState} from "react";
-import storage, { type StorageAPI } from "./storage.ts";
+import storage, { type StorageAPI } from "./LocalStorage.ts";
 import InteractiveStory from "./InteractiveStory.tsx";
 import InteractiveQuiz from "./InteractiveQuiz.tsx";
 

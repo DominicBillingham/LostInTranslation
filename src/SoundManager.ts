@@ -1,4 +1,4 @@
-﻿import storage from './storage.ts';
+﻿import storage from './LocalStorage.ts';
 
 class MusicManager {
     

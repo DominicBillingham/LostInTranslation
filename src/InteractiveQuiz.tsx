@@ -1,6 +1,6 @@
 ﻿import {useEffect, useRef, useState, type MutableRefObject, type ReactNode} from "react";
 import Sound from "./SoundManager.ts";
-import type {StorageAPI} from "./storage.ts";
+import type {StorageAPI} from "./LocalStorage.ts";
 interface Quiz {
     quizName: string;
     nextOption?: string;
