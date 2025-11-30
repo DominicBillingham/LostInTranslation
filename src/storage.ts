@@ -1,0 +1,171 @@
+﻿// Centralized, safe LocalStorage helper + logging utilities
+
+const API_URL = "https://script.google.com/macros/s/AKfycbz9lv51HtVaNeYfDwx0ATc1wYDbQ3bahZV8gS8AVCuxlVhQ9NxABmuJmTN-e8eTramZvg/exec";
+
+type Nullable<T> = T | null | undefined;
+
+export interface StorageAPI {
+    // barebones accessors (safe try/catch)
+    getItem(key: string): string | null;
+    setItem(key: string, value: string): void;
+    removeItem(key: string): void;
+
+    // high-level helpers used by the app
+    getUsername(): string | null;
+    setUsername(name: string): void;
+
+    getSoundVolume(defaultValue?: number): number; // 0..100
+    setSoundVolume(value: number): void;           // clamps 0..100
+    getMusicVolume(defaultValue?: number): number; // 0..100
+    setMusicVolume(value: number): void;           // clamps 0..100
+
+    getPlaythroughAttempts(defaultValue?: number): number;
+    incrementPlaythroughAttempts(): number;
+
+    // New: logging helpers
+    logStoryChoice(data: { decision: string; choice: string; timeMs?: Nullable<number> }): Promise<void>;
+    logQuizChoice(data: { question: string; answer: string; timeMs?: Nullable<number> }): Promise<void>;
+}
+
+// ---------- low-level safe wrappers ----------
+function safeGet(key: string): string | null {
+    try { return window.localStorage.getItem(key); } catch { return null; }
+}
+
+function safeSet(key: string, value: string): void {
+    try { window.localStorage.setItem(key, value); } catch { /* ignore */ }
+}
+
+function safeRemove(key: string): void {
+    try { window.localStorage.removeItem(key); } catch { /* ignore */ }
+}
+
+function getNumber(key: string, fallback = 0): number {
+    const raw = safeGet(key);
+    const n = raw == null ? NaN : Number(raw);
+    return Number.isFinite(n) ? n : fallback;
+}
+
+function setNumber(key: string, value: number): void {
+    safeSet(key, String(value));
+}
+
+function clamp(v: number, min: number, max: number) {
+    return Math.max(min, Math.min(max, v));
+}
+
+function incrementCounter(key: string): number {
+    const next = getNumber(key, 0) + 1;
+    setNumber(key, next);
+    return next;
+}
+
+// ---------- keys ----------
+const KEYS = {
+    username: "username",
+    sound: "soundVolume",
+    music: "musicVolume",
+    plays: "playthroughAttempts",
+};
+
+// For per-choice counters
+function storyCountKey(decision: string, choice: string) {
+    return `story:${decision}:${choice}:count`;
+}
+function quizCountKey(question: string, answer: string) {
+    return `quiz:${question}:${answer}:count`;
+}
+
+// ---------- network ----------
+async function postJson(url: string, body: unknown): Promise<void> {
+    try {
+        await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+            mode: "no-cors", // avoid CORS noise; request will be sent
+        });
+    } catch {
+        // Silently ignore per requirement
+    }
+}
+
+export const storage: StorageAPI = {
+    // basic
+    getItem: safeGet,
+    setItem: safeSet,
+    removeItem: safeRemove,
+
+    // app-level
+    getUsername() {
+        return safeGet(KEYS.username);
+    },
+    setUsername(name: string) {
+        if (!name) return;
+        safeSet(KEYS.username, name);
+    },
+
+    getSoundVolume(defaultValue = 20) {
+        return clamp(getNumber(KEYS.sound, defaultValue), 0, 100);
+    },
+    setSoundVolume(value: number) {
+        setNumber(KEYS.sound, clamp(Number(value) || 0, 0, 100));
+    },
+    getMusicVolume(defaultValue = 20) {
+        return clamp(getNumber(KEYS.music, defaultValue), 0, 100);
+    },
+    setMusicVolume(value: number) {
+        setNumber(KEYS.music, clamp(Number(value) || 0, 0, 100));
+    },
+
+    getPlaythroughAttempts(defaultValue = 0) {
+        return getNumber(KEYS.plays, defaultValue);
+    },
+    incrementPlaythroughAttempts() {
+        return incrementCounter(KEYS.plays);
+    },
+
+    // logging
+    async logStoryChoice({ decision, choice, timeMs }: { decision: string; choice: string; timeMs?: Nullable<number> }) {
+        try {
+            const userId = this.getUsername() || "Anonymous";
+            const count = incrementCounter(storyCountKey(decision, choice));
+            const payload = {
+                Type: "Story",
+                UserId: userId,
+                StoryDecision: decision,
+                StoryChoice: choice,
+                StoryDecisionCount: count,
+                TimeSpentChoosing: timeMs ?? null,
+                PlaythroughCount: this.getPlaythroughAttempts(0),
+            } as const;
+            
+            console.log(payload);
+            
+            await postJson(API_URL, payload);
+        } catch {
+            // ignore
+        }
+    },
+
+    async logQuizChoice({ question, answer, timeMs }: { question: string; answer: string; timeMs?: Nullable<number> }) {
+        try {
+            const userId = this.getUsername() || "Anonymous";
+            const count = incrementCounter(quizCountKey(question, answer));
+            const payload = {
+                Type: "Quiz",
+                UserId: userId,
+                QuizQuestion: question,
+                QuizAnswer: answer,
+                QuizAnswerCount: count,
+                TimeSpentChoosing: timeMs ?? null,
+                PlaythroughCount: this.getPlaythroughAttempts(0),
+            } as const;
+            await postJson(API_URL, payload);
+        } catch {
+            // ignore
+        }
+    },
+};
+
+export default storage;
