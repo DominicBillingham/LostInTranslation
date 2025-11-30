@@ -19,7 +19,7 @@
             "maid" : "Servant",
             "ridiculed" : "Made fun of"
         },
-        "options": [
+        "nextNodeOptions": [
             "Run away",
             "Continue to do her work",
             "Try to complain"
@@ -90,7 +90,7 @@
             "disappointed": "Sad",
             "fairy ": "A magical creature"
         },
-        "options": [
+        "nextNodeOptions": [
             "Decline her help",
             "Jump enthusiastically at the offer",
             "Hesitantly agree"
@@ -174,7 +174,7 @@
             "stolen his heart": "He fell in love with her",
             "the clock struck midnight": "It was 00:00"
         },
-        "options": [
+        "nextNodeOptions": [
             "Panic and run away",
             "Tell him she will see him again",
             "Stay"

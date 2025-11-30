@@ -39,7 +39,7 @@ export default function InteractiveStory({ sceneRef, navigateToNode, LocalStorag
                         return;
                     }
                     
-                    if (sceneRef.current.options.length > 0) {
+                    if (sceneRef.current.nextNodeOptions.length > 0) {
                         setDisplayOptions(true);
                         // Start timing as soon as options are populated/displayed
                         optionsStartRef.current = (typeof performance !== 'undefined' ? performance.now() : Date.now());
@@ -49,7 +49,6 @@ export default function InteractiveStory({ sceneRef, navigateToNode, LocalStorag
                 }
             }
         }
-        
     };
 
     useEffect(() => {
@@ -146,9 +145,9 @@ export default function InteractiveStory({ sceneRef, navigateToNode, LocalStorag
                     }
                 </div>
 
-                {displayOptions && (sceneRef.current?.options?.length ?? 0) > 0 && (
+                {displayOptions && (
                     <div className={`grid grid-cols-2 gap-[1vh] mt-[1vh]`}>
-                        {(sceneRef.current?.options ?? []).slice(0, 4).map((opt, i) => (
+                        {(sceneRef.current?.nextNodeOptions ?? []).slice(0, 4).map((opt, i) => (
                             <button
                                 key={opt + i}
                                 type="button"
@@ -160,15 +159,8 @@ export default function InteractiveStory({ sceneRef, navigateToNode, LocalStorag
                         ))}
                     </div>
                 )}
-                
-                
             </div>
             
-            
-            
-
         </>
-        
     )
-    
 }

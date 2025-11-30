@@ -1,21 +1,9 @@
-﻿import {useEffect, useRef, useState, type MutableRefObject, type ReactNode} from "react";
+﻿import {useEffect, useState, type RefObject} from "react";
 import type {StorageAPI} from "./LocalStorage.ts";
-interface Quiz {
-    quizName: string;
-    nextOption?: string;
-    nextScene?: string;
-    quizQuestion: string;
-    quizAnswers: QuizOption[];
-}
-interface QuizOption {
-    answerText: string;
-    isCorrectAnswer: boolean;
-    reason: string;
-}
+import type {Quiz, QuizOption} from "./Interfaces.ts";
 
-export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} : {quizRef: any, navigateToNode : any, LocalStorage : StorageAPI}) {
-
-
+export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} : {quizRef: RefObject<Quiz>, navigateToNode : any, LocalStorage : StorageAPI}) {
+    
     const [refreshAnimations, setRefreshAnimations] = useState(0);
     const [areOptionsEnabled, setAreOptionsEnabled] = useState<boolean>(true);
     const [quizText, setQuizText] = useState<string>('');
@@ -47,7 +35,7 @@ export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} 
         setRefreshAnimations((v) => v + 1);
         
         
-        void LocalStorage.logQuizChoice({question : quizRef.current.quizName, answer: quizAnswer.answerText, timeMs: 1000})
+        void LocalStorage.logQuizChoice({question : quizRef.current.quizQuestion, answer: quizAnswer.answerText, timeMs: 1000})
         
         // Potentially navigate or handle correctness later using navigateToNode and isCorrectAnswer
     }
@@ -55,8 +43,8 @@ export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} 
     function Continue() {
         const current = quizRef?.current as Quiz | undefined;
         if (!current) return;
-        if (current.nextOption) {
-            navigateToNode(current.nextOption);
+        if (current.nextNode) {
+            navigateToNode(current.nextNode);
             return;
         }
         if (current.nextScene) {
@@ -95,7 +83,7 @@ export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} 
 
                 {/* Options */}
                 <div className={`grid grid-cols-2 gap-[1vh] mt-[1vh] ${!areOptionsEnabled ? 'pointer-events-none opacity-60 cursor-not-allowed' : ''}`}>
-                    {Array.isArray(quizRef?.current?.quizAnswers) && quizRef.current.quizAnswers.length > 0 && (
+                    {Array.isArray(quizRef?.current?.quizAnswers) && (
                         quizRef.current.quizAnswers.slice(0, 4).map((ans: QuizOption, i: number) => (
                             <button
                                 key={ans.answerText + i}

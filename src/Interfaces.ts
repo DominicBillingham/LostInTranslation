@@ -1,16 +1,15 @@
 ﻿export interface Scene {
     nodeName: string;
     storyDecision: string;
+    nextNodeOptions?: string[];
     image?: string;
     sentences: string[];
-    options?: string[];
     quizName?: string;
     hints?: Record<string, string>;
 }
 export interface Quiz {
-    quizName: string;
-    nextOption?: string;
-    nextScene?: string;
+    nodeName: string;
+    nextNode?: string;
     quizQuestion: string;
     quizAnswers: QuizOption[];
 }

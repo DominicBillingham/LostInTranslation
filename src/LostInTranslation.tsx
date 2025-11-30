@@ -21,7 +21,7 @@ function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
     async function FetchQuizFromJson(quizName: string) {
         const response = await fetch("quiz.json");
         const json: Quiz[] = await response.json();
-        quizRef.current = json.find(q => q.quizName === quizName) ?? null;
+        quizRef.current = json.find(q => q.nodeName === quizName) ?? null;
     }
     
     const [sceneKey, setSceneKey] = useState(0);

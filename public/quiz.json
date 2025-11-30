@@ -1,7 +1,7 @@
 [
     {
-        "quizName": "cinderellaQuiz1",
-        "nextOption": "cinderellaQuiz2",
+        "nodeName": "cinderellaQuiz1",
+        "nextNode": "cinderellaQuiz2",
         "quizQuestion": "What does the expression 'fall on deaf ears' mean?",
         "quizAnswers": [
             {
@@ -22,8 +22,8 @@
         ]
     },
     {
-        "quizName": "cinderellaQuiz2",
-        "nextOption": "cinderellaQuiz3",
+        "nodeName": "cinderellaQuiz2",
+        "nextNode": "cinderellaQuiz3",
         "quizQuestion": "What does 'at the mercy of her stepmother' mean?",
         "quizAnswers": [
             {
@@ -44,8 +44,8 @@
         ]
     },
     {
-        "quizName": "cinderellaQuiz3",
-        "nextOption": "Ball",
+        "nodeName": "cinderellaQuiz3",
+        "nextNode": "Ball",
         "quizQuestion": "What did they do to Cinderella when they 'ridiculed' her?",
         "quizAnswers": [
             {
@@ -67,8 +67,8 @@
     },
 
     {
-        "quizName": "cinderellaQuiz4",
-        "nextOption": "cinderellaQuiz5",
+        "nodeName": "cinderellaQuiz4",
+        "nextNode": "cinderellaQuiz5",
         "quizQuestion": "What did Cinderella’s clothing look like before the fairy transformed her?",
         "quizAnswers": [
             {
@@ -89,8 +89,8 @@
         ]
     },
     {
-        "quizName": "cinderellaQuiz5",
-        "nextOption": "cinderellaQuiz6",
+        "nodeName": "cinderellaQuiz5",
+        "nextNode": "cinderellaQuiz6",
         "quizQuestion": "What did Cinderella do when she “Beamed” at her godmother?",
         "quizAnswers": [
             {
@@ -111,8 +111,8 @@
         ]
     },
     {
-        "quizName": "cinderellaQuiz6",
-        "nextOption": "Prince",
+        "nodeName": "cinderellaQuiz6",
+        "nextNode": "Prince",
         "quizQuestion": "What did the fairy godmother do with her wand? ",
         "quizAnswers": [
             {
@@ -134,8 +134,8 @@
     },
 
     {
-        "quizName": "cinderellaQuiz7",
-        "nextOption": "cinderellaQuiz8",
+        "nodeName": "cinderellaQuiz7",
+        "nextNode": "cinderellaQuiz8",
         "quizQuestion": "What does awestruck mean?",
         "quizAnswers": [
             {
@@ -156,8 +156,8 @@
         ]
     },
     {
-        "quizName": "cinderellaQuiz8",
-        "nextOption": "cinderellaQuiz9",
+        "nodeName": "cinderellaQuiz8",
+        "nextNode": "cinderellaQuiz9",
         "quizQuestion": "Why was the princess in a rush?",
         "quizAnswers": [
             {
@@ -178,8 +178,8 @@
         ]
     },
     {
-        "quizName": "cinderellaQuiz9",
-        "nextOption": "End",
+        "nodeName": "cinderellaQuiz9",
+        "nextNode": "End",
         "quizQuestion": "Who did the prince marry?",
         "quizAnswers": [
             {
