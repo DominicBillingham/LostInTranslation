@@ -16,17 +16,14 @@ export default function Options() {
         
         // Load prefs from localStorage (with sensible defaults)
         try {
+            
             const storedName = storage.getUsername();
             if (storedName && storedName.trim() !== "") {
                 setUsername(storedName);
             }
 
-            const validM = storage.getMusicVolume(20);
-
-            setMusicVolume(validM);
-            Sound.setMusicVolume(validM);
-            storage.setMusicVolume(validM);
-            
+            const storedMusicVolume = storage.getMusicVolume(20);
+            setMusicVolume(storedMusicVolume);
             
         } catch {}
 
@@ -120,11 +117,9 @@ export default function Options() {
                                             onChange={(e) => {
                                                 const v = Number(e.target.value);
                                                 setMusicVolume(v);
-                                                Sound.setMusicVolume(v);
                                                 try { storage.setMusicVolume(v); } catch {}
                                             }}
                                             onMouseUp={() => { void Sound.startMusic(); }}
-                                            onTouchEnd={() => { void Sound.startMusic(); }}
                                             className="w-full accent-[#FF7F50]"
                                         />
                                     </label>
