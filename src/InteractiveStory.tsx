@@ -88,8 +88,10 @@ export default function InteractiveStory({ sceneRef, navigateToNode, storage } :
         const now = (typeof performance !== 'undefined' ? performance.now() : Date.now());
         const started = optionsStartRef.current;
         const elapsed = started != null ? Math.max(0, Math.round(now - started)) : null;
+        
         // Send measured time (falls back to null if not available)
         void storage.logStoryChoice({decision: sceneRef.current.sceneName, choice: choice, timeMs: elapsed ?? undefined});
+        
         // Clear timer immediately after logging
         optionsStartRef.current = null;
         setDisplayOptions(false);

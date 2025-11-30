@@ -1,5 +1,6 @@
 ﻿import {useEffect, useRef, useState, type MutableRefObject, type ReactNode} from "react";
 import Sound from "./SoundManager.ts";
+import type {StorageAPI} from "./storage.ts";
 interface Quiz {
     quizName: string;
     nextOption?: string;
@@ -13,7 +14,7 @@ interface QuizOption {
     reason: string;
 }
 
-export default function InteractiveQuiz({quizRef, navigateToNode}) {
+export default function InteractiveQuiz({quizRef, navigateToNode, storage} : {quizRef: any, navigateToNode : any, storage : StorageAPI}) {
 
 
     const [refreshAnimations, setRefreshAnimations] = useState(0);
@@ -34,13 +35,11 @@ export default function InteractiveQuiz({quizRef, navigateToNode}) {
             setRefreshAnimations((v) => v + 1);
         }
 
-        console.log(quizRef?.current);
-
     }, [quizRef]);
 
     function ChooseAnswer(quizAnswer: QuizOption) {
         // Ensure the click actually updates the UI
-        console.log(quizAnswer.answerText);
+
         void Sound.playClick();
         setAreOptionsEnabled(false);
         // Do not overwrite the main quiz question; show feedback separately
@@ -48,6 +47,10 @@ export default function InteractiveQuiz({quizRef, navigateToNode}) {
         setFeedbackText(quizAnswer.reason || qr?.reasontext || quizAnswer.answerText || '');
         setSelectedIsCorrect(!!quizAnswer.isCorrectAnswer);
         setRefreshAnimations((v) => v + 1);
+        
+        
+        void storage.logQuizChoice({question : quizRef.current.quizName, answer: quizAnswer.answerText, timeMs: 1000})
+        
         // Potentially navigate or handle correctness later using navigateToNode and isCorrectAnswer
     }
 

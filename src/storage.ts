@@ -1,6 +1,6 @@
 ﻿// Centralized, safe LocalStorage helper + logging utilities
 
-const API_URL = "https://script.google.com/macros/s/AKfycbz9lv51HtVaNeYfDwx0ATc1wYDbQ3bahZV8gS8AVCuxlVhQ9NxABmuJmTN-e8eTramZvg/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbx70-NNM0AhKeFOepp7g7MzJbDw90o_2xbqATVAyf8FsPJAcfFKw9Fl6Hh0G3JMXKqxWw/exec";
 
 type Nullable<T> = T | null | undefined;
 
@@ -161,6 +161,9 @@ export const storage: StorageAPI = {
                 TimeSpentChoosing: timeMs ?? null,
                 PlaythroughCount: this.getPlaythroughAttempts(0),
             } as const;
+            
+            console.log(payload);
+            
             await postJson(API_URL, payload);
         } catch {
             // ignore

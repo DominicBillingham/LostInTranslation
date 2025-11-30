@@ -195,7 +195,7 @@ function LostInTranslation({ storage }: { storage?: StorageAPI }) {
                         }
                         
                         {displayQuiz &&
-                            <InteractiveQuiz key={quizKey} quizRef={quizRef} navigateToNode={NavgiateToNode}/>
+                            <InteractiveQuiz key={quizKey} quizRef={quizRef} navigateToNode={NavgiateToNode} storage={storage}/>
                         }
                         
                     </div>
