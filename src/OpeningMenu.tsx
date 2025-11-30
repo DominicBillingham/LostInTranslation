@@ -9,12 +9,11 @@ export default function Options() {
     
     const [gameStarted , setGameStarted] = useState(false);
     const [username, setUsername] = useState<string>("");
-    // Default volumes to 20%
-    const [soundVolume, setSoundVolume] = useState<number>(20);
     const [musicVolume, setMusicVolume] = useState<number>(20);
     const [isLeaving, setIsLeaving] = useState<boolean>(false);
 
     useEffect(() => {
+        
         // Load prefs from localStorage (with sensible defaults)
         try {
             const storedName = storage.getUsername();
@@ -22,19 +21,13 @@ export default function Options() {
                 setUsername(storedName);
             }
 
-            const validS = storage.getSoundVolume(20);
             const validM = storage.getMusicVolume(20);
 
-            setSoundVolume(validS);
             setMusicVolume(validM);
-
-            // Apply to Sound engine
-            Sound.setSoundVolume(validS);
             Sound.setMusicVolume(validM);
-
-            // Ensure defaults are persisted for next time
-            storage.setSoundVolume(validS);
             storage.setMusicVolume(validM);
+            
+            
         } catch {}
 
     }, []);
@@ -45,13 +38,11 @@ export default function Options() {
         try {
             // Persist simple preferences for later use (optional, non-breaking)
             storage.setUsername(name);
-            storage.setSoundVolume(soundVolume);
             storage.setMusicVolume(musicVolume);
         } catch (e) {
             // Ignore storage errors silently
         }
         // Click feedback and start looping music (will fail gracefully if asset missing)
-        await Sound.playClick();
         void Sound.startMusic();
         // Trigger exit animation then start game
         setIsLeaving(true);
@@ -132,8 +123,8 @@ export default function Options() {
                                                 Sound.setMusicVolume(v);
                                                 try { storage.setMusicVolume(v); } catch {}
                                             }}
-                                            onMouseUp={() => { void Sound.playClick(); void Sound.startMusic(); }}
-                                            onTouchEnd={() => { void Sound.playClick(); void Sound.startMusic(); }}
+                                            onMouseUp={() => { void Sound.startMusic(); }}
+                                            onTouchEnd={() => { void Sound.startMusic(); }}
                                             className="w-full accent-[#FF7F50]"
                                         />
                                     </label>

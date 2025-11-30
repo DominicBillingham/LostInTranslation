@@ -39,8 +39,7 @@ export default function InteractiveQuiz({quizRef, navigateToNode, storage} : {qu
 
     function ChooseAnswer(quizAnswer: QuizOption) {
         // Ensure the click actually updates the UI
-
-        void Sound.playClick();
+        
         setAreOptionsEnabled(false);
         // Do not overwrite the main quiz question; show feedback separately
         const qr = quizRef?.current as (Quiz & { reasontext?: string }) | undefined;
@@ -55,7 +54,6 @@ export default function InteractiveQuiz({quizRef, navigateToNode, storage} : {qu
     }
 
     function Continue() {
-        void Sound.playClick();
         const current = quizRef?.current as Quiz | undefined;
         if (!current) return;
         if (current.nextOption) {
