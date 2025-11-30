@@ -47,8 +47,6 @@ export default function Options() {
             storage.setUsername(name);
             storage.setSoundVolume(soundVolume);
             storage.setMusicVolume(musicVolume);
-            // Increment playthrough attempts counter
-            storage.incrementPlaythroughAttempts();
         } catch (e) {
             // Ignore storage errors silently
         }
