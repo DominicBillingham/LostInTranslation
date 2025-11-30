@@ -1,6 +1,6 @@
 ﻿// Centralized, safe LocalStorage helper + logging utilities
 
-const API_URL = "https://script.google.com/macros/s/AKfycbwdFzmZpuSz86dAMFywtSzkDD2skGGuhnuJxzhhDbYDgAPKJznYLOW9xn8Y0-Ogep0B3A/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbyKQizyWawgist4t2ZSfjpQNT4ds4dSbgq8p4BpIQoPPzahEllS46vGzFa6Dtpkc3yjbw/exec";
 
 const KEYS = {
     username: "username",
@@ -37,7 +37,7 @@ export interface StorageAPI {
 
     // New: logging helpers
     logStoryChoice(data: { decision: string; choice: string; timeMs?: Nullable<number> }): Promise<void>;
-    logQuizChoice(data: { question: string; answer: string; timeMs?: Nullable<number> }): Promise<void>;
+    logQuizChoice(data: { question: string; answer: string; wasCorrect: boolean; timeMs?: Nullable<number> }): Promise<void>;
 }
 
 // ---------- low-level safe wrappers ----------
@@ -136,7 +136,7 @@ export const storage: StorageAPI = {
     },
 
     // logging
-    async logStoryChoice({ decision, choice, timeMs }: { decision: string; choice: string; timeMs?: Nullable<number> }) {
+    async logStoryChoice({ decision, choice, timeMs }) {
         try {
             const userId = this.getUsername() || "Anonymous";
             const count = incrementCounter(decision);
@@ -159,7 +159,7 @@ export const storage: StorageAPI = {
         }
     },
 
-    async logQuizChoice({ question, answer, timeMs }: { question: string; answer: string; timeMs?: Nullable<number> }) {
+    async logQuizChoice({ question, answer, wasCorrect, timeMs }) {
         try {
             const userId = this.getUsername() || "Anonymous";
             const count = incrementCounter(question);
@@ -168,6 +168,7 @@ export const storage: StorageAPI = {
                 UserId: userId,
                 QuizQuestion: question,
                 QuizAnswer: answer,
+                WasCorrect: wasCorrect,
                 QuizAnswerCount: count,
                 TimeSpentChoosing: timeMs ?? null,
                 PlaythroughCount: this.getPlaythroughAttempts(0),

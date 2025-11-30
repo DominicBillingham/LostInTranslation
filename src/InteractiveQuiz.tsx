@@ -35,7 +35,7 @@ export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} 
         setRefreshAnimations((v) => v + 1);
         
         
-        void LocalStorage.logQuizChoice({question : quizRef.current.quizQuestion, answer: quizAnswer.answerText, timeMs: 1000})
+        void LocalStorage.logQuizChoice({question : quizRef.current.quizQuestion, answer: quizAnswer.answerText, wasCorrect : quizAnswer.isCorrectAnswer, timeMs: 1000})
         
         // Potentially navigate or handle correctness later using navigateToNode and isCorrectAnswer
     }
@@ -47,8 +47,8 @@ export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} 
             navigateToNode(current.nextNode);
             return;
         }
-        if (current.nextScene) {
-            navigateToNode(current.nextScene);
+        if (current.nextNode) {
+            navigateToNode(current.nextNode);
             return;
         }
         // If nothing is provided, do nothing for now
