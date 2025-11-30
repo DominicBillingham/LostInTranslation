@@ -2,29 +2,7 @@
 import LocalStorage, { type StorageAPI } from "./LocalStorage.ts";
 import InteractiveStory from "./InteractiveStory.tsx";
 import InteractiveQuiz from "./InteractiveQuiz.tsx";
-
-interface Scene {
-    sceneName: string;
-    image?: string;
-    sentences: string[];
-    options?: string[];
-    quizName?: string;
-    hints?: Record<string, string>;
-}
-interface Quiz {
-    quizName: string;
-    nextOption?: string;
-    nextScene?: string;
-    quizQuestion: string;
-    quizAnswers: QuizOption[];
-}
-interface QuizOption {
-    answerText: string;
-    isCorrectAnswer: boolean;
-    reason: string;
-}
-
-// quick commit test
+import type {Quiz, Scene} from "./Interfaces.ts";
 
 function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
 
@@ -38,7 +16,7 @@ function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
     async function FetchSceneFromJson(sceneName: string) {
         const response = await fetch("adventure.json");
         const json: Scene[] = await response.json();
-        sceneRef.current = json.find(s => s.sceneName === sceneName) ?? null;
+        sceneRef.current = json.find(s => s.nodeName === sceneName) ?? null;
     }
     async function FetchQuizFromJson(quizName: string) {
         const response = await fetch("quiz.json");
@@ -85,10 +63,10 @@ function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
         }
     };
     
-    async function ResetGame() {
+    async function ResetGame() {  
 
         LocalStorage.incrementPlaythroughAttempts();
-        await FetchSceneFromJson("Introduction");
+        await FetchSceneFromJson("Intro");
         
         // Use functional updates to avoid stale closures and ensure key changes
         setSceneKey(k => k + 1);
@@ -116,7 +94,7 @@ function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
         return () => window.removeEventListener("keydown", ResetKeyEvent);
     }, []);
     
-    async function NavgiateToNode(nodeName: string) {
+    async function NavigateToNode(nodeName: string) {
         
         console.log("Navigating to: " + nodeName);
         
@@ -158,10 +136,10 @@ function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
         <>
             {imageHmtl}
             {displayScene &&
-                <InteractiveStory key={sceneKey} sceneRef={sceneRef} navigateToNode={NavgiateToNode} LocalStorage={LocalStorage} />
+                <InteractiveStory key={sceneKey} sceneRef={sceneRef} navigateToNode={NavigateToNode} LocalStorage={LocalStorage} />
             }
             {displayQuiz &&
-                <InteractiveQuiz key={quizKey} quizRef={quizRef} navigateToNode={NavgiateToNode} LocalStorage={LocalStorage}/>
+                <InteractiveQuiz key={quizKey} quizRef={quizRef} navigateToNode={NavigateToNode} LocalStorage={LocalStorage}/>
             }
         </>
     )

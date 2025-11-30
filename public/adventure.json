@@ -1,7 +1,10 @@
 [
     
     {
-        "sceneName": "Introduction",
+        
+        "nodeName": "Intro",
+        "storyDecision": "Does Cinderella choose to stay or leave?",
+        
         "sentences": [
             "Once upon a time, there was a beautiful girl who lived with her father and her stepmother and stepsisters.",
             "One day, her father sadly passed away, leaving her heartbroken at the mercy of the woman her father had remarried.",
@@ -25,7 +28,8 @@
     },    
     
     {
-        "sceneName": "Run away",
+        "nodeName": "Run away",
+        
         "sentences": [
             "Cinderella decides to escape, run away from everyone and everything.",
             "She stumbles across a monastery, and she decides to join the nuns there, going on to live a peaceful life surrounded by kind women.",
@@ -40,7 +44,8 @@
     },
     
     {
-        "sceneName": "Continue to do her work",
+        "nodeName": "Continue to do her work",
+        
         "sentences": [
             "Sadly, she knew that any complaints would fall on deaf ears.",
             "She worked diligently, no matter how sad she felt about her situation.",
@@ -55,7 +60,7 @@
     },    
         
     {
-        "sceneName": "Try to complain",
+        "nodeName": "Try to complain",
         "sentences": [
             "Sadly, she knew that any complaints would fall on deaf ears.",
             "She worked diligently, no matter how sad she felt about her situation.",
@@ -70,7 +75,10 @@
     },
 
     {
-        "sceneName": "Ball",
+        
+        "nodeName": "Ball",
+        "storyDecision": "Does Cinderella accept her Godmother's help?",
+        
         "sentences": [
             "One night, Cinderella’s stepmother and stepsisters left her behind to tend to the house as they went to a ball to try to meet the prince.",
             "Cinderella was disappointed, because she had also wanted to go, but she continued cleaning, without complaining.",
@@ -91,7 +99,7 @@
     },
 
     {
-        "sceneName": "Decline her help",
+        "nodeName": "Decline her help",
         "sentences": [
             "The fairy respects her wishes and leaves. Cinderella continues to scrub the dirty floors.",
             "She spends her life taking care of her stepsisters and their offspring",
@@ -106,7 +114,7 @@
     },
 
     {
-        "sceneName": "Jump enthusiastically at the offer",
+        "nodeName": "Jump enthusiastically at the offer",
         "sentences": [
             "“I promise you’ll love your new look!” The fairy’s excitement is contagious, and Cinderella ended up accepting her offer.",
             "“Abracadabra!” and with a flick of her wand, the fairy transformed Cinderella’s raggedy clothes into a beautiful gown. ",
@@ -128,7 +136,7 @@
     },
 
     {
-        "sceneName": "Hesitantly agree",
+        "nodeName": "Hesitantly agree",
         "sentences": [
             "“I promise you’ll love your new look!” The fairy’s excitement is contagious, and Cinderella ended up accepting her offer.",
             "“Abracadabra!” and with a flick of her wand, the fairy transformed Cinderella’s raggedy clothes into a beautiful gown. ",
@@ -151,7 +159,10 @@
 
 
     {
-        "sceneName": "Prince",
+        
+        "nodeName": "Prince",
+        "storyDecision": "Does Cinderella run away or stay at the ball?",
+
         "sentences": [
             "Cinderella arrived at the ball, and everyone turned to look at her. Her family didn’t recognize her, because they had never seen her dolled up.",
             "The prince was awestruck by Cinderella’s beauty, and he asked her to dance, while her jealous stepsisters watched.",
@@ -172,7 +183,7 @@
     },
 
     {
-        "sceneName": "Stay",
+        "nodeName": "Stay",
         "sentences": [
             "Cinderella’s dress converts back to the rags that she was dressed in before the dance.",
             "Since the usage of magic is prohibited in the castle,. the prince orders her to be locked up in the dungeon.",
@@ -188,7 +199,7 @@
     },
 
     {
-        "sceneName": "Panic and run away",
+        "nodeName": "Panic and run away",
         "sentences": [
             "She ran back to her carriage and arrived home just in time. However, in her rush, she didn’t realize she had forgotten her shoe.",
             "The prince went all over the kingdom searching for the shoe owner, hoping to find the girl who he had fallen in love with the night of the ball.",
@@ -205,7 +216,7 @@
     },
 
     {
-        "sceneName": "Tell him she will see him again",
+        "nodeName": "Tell him she will see him again",
         "sentences": [
             "She ran back to her carriage and arrived home just in time. However, in her rush, she didn’t realize she had forgotten her shoe.",
             "The prince went all over the kingdom searching for the shoe owner, hoping to find the girl who he had fallen in love with the night of the ball.",
@@ -221,7 +232,7 @@
     },
 
     {
-        "sceneName": "End",
+        "nodeName": "End",
         "sentences": [
             "Ending: Happily ever after. Press (R) to restart!"
         ],

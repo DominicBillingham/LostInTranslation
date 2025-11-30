@@ -1,16 +1,8 @@
 ﻿import {useEffect, useRef, useState, type ReactNode, type RefObject} from "react";
 import type {StorageAPI} from "./LocalStorage.ts";
+import type {Scene} from "./Interfaces.ts";
 
-interface Scene {
-    sceneName: string;
-    image?: string;
-    sentences: string[];
-    options?: string[];
-    quizName?: string;
-    hints?: Record<string, string>;
-}
-
-export default function InteractiveStory({ sceneRef, navigateToNode, LocalStorage } : {sceneRef? : any, navigateToNode : any, LocalStorage : StorageAPI}) {
+export default function InteractiveStory({ sceneRef, navigateToNode, LocalStorage } : {sceneRef? : RefObject<Scene>, navigateToNode : any, LocalStorage : StorageAPI}) {
 
     const [displayIndicator, setDisplayIndicator] = useState(true)
     const [refreshAnimations, setRefreshAnimations] = useState(0);
@@ -87,7 +79,7 @@ export default function InteractiveStory({ sceneRef, navigateToNode, LocalStorag
         const elapsed = started != null ? Math.max(0, Math.round(now - started)) : null;
         
         // Send measured time (falls back to null if not available)
-        void LocalStorage.logStoryChoice({decision: sceneRef.current.sceneName, choice: choice, timeMs: elapsed ?? undefined});
+        void LocalStorage.logStoryChoice({decision: sceneRef.current.storyDecision, choice: choice, timeMs: elapsed ?? undefined});
         
         // Clear timer immediately after logging
         optionsStartRef.current = null;
