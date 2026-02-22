@@ -78,36 +78,39 @@ export default function OpeningMenu() {
                                 >
                                     
                                     <div className="flex flex-col gap-[2vh]">
-                                        
-                                        <label className="flex flex-col gap-[1vh]">
-                                            <span className=" text-gray-700">Username </span>
-                                            <input
-                                                type="text"
-                                                value={username}
-                                                onChange={(e) => setUsername(e.target.value)}
-                                                placeholder="Enter your name"
-                                                autoFocus
-                                                className="rounded-lg border border-gray-300 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-orange-300"
-                                            />
-                                        </label>
 
-                                        <label className="flex flex-col gap-[1vh]">
-                                            <span className=" text-gray-700">LogKey <span className="text-gray-400">(optional)</span></span>
-                                            <input
-                                                type="text"
-                                                value={logKey}
-                                                onChange={(e) => {
-                                                    setLogKey(e.target.value);
-                                                }}
-                                                placeholder="Enter your LogKey (optional)"
-                                                className={`rounded-lg border px-[2vh] py-[1vh] focus:outline-none focus:ring-2 border-gray-300 focus:ring-orange-300`}
-                                            />
-                                        </label>
+                                        <div className="flex gap-[2vh]">
+                                            <label className="flex flex-col gap-[1vh] flex-1">
+                                                <span className=" text-gray-700">Username </span>
+                                                <input
+                                                    type="text"
+                                                    value={username}
+                                                    onChange={(e) => setUsername(e.target.value)}
+                                                    placeholder="Enter your name"
+                                                    autoFocus
+                                                    className="rounded-lg border border-gray-300 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-orange-300"
+                                                />
+                                            </label>
 
-                                        <label className="flex flex-col gap-2">
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-gray-700">Music</span>
-                                                <span className=" text-gray-500">{musicVolume}%</span>
+                                            <label className="flex flex-col gap-[1vh] flex-1">
+                                                <span className=" text-gray-700">LogKey <span
+                                                    className="text-gray-400">(optional)</span></span>
+                                                <input
+                                                    type="text"
+                                                    value={logKey}
+                                                    onChange={(e) => {
+                                                        setLogKey(e.target.value);
+                                                    }}
+                                                    placeholder="Enter your LogKey (optional)"
+                                                    className={`rounded-lg border px-[2vh] py-[1vh] focus:outline-none focus:ring-2 border-gray-300 focus:ring-orange-300`}
+                                                />
+                                            </label>
+                                        </div>
+
+                                        <label className="flex flex-col gap-[1vh] bg-orange-50/50 p-[2vh] rounded-[2vh]  border-orange-100">
+                                            <div className="flex items-center justify-between px-1">
+                                                <span className="text-gray-700 font-semibold">Music Volume</span>
+                                                <span className="text-orange-400 font-bold bg-white px-[1.5vh] py-[0.2vh] rounded-full  text-[2.5vh] ">{musicVolume}%</span>
                                             </div>
                                             <input
                                                 type="range"
@@ -123,7 +126,7 @@ export default function OpeningMenu() {
                                                 onMouseUp={() => {
                                                     void Sound.startMusic();
                                                 }}
-                                                className="w-full accent-[#FF7F50]"
+                                                className="w-full h-[1vh] bg-orange-200 rounded-lg appearance-none cursor-pointer accent-orange-500"
                                             />
                                         </label>
 
@@ -132,7 +135,7 @@ export default function OpeningMenu() {
                                                 type="button"
                                                 onClick={onContinue}
                                                 disabled={username.trim() === "" || isLeaving}
-                                                className={`rounded-xl px-10 py-2 text-gray-900 shadow-md border-[#FF7F50] border-3 text-center hover:shadow-lg ${username.trim() === "" || isLeaving ? 'bg-orange-100/10 cursor-not-allowed opacity-60' : 'bg-orange-200/95 hover:bg-orange-300/95 hover:cursor-pointer'}`}
+                                                className={`rounded-full px-[8vh] py-[1.5vh] text-gray-900 shadow-lg border-b-[0.6vh] border-orange-400 active:border-b-0 active:translate-y-[0.6vh] transition-all font-bold text-[2.5vh] ${username.trim() === "" || isLeaving ? 'bg-gray-200 border-gray-300 cursor-not-allowed opacity-60' : 'bg-gradient-to-r from-orange-300 to-orange-400 hover:from-orange-400 hover:to-orange-500 hover:scale-105 active:scale-95 cursor-pointer'}`}
                                                 >
                                                     Continue
                                                 </button>
