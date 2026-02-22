@@ -52,7 +52,7 @@ body {
     transition: opacity 1s ease-in-out; /* This adds a smooth transition for the opacity */
     opacity: 1; /* Default visibility */
 }
-
+ 
 /* Tooltip CSS */
 .custom-tooltip {
     position: relative;

@@ -47,13 +47,14 @@ export default function OpeningMenu() {
                     <div className="border-b border-gray-300 w-1/2 mx-auto my-[1vh]"></div>
                     <div className="text-center text-gray-600 px-[2vh]">
                         <span>
-                              Press space to continue. Words{' '}
+                              Press space to continue. 
+                                <br />
+                                Words{' '}
                                 <span className="text-coral custom-tooltip" data-tooltip="Just like this!">
                                 highlighted
                                 </span>{' '}
                                 give a hint when hovered over.
                                 <br/>
-                              When you are presented with a choice, simply click your preferred option!
                         </span>
                     </div>
 
