@@ -2,15 +2,19 @@
 import type {StorageAPI} from "@/Managers/LocalStorage.ts";
 import type {Scene} from "@/Interfaces.ts";
 
-export default function InteractiveStory({ sceneRef, navigateToNode, LocalStorage } : {sceneRef? : RefObject<Scene>, navigateToNode : any, LocalStorage : StorageAPI}) {
+interface InteractiveStoryProps {
+    sceneRef?: RefObject<Scene>;
+    navigateToNode: any;
+    LocalStorage: StorageAPI;
+}
 
+export default function InteractiveStory({sceneRef, navigateToNode, LocalStorage}: InteractiveStoryProps) {
     const [displayIndicator, setDisplayIndicator] = useState(true)
     const [refreshAnimations, setRefreshAnimations] = useState(0);
 
     const [text, setText] = useState<ReactNode>("");
     const [displayOptions, setDisplayOptions] = useState(false);
     const indexRef = useRef(0);
-    // Timer for measuring how long the player takes to choose once options are shown
     const optionsStartRef = useRef<number | null>(null);
     const textBoxBottomClass = displayOptions ? 'bottom-[20vh]' : 'bottom-[10v]';
 
@@ -55,7 +59,6 @@ export default function InteractiveStory({ sceneRef, navigateToNode, LocalStorag
         
         indexRef.current = 0;
         setDisplayIndicator(true);
-        // Reset options UI and any prior timer when (re)mounting the story
         setDisplayOptions(false);
         optionsStartRef.current = null;
         const firstSentence = sceneRef.current?.sentences?.[0];
