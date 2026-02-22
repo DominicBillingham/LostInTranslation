@@ -1,7 +1,7 @@
 ﻿import {useEffect, useState} from "react";
 import LostInTranslation from "./LostInTranslation.tsx";
-import Sound from "./SoundManager.ts";
-import LocalStorage from "./LocalStorage.ts";
+import Sound from "./Managers/SoundManager.ts";
+import LocalStorage from "./Managers/LocalStorage.ts";
 
 export default function OpeningMenu() {
 

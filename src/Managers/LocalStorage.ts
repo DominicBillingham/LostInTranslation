@@ -88,7 +88,7 @@ async function postJson(url: string, body: unknown): Promise<void> {
     }
 }
 
-export const storage: StorageAPI = {
+export const StorageManager: StorageAPI = {
     // basic
     getItem: safeGet,
     setItem: safeSet,
@@ -184,4 +184,4 @@ export const storage: StorageAPI = {
     },
 };
 
-export default storage;
+export default StorageManager;

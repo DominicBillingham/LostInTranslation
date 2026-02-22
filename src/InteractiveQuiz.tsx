@@ -1,5 +1,5 @@
 ﻿import {useEffect, useRef, useState, type RefObject} from "react";
-import type {StorageAPI} from "./LocalStorage.ts";
+import type {StorageAPI} from "./Managers/LocalStorage.ts";
 import type {Quiz, QuizOption} from "./Interfaces.ts";
 
 export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage} : {quizRef: RefObject<Quiz>, navigateToNode : any, LocalStorage : StorageAPI}) {
