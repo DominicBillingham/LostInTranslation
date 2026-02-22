@@ -47,13 +47,13 @@ export default function OpeningMenu() {
                     <div className="border-b border-gray-300 w-1/2 mx-auto my-[1vh]"></div>
                     <div className="text-center text-gray-600 px-[2vh]">
                         <span>
-                              When you see ▼ press space to continue. Words{' '}
+                              Press space to continue. Words{' '}
                                 <span className="text-coral custom-tooltip" data-tooltip="Just like this!">
                                 highlighted
                                 </span>{' '}
                                 give a hint when hovered over.
                                 <br/>
-                              When you are presented with a choice, click on the sentence you prefer to choose!
+                              When you are presented with a choice, simply click your preferred option!
                         </span>
                     </div>
 
@@ -74,7 +74,7 @@ export default function OpeningMenu() {
 
                                 {/* Overlay options card */}
                                 <div
-                                    className={`absolute inset-x-[3vh] bottom-[3vh] bg-white p-[3vh] px-[5vh] rounded-xl  text-gray-800 shadow-md z-10 transition-all duration-500 ease-out transform ${isLeaving ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0'}`}
+                                    className={`absolute backdrop-blur-lg inset-x-[3vh] bottom-[3vh] bg-white p-[3vh] px-[5vh] rounded-xl  text-gray-800 shadow-md z-10 transition-all duration-500 ease-out transform ${isLeaving ? 'opacity-0 translate-y-6' : 'opacity-100 translate-y-0'}`}
                                 >
                                     
                                     <div className="flex flex-col gap-[2vh]">
@@ -88,7 +88,7 @@ export default function OpeningMenu() {
                                                     onChange={(e) => setUsername(e.target.value)}
                                                     placeholder="Enter your name"
                                                     autoFocus
-                                                    className="rounded-lg border border-gray-300 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-orange-300"
+                                                    className="rounded-lg border-orange-200 border-2 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-orange-300"
                                                 />
                                             </label>
 
@@ -102,7 +102,7 @@ export default function OpeningMenu() {
                                                         setLogKey(e.target.value);
                                                     }}
                                                     placeholder="Enter your LogKey (optional)"
-                                                    className={`rounded-lg border px-[2vh] py-[1vh] focus:outline-none focus:ring-2 border-gray-300 focus:ring-orange-300`}
+                                                    className="rounded-lg border-orange-200 border-2 px-[2vh] py-[1vh] focus:outline-none focus:ring-2  focus:ring-orange-300"
                                                 />
                                             </label>
                                         </div>
@@ -135,7 +135,7 @@ export default function OpeningMenu() {
                                                 type="button"
                                                 onClick={onContinue}
                                                 disabled={username.trim() === "" || isLeaving}
-                                                className={`rounded-full px-[8vh] py-[1.5vh] text-gray-900 shadow-lg border-b-[0.6vh] border-orange-400 active:border-b-0 active:translate-y-[0.6vh] transition-all font-bold text-[2.5vh] ${username.trim() === "" || isLeaving ? 'bg-gray-200 border-gray-300 cursor-not-allowed opacity-60' : 'bg-gradient-to-r from-orange-300 to-orange-400 hover:from-orange-400 hover:to-orange-500 hover:scale-105 active:scale-95 cursor-pointer'}`}
+                                                className="rounded-full px-[8vh] py-[1.5vh] text-gray-900 shadow-lg border-b-[0.6vh] border-orange-400 active:border-b-0 active:translate-y-[0.6vh] transition-all font-bold text-[2.5vh] bg-gradient-to-r from-orange-300 to-orange-400 hover:from-orange-400 hover:to-orange-500 hover:scale-105 active:scale-95 cursor-pointer"
                                                 >
                                                     Continue
                                                 </button>
