@@ -1,8 +1,8 @@
 ﻿import {useEffect, useRef, useState} from "react";
-import { type StorageAPI } from "./Managers/LocalStorage.ts";
-import InteractiveStory from "./InteractiveStory.tsx";
-import InteractiveQuiz from "./InteractiveQuiz.tsx";
-import type {Quiz, Scene} from "./Interfaces.ts";
+import { type StorageAPI } from "@/Managers/LocalStorage.ts";
+import InteractiveStory from "@/Components/InteractiveStory.tsx";
+import InteractiveQuiz from "@/Components/InteractiveQuiz.tsx";
+import type {Quiz, Scene} from "@/Interfaces.ts";
 
 function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
 

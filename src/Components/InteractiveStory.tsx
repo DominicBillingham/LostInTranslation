@@ -1,6 +1,6 @@
 ﻿import {useEffect, useRef, useState, type ReactNode, type RefObject} from "react";
-import type {StorageAPI} from "./Managers/LocalStorage.ts";
-import type {Scene} from "./Interfaces.ts";
+import type {StorageAPI} from "@/Managers/LocalStorage.ts";
+import type {Scene} from "@/Interfaces.ts";
 
 export default function InteractiveStory({ sceneRef, navigateToNode, LocalStorage } : {sceneRef? : RefObject<Scene>, navigateToNode : any, LocalStorage : StorageAPI}) {
 

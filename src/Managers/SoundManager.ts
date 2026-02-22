@@ -1,4 +1,4 @@
-﻿import StorageManager from './LocalStorage.ts';
+﻿import StorageManager from '@/Managers/LocalStorage.ts';
 
 export interface MusicAPI {
     startMusic(src?: string): Promise<void>;
