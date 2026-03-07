@@ -15,8 +15,8 @@ export default function Introduction({onComplete}: IntroductionProps) {
 
     const introSentences = [
         "Once upon a time, in a dusty basement...",
-        "you came across an old journal that seemed to take on a life of its own!",
-        "will you uncover its secrets?",
+        "You came across an old journal that seemed to take on a life of its own!",
+        "Will you uncover its secrets?",
         "Or will you get..."
     ];
 
@@ -77,10 +77,11 @@ export default function Introduction({onComplete}: IntroductionProps) {
 
     return (
         <div className={`journal-stream transition-opacity duration-1000 ${isFadingOut ? "opacity-0" : "opacity-100"}`}>
+            
             {!showTitle && (
                 <div className={`transition-opacity duration-1000 ${introFadingOut ? "opacity-0" : "opacity-100"}`}>
                     {displayedSentences.map((sentence, index) => (
-                        <div key={index} className="chat-bubble short-fade">
+                        <div key={index} className="prata-regular tracking-wide text-center text-[3.5vh] px-[10vh] leading-[1.4] short-fade m-auto mb-4">
                             {sentence}
                         </div>
                     ))}
