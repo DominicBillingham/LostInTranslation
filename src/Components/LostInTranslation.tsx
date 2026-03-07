@@ -34,9 +34,8 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
     }
 
     const resetKeyEvent = (event: KeyboardEvent) => {
-        if (event.key === "r") {
-            event.preventDefault();
-            void resetGame();
+        if (event.key === "r" || event.key === "R") {
+            window.location.reload();
         }
     };
 
@@ -46,7 +45,7 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
         });
     }
 
-    async function resetGame() {
+    async function SetupGame() {
         LocalStorage?.incrementPlaythroughAttempts();
         const introScene = await fetchSceneFromJson("Intro");
         
@@ -63,7 +62,7 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
     }
 
     useEffect(() => {
-        void resetGame();
+        void SetupGame();
         window.addEventListener("keydown", resetKeyEvent);
         return () => window.removeEventListener("keydown", resetKeyEvent);
     }, []);
