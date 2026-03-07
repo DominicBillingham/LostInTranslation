@@ -106,7 +106,7 @@ export default function OpeningMenu() {
                                         type="button"
                                         onClick={onContinue}
                                         disabled={username.trim() === "" || isLeaving}
-                                        className="pencil-btn rounded-full px-[6vh] py-[1.2vh] shadow-lg active:border-b-0 active:translate-y-[0.6vh] transition-all font-bold text-[2.4vh] hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="me-[2vh] pencil-btn rounded-full px-[6vh] py-[1.2vh] shadow-lg active:border-b-0 active:translate-y-[0.6vh] font-bold text-[2.4vh] hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         Start Writing
                                     </button>
