@@ -107,10 +107,10 @@ body::before {
 .photo-frame::after {
     content: "";
     position: absolute;
-    top: 10px;
-    width: 74px;
-    height: 20px;
-    background: linear-gradient(180deg, rgba(244, 232, 205, 0.92), rgba(219, 198, 162, 0.78));
+    top: 1vh;
+    width: 10.9vh;
+    height: 3.4vh;
+    background: linear-gradient(180deg, rgba(244, 232, 205, 0.92), rgba(219, 198, 162, 0.88));
     border: 1px solid rgba(126, 100, 67, 0.22);
     box-shadow: 0 2px 5px rgba(46, 31, 17, 0.2);
     z-index: 3;
@@ -118,13 +118,13 @@ body::before {
 }
 
 .photo-frame::before {
-    left: 18px;
-    transform: rotate(-10deg);
+    left: -1.8vh;
+    transform: rotate(-15deg);
 }
 
 .photo-frame::after {
-    right: 18px;
-    transform: rotate(11deg);
+    right: -1vh;
+    transform: rotate(12deg);
 }
 
 .journal-stream {
@@ -173,11 +173,6 @@ body::before {
     100% {
         opacity: 1;
     }
-}
-
-#storyImage {
-    transition: opacity 1s ease-in-out; /* This adds a smooth transition for the opacity */
-    opacity: 1; /* Default visibility */
 }
  
 /* Tooltip CSS */

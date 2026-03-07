@@ -148,7 +148,7 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
             })}
 
             {/* Add a 30vh spacer at the very bottom */}
-            <div ref={endRef} className="h-[15vh] w-full shrink-0" />
+            <div ref={endRef} className="h-[25vh] w-full shrink-0" />
             
         </div>
     );
