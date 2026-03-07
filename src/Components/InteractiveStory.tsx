@@ -87,23 +87,7 @@ export default function InteractiveStory({scene, active, navigateToNode, LocalSt
             }
         }
     };
-
-    useEffect(() => {
-        indexRef.current = -1;
-        setDisplayIndicator(true);
-        setDisplayOptions(false);
-        optionsStartRef.current = null;
-
-        setEntries([]);
-
-        window.addEventListener("keydown", onSpacePress);
-        return () => window.removeEventListener("keydown", onSpacePress);
-    }, []);
-
-    useEffect(() => {
-        onContentUpdate();
-    }, [entries, displayOptions]);
-
+    
     async function makeChoice(choice: string) {
         const now = (typeof performance !== "undefined" ? performance.now() : Date.now());
         const started = optionsStartRef.current;
@@ -115,7 +99,19 @@ export default function InteractiveStory({scene, active, navigateToNode, LocalSt
         setDisplayOptions(false);
         navigateToNode(choice);
     }
+    
+    useEffect(() => {
+        indexRef.current = -1;
+        setDisplayIndicator(true);
+        setDisplayOptions(false);
+        optionsStartRef.current = null;
 
+        setEntries([]);
+
+        window.addEventListener("keydown", onSpacePress);
+        return () => window.removeEventListener("keydown", onSpacePress);
+    }, []);
+    
     return (
         <div className="journal-stream">
             {entries.map((entry, index) => (
