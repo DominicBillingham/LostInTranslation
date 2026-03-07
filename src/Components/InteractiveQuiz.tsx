@@ -71,14 +71,14 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
 
             <div className="chat-bubble fade2">{quizText}</div>
             
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-[1vh] mt-[0.5vh]">
+            <div className="w-full flex flex-col items-center gap-[1vh] mt-[0.5vh]">
                 {Array.isArray(quiz?.quizAnswers) && (
                     quiz.quizAnswers.slice(0, 4).map((ans: QuizOption, i: number) => (
                         <button
                             key={ans.answerText + i}
                             type="button"
                             disabled={!areOptionsEnabled || !active}
-                            className="choice-btn rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-left hover:cursor-pointer fade2 disabled:opacity-30 disabled:cursor-not-allowed"
+                            className="choice-btn w-full sm:w-2/3 rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-center hover:cursor-pointer fade2 disabled:opacity-30 disabled:cursor-not-allowed"
                             onClick={() => chooseAnswer(ans)}
                         >
                             {ans.answerText}

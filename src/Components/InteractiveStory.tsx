@@ -128,12 +128,12 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
             )}
 
             {displayOptions && active && (
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-[1vh] mt-[0.5vh]">
+                <div className="w-full flex flex-col items-center gap-[1vh] mt-[0.5vh]">
                     {(scene.nextNodeOptions ?? []).slice(0, 4).map((opt, i) => (
                         <button
                             key={opt + i}
                             type="button"
-                            className="choice-btn rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-left hover:cursor-pointer fade2"
+                            className="choice-btn w-full sm:w-2/3 rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-center hover:cursor-pointer fade2"
                             onClick={() => makeChoice(opt)}
                         >
                             {opt}
