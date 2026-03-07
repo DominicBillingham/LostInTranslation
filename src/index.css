@@ -36,7 +36,7 @@ body::before {
     background: url("/repeating.png") 10vh 0vh repeat;
     background-size: 30vh;
     opacity: 0.6;
-    filter: blur(1px);
+    filter: blur(0x);
     z-index: -1;
     pointer-events: none;
 }
