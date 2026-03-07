@@ -83,7 +83,7 @@ body {
 .photo-frame {
     position: relative;
     height: 100%;
-    padding: 12px 12px 0 12px;
+    padding: 12px;
     background: linear-gradient(180deg, #f6ead0 0%, #e7d6b3 100%);
 }
 
@@ -115,13 +115,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.2vh;
-    padding: 0.4vh 1vh 1vh 1vh;
+    padding: 0.4vh 1vh 30vh 1vh;
     scroll-behavior: smooth;
 }
 
 .chat-bubble {
     width: fit-content;
     max-width: 90%;
+    align-self: center;
     background: rgba(250, 242, 224, 0.9);
     border: 1px solid rgba(145, 107, 63, 0.35);
     color: var(--ink-soft);

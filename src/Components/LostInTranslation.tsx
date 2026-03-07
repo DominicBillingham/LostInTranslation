@@ -4,30 +4,29 @@ import InteractiveStory from "@/Components/InteractiveStory.tsx";
 import InteractiveQuiz from "@/Components/InteractiveQuiz.tsx";
 import type {Quiz, Scene} from "@/Interfaces.ts";
 
+type TimelineItem =
+    | { id: number; type: "image"; src: string }
+    | { id: number; type: "scene"; scene: Scene; active: boolean }
+    | { id: number; type: "quiz"; quiz: Quiz; active: boolean };
+
 function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
     const startingImage = "start.jpg";
 
-    const sceneRef = useRef<Scene | null>(null);
-    const quizRef = useRef<Quiz | null>(null);
     const lastImageRef = useRef<string>(startingImage);
+    const nextIdRef = useRef(1);
 
-    const [sceneKey, setSceneKey] = useState(0);
-    const [quizKey, setQuizKey] = useState(0);
+    const [timeline, setTimeline] = useState<TimelineItem[]>([]);
 
-    const [displayScene, setDisplayScene] = useState(false);
-    const [displayQuiz, setDisplayQuiz] = useState(false);
-    const [imageFeed, setImageFeed] = useState<string[]>([]);
-
-    async function fetchSceneFromJson(sceneName: string) {
+    async function fetchSceneFromJson(sceneName: string): Promise<Scene | null> {
         const response = await fetch("adventure.json");
         const json: Scene[] = await response.json();
-        sceneRef.current = json.find(s => s.nodeName === sceneName) ?? null;
+        return json.find(s => s.nodeName === sceneName) ?? null;
     }
 
-    async function fetchQuizFromJson(quizName: string) {
+    async function fetchQuizFromJson(quizName: string): Promise<Quiz | null> {
         const response = await fetch("quiz.json");
         const json: Quiz[] = await response.json();
-        quizRef.current = json.find(q => q.nodeName === quizName) ?? null;
+        return json.find(q => q.nodeName === quizName) ?? null;
     }
 
     const resetKeyEvent = (event: KeyboardEvent) => {
@@ -39,68 +38,101 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
 
     async function resetGame() {
         LocalStorage?.incrementPlaythroughAttempts();
-        await fetchSceneFromJson("Intro");
-
-        setSceneKey(k => k + 1);
-        setQuizKey(k => k + 1);
-
-        setDisplayScene(true);
-        setDisplayQuiz(false);
+        const introScene = await fetchSceneFromJson("Intro");
 
         lastImageRef.current = startingImage;
-        setImageFeed([`${import.meta.env.BASE_URL}${startingImage}`]);
+
+        nextIdRef.current = 1;
+        const newTimeline: TimelineItem[] = [
+            {id: nextIdRef.current++, type: "image", src: `${import.meta.env.BASE_URL}${startingImage}`},
+        ];
+
+        if (introScene) {
+            newTimeline.push({id: nextIdRef.current++, type: "scene", scene: introScene, active: true});
+        }
+
+        setTimeline(newTimeline);
     }
 
     useEffect(() => {
         void resetGame();
-        setDisplayScene(true);
         window.addEventListener("keydown", resetKeyEvent);
         return () => window.removeEventListener("keydown", resetKeyEvent);
     }, []);
 
     async function navigateToNode(nodeName: string) {
-        await fetchSceneFromJson(nodeName);
-        await fetchQuizFromJson(nodeName);
+        const nextScene = await fetchSceneFromJson(nodeName);
+        const nextQuiz = await fetchQuizFromJson(nodeName);
 
-        const image = sceneRef.current?.image;
+        const image = nextScene?.image;
+        const shouldAppendImage = !!image && image !== lastImageRef.current;
 
-        if (image && image !== lastImageRef.current) {
-            const nextImgPath = `${import.meta.env.BASE_URL}${image}`;
-            setImageFeed(prev => [...prev, nextImgPath]);
+        setTimeline(prev => {
+            const updated = prev.map((entry) => {
+                if ((entry.type === "scene" || entry.type === "quiz") && entry.active) {
+                    return {...entry, active: false};
+                }
+                return entry;
+            });
+
+            if (shouldAppendImage && image) {
+                updated.push({id: nextIdRef.current++, type: "image", src: `${import.meta.env.BASE_URL}${image}`});
+            }
+
+            if (nextQuiz) {
+                updated.push({id: nextIdRef.current++, type: "quiz", quiz: nextQuiz, active: true});
+                return updated;
+            }
+
+            if (nextScene) {
+                updated.push({id: nextIdRef.current++, type: "scene", scene: nextScene, active: true});
+            }
+
+            return updated;
+        });
+
+        if (shouldAppendImage && image) {
             lastImageRef.current = image;
-        }
-
-        setSceneKey(k => k + 1);
-        setQuizKey(k => k + 1);
-
-        if (sceneRef.current) {
-            setDisplayScene(true);
-            setDisplayQuiz(false);
-        }
-
-        if (quizRef.current) {
-            setDisplayScene(false);
-            setDisplayQuiz(true);
         }
     }
 
     return (
         <div className="journal-stream">
-            {imageFeed.map((imgSrc, index) => (
-                <div key={`${imgSrc}-${index}`} className="photo-frame rounded-[18px] h-[24vh] w-[92%] mx-auto shrink-0 fade2">
-                    <img
-                        src={imgSrc}
-                        alt="Story"
-                        className="w-full h-full rounded-[14px] object-cover select-none saturate-75"
+            {timeline.map((entry) => {
+                if (entry.type === "image") {
+                    return (
+                        <div key={entry.id} className="photo-frame rounded-[18px] h-[24vh] w-[92%] mx-auto shrink-0 fade2">
+                            <img
+                                src={entry.src}
+                                alt="Story"
+                                className="w-full h-full rounded-[14px] object-cover select-none saturate-75"
+                            />
+                        </div>
+                    );
+                }
+
+                if (entry.type === "scene") {
+                    return (
+                        <InteractiveStory
+                            key={entry.id}
+                            scene={entry.scene}
+                            active={entry.active}
+                            navigateToNode={navigateToNode}
+                            LocalStorage={LocalStorage}
+                        />
+                    );
+                }
+
+                return (
+                    <InteractiveQuiz
+                        key={entry.id}
+                        quiz={entry.quiz}
+                        active={entry.active}
+                        navigateToNode={navigateToNode}
+                        LocalStorage={LocalStorage}
                     />
-                </div>
-            ))}
-            {displayScene && (
-                <InteractiveStory key={sceneKey} sceneRef={sceneRef} navigateToNode={navigateToNode} LocalStorage={LocalStorage} />
-            )}
-            {displayQuiz && (
-                <InteractiveQuiz key={quizKey} quizRef={quizRef} navigateToNode={navigateToNode} LocalStorage={LocalStorage}/>
-            )}
+                );
+            })}
         </div>
     );
 }

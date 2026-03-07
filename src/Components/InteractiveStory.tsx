@@ -1,14 +1,15 @@
-import {useEffect, useRef, useState, type ReactNode, type RefObject} from "react";
+import {useEffect, useRef, useState, type ReactNode} from "react";
 import type {StorageAPI} from "@/Managers/LocalStorage.ts";
 import type {Scene} from "@/Interfaces.ts";
 
 interface InteractiveStoryProps {
-    sceneRef?: RefObject<Scene>;
+    scene: Scene;
+    active: boolean;
     navigateToNode: any;
     LocalStorage: StorageAPI;
 }
 
-export default function InteractiveStory({sceneRef, navigateToNode, LocalStorage}: InteractiveStoryProps) {
+export default function InteractiveStory({scene, active, navigateToNode, LocalStorage}: InteractiveStoryProps) {
     const [displayIndicator, setDisplayIndicator] = useState(true);
     const [entries, setEntries] = useState<ReactNode[]>([]);
     const [displayOptions, setDisplayOptions] = useState(false);
@@ -28,11 +29,11 @@ export default function InteractiveStory({sceneRef, navigateToNode, LocalStorage
     }
 
     function renderSentence(text: string): ReactNode {
-        if (!sceneRef.current || !sceneRef.current.hints) {
+        if (!scene.hints) {
             return <span>{text}</span>;
         }
 
-        const hints = sceneRef.current.hints;
+        const hints = scene.hints;
         const keys = Object.keys(hints);
         if (keys.length === 0) {
             return <span>{text}</span>;
@@ -67,9 +68,9 @@ export default function InteractiveStory({sceneRef, navigateToNode, LocalStorage
 
         event.preventDefault();
 
-        if (!sceneRef.current || displayOptions) return;
+        if (!active || displayOptions) return;
 
-        const sentences = sceneRef.current.sentences;
+        const sentences = scene.sentences;
         if (indexRef.current < sentences.length - 1) {
             indexRef.current += 1;
             const nextSentence = sentences[indexRef.current];
@@ -79,12 +80,12 @@ export default function InteractiveStory({sceneRef, navigateToNode, LocalStorage
             if (indexRef.current === sentences.length - 1) {
                 setDisplayIndicator(false);
 
-                if (sceneRef.current.quizName) {
-                    navigateToNode(sceneRef.current.quizName);
+                if (scene.quizName) {
+                    navigateToNode(scene.quizName);
                     return;
                 }
 
-                if ((sceneRef.current.nextNodeOptions ?? []).length > 0) {
+                if ((scene.nextNodeOptions ?? []).length > 0) {
                     setDisplayOptions(true);
                     optionsStartRef.current = (typeof performance !== "undefined" ? performance.now() : Date.now());
                     scrollToBottom();
@@ -99,7 +100,7 @@ export default function InteractiveStory({sceneRef, navigateToNode, LocalStorage
         setDisplayOptions(false);
         optionsStartRef.current = null;
 
-        const firstSentence = sceneRef.current?.sentences?.[0];
+        const firstSentence = scene.sentences?.[0];
         if (firstSentence) {
             setEntries([renderSentence(firstSentence)]);
         } else {
@@ -119,7 +120,7 @@ export default function InteractiveStory({sceneRef, navigateToNode, LocalStorage
         const started = optionsStartRef.current;
         const elapsed = started != null ? Math.max(0, Math.round(now - started)) : null;
 
-        void LocalStorage.logStoryChoice({decision: sceneRef.current.storyDecision, choice: choice, timeMs: elapsed ?? undefined});
+        void LocalStorage.logStoryChoice({decision: scene.storyDecision, choice: choice, timeMs: elapsed ?? undefined});
 
         optionsStartRef.current = null;
         setDisplayOptions(false);
@@ -127,22 +128,22 @@ export default function InteractiveStory({sceneRef, navigateToNode, LocalStorage
     }
 
     return (
-        <div className="journal-stream grow">
+        <div className="journal-stream">
             {entries.map((entry, index) => (
                 <div key={index} className="chat-bubble fade2">
                     {entry}
                 </div>
             ))}
 
-            {displayIndicator && (
-                <div className="ink-body text-[2.1vh] italic px-[0.5vh]">
+            {displayIndicator && active && (
+                <div className="ink-body text-[2.1vh] italic px-[0.5vh] text-center">
                     Press space to continue...
                 </div>
             )}
 
-            {displayOptions && (
+            {displayOptions && active && (
                 <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-[1vh] mt-[0.5vh]">
-                    {(sceneRef.current?.nextNodeOptions ?? []).slice(0, 4).map((opt, i) => (
+                    {(scene.nextNodeOptions ?? []).slice(0, 4).map((opt, i) => (
                         <button
                             key={opt + i}
                             type="button"
