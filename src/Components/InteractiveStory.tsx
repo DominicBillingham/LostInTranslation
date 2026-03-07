@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState, type ReactNode} from "react";
 import type {StorageAPI} from "@/Managers/LocalStorage.ts";
 import type {Scene} from "@/Interfaces.ts";
+import Sound from "@/Managers/SoundManager.ts";
 
 interface InteractiveStoryProps {
     scene: Scene;
@@ -93,6 +94,7 @@ export default function InteractiveStory({scene, active, navigateToNode, LocalSt
         const started = optionsStartRef.current;
         const elapsed = started != null ? Math.max(0, Math.round(now - started)) : null;
 
+        void Sound.playSfx();
         void LocalStorage.logStoryChoice({decision: scene.storyDecision, choice: choice, timeMs: elapsed ?? undefined});
 
         optionsStartRef.current = null;
