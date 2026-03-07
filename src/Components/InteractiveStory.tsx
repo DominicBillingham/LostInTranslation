@@ -130,7 +130,7 @@ export default function InteractiveStory({scene, active, navigateToNode, LocalSt
             ))}
 
             {displayIndicator && active && (
-                <div className="ink-body text-[2.1vh] italic px-[0.5vh] text-center">
+                <div className="ink-body text-[2.1vh] italic px-[0.5vh] text-center fade">
                     Press space to continue...
                 </div>
             )}

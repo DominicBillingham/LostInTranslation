@@ -65,6 +65,9 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, LocalStor
 
     return (
         <div className="journal-stream">
+            <h2 className="text-[3.2vh] font-bold text-center ink-title mb-[1vh]">
+                Mini Quiz!
+            </h2>
             <div className="chat-bubble fade2">{quizText}</div>
 
             {areOptionsEnabled ? (
@@ -95,7 +98,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, LocalStor
                     )}
 
                     {!hasContinued && (
-                        <div className="mt-[0.5vh] flex justify-start">
+                        <div className="mt-[0.5vh] flex justify-end">
                             <button
                                 type="button"
                                 disabled={!active}

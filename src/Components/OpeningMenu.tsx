@@ -49,7 +49,7 @@ export default function OpeningMenu() {
                         ) : (
                             <div className={`journal-stream transition-all duration-500 ${isLeaving ? "opacity-0 translate-y-6" : "opacity-100 translate-y-0"}`}>
                                 
-                                <div className="chat-bubble fade2">
+                                <div className="chat-bubble">
                                     Before we begin, set up your journal details.
                                 </div>
 
@@ -101,7 +101,7 @@ export default function OpeningMenu() {
                                     </label>
                                 </div>
                                 
-                                <div className="pt-[0.4vh] flex justify-start">
+                                <div className="pt-[0.4vh] flex justify-end">
                                     <button
                                         type="button"
                                         onClick={onContinue}
