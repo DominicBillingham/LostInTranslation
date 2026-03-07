@@ -76,7 +76,7 @@ export default function Introduction({onComplete}: IntroductionProps) {
     }, [isFadingOut, introSentences, delayedIndicator, onComplete]);
 
     return (
-        <div className={`journal-stream transition-opacity duration-1000 ${isFadingOut ? "opacity-0" : "opacity-100"}`}>
+        <div className={`mt-[8vh] journal-stream transition-opacity duration-1000 ${isFadingOut ? "opacity-0" : "opacity-100"}`}>
             
             {!showTitle && (
                 <div className={`transition-opacity duration-1000 ${introFadingOut ? "opacity-0" : "opacity-100"}`}>
@@ -90,7 +90,7 @@ export default function Introduction({onComplete}: IntroductionProps) {
             
             {showTitle && (
                 <div className="fly-in-bottom">
-                    <div className="prata-regular tracking-wide text-center text-[8vh] font-bold mt-[3vh] leading-[1.1] uppercase">
+                    <div className="prata-regular tracking-wide text-center text-[8vh] font-bold  leading-[1.1] uppercase">
                         <div>Lost <span className="text-[5.5vh] align-baseline">in</span></div>
                         <div>Translation</div>
                     </div>

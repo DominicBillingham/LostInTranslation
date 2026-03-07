@@ -46,10 +46,6 @@ export default function OpeningMenu() {
             <div className="story-column max-w-[min(94vw,92vh)] m-auto py-[2.5vh]">
                 <div className="notebook-page pt-[2vh] min-h-[95vh] flex flex-col">
                     
-                    <h1 className={`text-[4.4vh] font-bold text-center ink-title transition-all duration-1000 ${introCompleted ? "opacity-100" : "opacity-0"}`}>
-                        Lost In Translation
-                    </h1>
-                    <div className={`border-b border-2 border-amber-800/20 w-1/2 mx-auto my-[0.5vh] transition-all duration-1000 ${introCompleted ? "opacity-100" : "opacity-0"}`}></div>
                     
                     <div className="mt-[1.5vh] px-[1.5vh] pb-[1.5vh]">
                         {gameStarted ? (
@@ -57,12 +53,8 @@ export default function OpeningMenu() {
                         ) : !introCompleted ? (
                             <Introduction onComplete={() => setIntroCompleted(true)} />
                         ) : (
-                            <div className={`journal-stream transition-all duration-1000 ${isLeaving ? "opacity-0 translate-y-6" : "opacity-100 translate-y-0"}`}>
-                                
-                                <div className="chat-bubble">
-                                    Before we begin, set up your journal details.
-                                </div>
-
+                            <div className={`journal-stream transition-all duration-1000 ${isLeaving ? "opacity-0" : "opacity-100"}`}>
+            
                                 <div className="notebook-panel rounded-[12px] p-[2vh] flex flex-col gap-[1.5vh]">
                                     <label className="flex flex-col gap-[0.6vh]">
                                         <span className="ink-body">Username</span>
