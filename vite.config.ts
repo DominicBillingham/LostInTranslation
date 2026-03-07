@@ -7,8 +7,8 @@ import path from 'path'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
-    outDir: '../docs', // This sends the build to the root docs folder
-    emptyOutDir: true, // This clears the folder before building
+    outDir: './docs',
+    emptyOutDir: true,
   },
   resolve: {
     alias: {
