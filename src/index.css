@@ -33,10 +33,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-            url("/glass.png") 10vh 0px repeat,
-            url("/book.png") 20vh 0px repeat,
-            url("/pencil.png") 30vh 0px repeat;
+    background: url("/repeating.png") 10vh 0vh repeat;
     background-size: 30vh;
     opacity: 0.6;
     filter: blur(1px);
