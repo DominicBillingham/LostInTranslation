@@ -106,6 +106,15 @@ function LostInTranslation() {
     return (
         
         <div className="journal-stream journal-root">
+
+            <div className="mt-[6vh]">
+                <div className="prata-regular tracking-wide text-center text-[8vh] font-bold  leading-[1.1] uppercase">
+                    <div>Lost <span className="text-[5.5vh] align-baseline">in</span></div>
+                    <div>Translation</div>
+                </div>
+                <div className="border-b border-2 border-amber-800/20 w-1/2 mx-auto my-[0.2vh] mb-[2vh]"></div>
+            </div>
+            
             {timeline.map((entry) => {
                 
                 if (entry.type === "image") {
