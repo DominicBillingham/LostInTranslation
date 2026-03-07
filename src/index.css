@@ -23,6 +23,22 @@ body {
         linear-gradient(135deg, #d6b186 0%, #be9571 45%, #a47758 100%);
     min-height: 100vh;
     color: var(--ink);
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("/PNG.png") repeat;
+    background-size: 200px;
+    opacity: 0.8;
+    filter: blur(1px);
+    z-index: -1;
+    pointer-events: none;
 }
 
 #root {
