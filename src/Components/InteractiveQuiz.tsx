@@ -71,24 +71,24 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, LocalStor
             <div className="border-b border-2 border-amber-800/20 w-1/2 mx-auto my-[0.2vh]"></div>
 
             <div className="chat-bubble fade2">{quizText}</div>
+            
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-[1vh] mt-[0.5vh]">
+                {Array.isArray(quiz?.quizAnswers) && (
+                    quiz.quizAnswers.slice(0, 4).map((ans: QuizOption, i: number) => (
+                        <button
+                            key={ans.answerText + i}
+                            type="button"
+                            disabled={!areOptionsEnabled || !active}
+                            className="choice-btn rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-left hover:cursor-pointer fade2 disabled:opacity-30 disabled:cursor-not-allowed"
+                            onClick={() => chooseAnswer(ans)}
+                        >
+                            {ans.answerText}
+                        </button>
+                    ))
+                )}
+            </div>
 
-            {areOptionsEnabled ? (
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-[1vh] mt-[0.5vh]">
-                    {Array.isArray(quiz?.quizAnswers) && (
-                        quiz.quizAnswers.slice(0, 4).map((ans: QuizOption, i: number) => (
-                            <button
-                                key={ans.answerText + i}
-                                type="button"
-                                disabled={!areOptionsEnabled || !active}
-                                className="choice-btn rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-left hover:cursor-pointer fade2"
-                                onClick={() => chooseAnswer(ans)}
-                            >
-                                {ans.answerText}
-                            </button>
-                        ))
-                    )}
-                </div>
-            ) : (
+            {!areOptionsEnabled && (
                 <>
                     {feedbackText && (
                         <div className="chat-bubble fade2">
@@ -104,7 +104,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, LocalStor
                             <button
                                 type="button"
                                 disabled={!active}
-                                className="choice-btn rounded-[1vh] px-[3vh] py-[1vh] shadow-md hover:shadow-lg hover:cursor-pointer fade2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="choice-btn rounded-[1vh] px-[3vh] py-[1vh] shadow-md hover:shadow-lg hover:cursor-pointer fade2 disabled:opacity-30 disabled:cursor-not-allowed"
                                 onClick={continueQuiz}
                             >
                                 Continue

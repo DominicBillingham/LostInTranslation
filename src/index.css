@@ -96,6 +96,11 @@ body::before {
     background: rgba(225, 193, 145, 0.98);
 }
 
+.choice-btn:disabled {
+    opacity: 0.6 !important;
+    filter: grayscale(0.5);
+}
+
 .photo-frame {
     position: relative;
     height: 100%;
