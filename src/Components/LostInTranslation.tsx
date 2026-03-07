@@ -40,10 +40,14 @@ function LostInTranslation() {
     };
 
     function scrollToBottom() {
-        requestAnimationFrame(() => {
-            endRef.current?.scrollIntoView({behavior: "smooth", block: "end"});
-        });
+        // Wait for 500 ms before executing scrollIntoView
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+            });
+        }, 70);
     }
+
 
     async function resetGame() {
         LocalStorage.incrementPlaythroughAttempts();
