@@ -21,7 +21,8 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-          cache-dependency-path: lit/package-lock.json
+          # This needs to point to the lockfile inside the 'lit' folder
+          cache-dependency-path: ./lit/package-lock.json
 
       - name: Install dependencies
         run: npm install
