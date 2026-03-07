@@ -21,7 +21,7 @@ body {
         radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.5), transparent 35%),
         radial-gradient(circle at 85% 15%, rgba(210, 175, 135, 0.35), transparent 30%),
         linear-gradient(135deg, #d6b186 0%, #be9571 45%, #a47758 100%);
-    height: 100vh;
+    min-height: 100vh;
     color: var(--ink);
 }
 
@@ -78,6 +78,56 @@ body {
 
 .choice-btn:hover {
     background: rgba(225, 193, 145, 0.98);
+}
+
+.photo-frame {
+    position: relative;
+    height: 100%;
+    padding: 12px 12px 0 12px;
+    background: linear-gradient(180deg, #f6ead0 0%, #e7d6b3 100%);
+}
+
+.photo-frame::before,
+.photo-frame::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    width: 74px;
+    height: 20px;
+    background: linear-gradient(180deg, rgba(244, 232, 205, 0.92), rgba(219, 198, 162, 0.78));
+    border: 1px solid rgba(126, 100, 67, 0.22);
+    box-shadow: 0 2px 5px rgba(46, 31, 17, 0.2);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.photo-frame::before {
+    left: 18px;
+    transform: rotate(-10deg);
+}
+
+.photo-frame::after {
+    right: 18px;
+    transform: rotate(11deg);
+}
+
+.journal-stream {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+    padding: 0.4vh 1vh 1vh 1vh;
+    scroll-behavior: smooth;
+}
+
+.chat-bubble {
+    width: fit-content;
+    max-width: 90%;
+    background: rgba(250, 242, 224, 0.9);
+    border: 1px solid rgba(145, 107, 63, 0.35);
+    color: var(--ink-soft);
+    border-radius: 14px;
+    padding: 1.1vh 1.5vh;
+    box-shadow: 0 6px 14px rgba(66, 43, 25, 0.15);
 }
 
 .continue-indicator {

@@ -1,4 +1,4 @@
-﻿import {useEffect, useRef, useState, type ReactNode, type RefObject} from "react";
+import {useEffect, useRef, useState, type ReactNode, type RefObject} from "react";
 import type {StorageAPI} from "@/Managers/LocalStorage.ts";
 import type {Scene} from "@/Interfaces.ts";
 
@@ -9,161 +9,153 @@ interface InteractiveStoryProps {
 }
 
 export default function InteractiveStory({sceneRef, navigateToNode, LocalStorage}: InteractiveStoryProps) {
-    const [displayIndicator, setDisplayIndicator] = useState(true)
-    const [refreshAnimations, setRefreshAnimations] = useState(0);
-
-    const [text, setText] = useState<ReactNode>("");
+    const [displayIndicator, setDisplayIndicator] = useState(true);
+    const [entries, setEntries] = useState<ReactNode[]>([]);
     const [displayOptions, setDisplayOptions] = useState(false);
+
     const indexRef = useRef(0);
     const optionsStartRef = useRef<number | null>(null);
-    const textBoxBottomClass = displayOptions ? 'bottom-[20vh]' : 'bottom-[10v]';
+    const endRef = useRef<HTMLDivElement | null>(null);
 
-    const OnSpacePress = async (event) => {
-        
+    function scrollToBottom() {
+        requestAnimationFrame(() => {
+            endRef.current?.scrollIntoView({behavior: "smooth", block: "end"});
+        });
+    }
+
+    function escapeRegex(value: string) {
+        return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function renderSentence(text: string): ReactNode {
+        if (!sceneRef.current || !sceneRef.current.hints) {
+            return <span>{text}</span>;
+        }
+
+        const hints = sceneRef.current.hints;
+        const keys = Object.keys(hints);
+        if (keys.length === 0) {
+            return <span>{text}</span>;
+        }
+
+        const regex = new RegExp(`\\b(${keys.map(escapeRegex).join("|")})\\b`, "gi");
+        const parts = text.split(regex);
+
+        return (
+            <>
+                {parts.map((part, i) => {
+                    const key = part.toLowerCase();
+                    if (hints[key]) {
+                        return (
+                            <span
+                                key={i}
+                                className="custom-tooltip"
+                                data-tooltip={hints[key]}
+                            >
+                                {part}
+                            </span>
+                        );
+                    }
+                    return <span key={i}>{part}</span>;
+                })}
+            </>
+        );
+    }
+
+    const onSpacePress = async (event: KeyboardEvent) => {
+        if (event.key !== " ") return;
+
         event.preventDefault();
-        
-        if (event.key === ' ') {
-            
-            if (sceneRef.current == null) return;
 
-            const sentences = sceneRef.current.sentences;
-            // Advance only if we are NOT on the last sentence
-            if (indexRef.current < sentences.length - 1) {
-                indexRef.current += 1;
-                const nextSentence = sentences[indexRef.current];
-                await SetText(nextSentence);
+        if (!sceneRef.current || displayOptions) return;
 
-                // If we just reached the last sentence, hide the indicator
-                if (indexRef.current === sentences.length - 1) {
-                    
-                    setDisplayIndicator(false);
+        const sentences = sceneRef.current.sentences;
+        if (indexRef.current < sentences.length - 1) {
+            indexRef.current += 1;
+            const nextSentence = sentences[indexRef.current];
+            setEntries(prev => [...prev, renderSentence(nextSentence)]);
+            scrollToBottom();
 
-                    if (sceneRef.current.quizName) {
-                        navigateToNode(sceneRef.current.quizName);
-                        return;
-                    }
-                    
-                    if (sceneRef.current.nextNodeOptions.length > 0) {
-                        setDisplayOptions(true);
-                        // Start timing as soon as options are populated/displayed
-                        optionsStartRef.current = (typeof performance !== 'undefined' ? performance.now() : Date.now());
-                        return;
-                    }
-                    
+            if (indexRef.current === sentences.length - 1) {
+                setDisplayIndicator(false);
+
+                if (sceneRef.current.quizName) {
+                    navigateToNode(sceneRef.current.quizName);
+                    return;
+                }
+
+                if ((sceneRef.current.nextNodeOptions ?? []).length > 0) {
+                    setDisplayOptions(true);
+                    optionsStartRef.current = (typeof performance !== "undefined" ? performance.now() : Date.now());
+                    scrollToBottom();
                 }
             }
         }
     };
 
     useEffect(() => {
-        
         indexRef.current = 0;
         setDisplayIndicator(true);
         setDisplayOptions(false);
         optionsStartRef.current = null;
+
         const firstSentence = sceneRef.current?.sentences?.[0];
         if (firstSentence) {
-            void SetText(firstSentence);
+            setEntries([renderSentence(firstSentence)]);
         } else {
-            setText("");
+            setEntries([]);
         }
-        
-        window.addEventListener("keydown", OnSpacePress);
-        return () => window.removeEventListener("keydown", OnSpacePress);
-        
-        
+
+        window.addEventListener("keydown", onSpacePress);
+        return () => window.removeEventListener("keydown", onSpacePress);
     }, []);
-    
-    async function MakeChoice(choice: string) {
-        // Compute elapsed time since options appeared
-        const now = (typeof performance !== 'undefined' ? performance.now() : Date.now());
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [entries, displayOptions]);
+
+    async function makeChoice(choice: string) {
+        const now = (typeof performance !== "undefined" ? performance.now() : Date.now());
         const started = optionsStartRef.current;
         const elapsed = started != null ? Math.max(0, Math.round(now - started)) : null;
-        
-        // Send measured time (falls back to null if not available)
+
         void LocalStorage.logStoryChoice({decision: sceneRef.current.storyDecision, choice: choice, timeMs: elapsed ?? undefined});
-        
-        // Clear timer immediately after logging
+
         optionsStartRef.current = null;
         setDisplayOptions(false);
         navigateToNode(choice);
     }
-    
-    async function SetText(text: string) {
-        // If there is no scene or no hints for this scene, render plain text
-        if (!sceneRef.current || !sceneRef.current.hints) {
-            setText(text);
-            return;
-        }
 
-        const hints = sceneRef.current.hints;
-
-        // Build a regex matching all hint words (case-insensitive, whole word)
-        const regex = new RegExp(`\\b(${Object.keys(hints).join("|")})\\b`, "gi");
-
-        // Split the sentence into React elements
-        const parts = text.split(regex);
-
-        const result = parts.map((part, i) => {
-            const key = part.toLowerCase();
-            if (hints[key]) {
-                // If it's a hint word, return highlighted span
-                return (
-                    <span
-                        key={i}
-                        className="text-coral custom-tooltip"
-                        data-tooltip={hints[key]}
-                    >
-                        {part}
-                    </span>
-                );
-            }
-            // Normal text stays plain
-            return <span key={i}>{part}</span>;
-        });
-
-        setRefreshAnimations(Math.floor(Math.random() * 5000));
-        setText(result)
-    }
-    
     return (
-        <>
-            <div className="inset-x-[3vh] bottom-[3vh] absolute ">
-
-                <div
-                    id="storyTextBox"
-                    className={`relative notebook-panel rounded-[1vh] p-[1vh] ps-[2vh] ink-body h-[10vh] fade2 transition-all duration-500 ease-out transform`}
-                >
-
-                    <p className="fade" key={refreshAnimations}>
-                        {text}
-                    </p>
-
-                    {displayIndicator &&
-                        <div
-                            className="absolute bottom-[5px] right-[10px] opacity-100 animate-pulse cursor-pointer select-none"
-                        >
-                            ▼
-                        </div>
-                    }
+        <div className="journal-stream grow">
+            {entries.map((entry, index) => (
+                <div key={index} className="chat-bubble fade2">
+                    {entry}
                 </div>
+            ))}
 
-                {displayOptions && (
-                    <div className={`grid grid-cols-2 gap-[1vh] mt-[1vh]`}>
-                        {(sceneRef.current?.nextNodeOptions ?? []).slice(0, 4).map((opt, i) => (
-                            <button
-                                key={opt + i}
-                                type="button"
-                                className="choice-btn rounded-[1vh] p-[1vh] pl-3 shadow-md hover:shadow-lg text-left hover:cursor-pointer fade"
-                                onClick={() => MakeChoice(opt)}
-                            >
-                                {opt}
-                            </button>
-                        ))}
-                    </div>
-                )}
-            </div>
-            
-        </>
-    )
+            {displayIndicator && (
+                <div className="ink-body text-[2.1vh] italic px-[0.5vh]">
+                    Press space to continue...
+                </div>
+            )}
+
+            {displayOptions && (
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-[1vh] mt-[0.5vh]">
+                    {(sceneRef.current?.nextNodeOptions ?? []).slice(0, 4).map((opt, i) => (
+                        <button
+                            key={opt + i}
+                            type="button"
+                            className="choice-btn rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-left hover:cursor-pointer fade2"
+                            onClick={() => makeChoice(opt)}
+                        >
+                            {opt}
+                        </button>
+                    ))}
+                </div>
+            )}
+
+            <div ref={endRef}></div>
+        </div>
+    );
 }

@@ -1,148 +1,108 @@
-﻿import {useEffect, useRef, useState} from "react";
-import { type StorageAPI } from "@/Managers/LocalStorage.ts";
+import {useEffect, useRef, useState} from "react";
+import {type StorageAPI} from "@/Managers/LocalStorage.ts";
 import InteractiveStory from "@/Components/InteractiveStory.tsx";
 import InteractiveQuiz from "@/Components/InteractiveQuiz.tsx";
 import type {Quiz, Scene} from "@/Interfaces.ts";
 
-function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
-
+function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
     const startingImage = "start.jpg";
-    
-    // Main Containers
+
     const sceneRef = useRef<Scene | null>(null);
     const quizRef = useRef<Quiz | null>(null);
     const lastImageRef = useRef<string>(startingImage);
-    
-    async function FetchSceneFromJson(sceneName: string) {
+
+    const [sceneKey, setSceneKey] = useState(0);
+    const [quizKey, setQuizKey] = useState(0);
+
+    const [displayScene, setDisplayScene] = useState(false);
+    const [displayQuiz, setDisplayQuiz] = useState(false);
+    const [imageFeed, setImageFeed] = useState<string[]>([]);
+
+    async function fetchSceneFromJson(sceneName: string) {
         const response = await fetch("adventure.json");
         const json: Scene[] = await response.json();
         sceneRef.current = json.find(s => s.nodeName === sceneName) ?? null;
     }
-    async function FetchQuizFromJson(quizName: string) {
+
+    async function fetchQuizFromJson(quizName: string) {
         const response = await fetch("quiz.json");
         const json: Quiz[] = await response.json();
         quizRef.current = json.find(q => q.nodeName === quizName) ?? null;
     }
-    
-    const [sceneKey, setSceneKey] = useState(0);
-    const [quizKey, setQuizKey] = useState(0);
-    
-    const [displayScene, setDisplayScene] = useState(false);
-    const [displayQuiz, setDisplayQuiz] = useState(false);
-    const [imageHmtl, setImageHmtl] = useState<React.ReactNode>(null);
-    
-    async function ChangeImages(imageSrc: string, oldImageSrc: string) {
-        
-        console.log("New Image: "+ imageSrc + " | Old Image: " + oldImageSrc );
-        
-        const htmlFade = <img
-            src={oldImageSrc ?? ""}
-            alt="Story"
-            className="w-full rounded-b-[24px] object-cover select-none relative h-full opacity-0 transition-opacity duration-[1500ms] saturate-75"
-        />
 
-        setImageHmtl(htmlFade);
-
-        await new Promise(resolve => setTimeout(resolve, 1500));
-
-        const htmlUnfade = <img
-            src={imageSrc ?? ""}
-            alt="Story"
-            className="w-full rounded-b-[24px] object-cover select-none relative h-full opacity-100 transition-opacity duration-[1500ms] saturate-75"
-        />
-
-        setImageHmtl(htmlUnfade);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-    }
-
-    const ResetKeyEvent = async (event) => {
-        
-        if (event.key === 'r') {
+    const resetKeyEvent = (event: KeyboardEvent) => {
+        if (event.key === "r") {
             event.preventDefault();
-            ResetGame();
+            void resetGame();
         }
     };
-    
-    async function ResetGame() {  
 
-        LocalStorage.incrementPlaythroughAttempts();
-        await FetchSceneFromJson("Intro");
-        
-        // Use functional updates to avoid stale closures and ensure key changes
+    async function resetGame() {
+        LocalStorage?.incrementPlaythroughAttempts();
+        await fetchSceneFromJson("Intro");
+
         setSceneKey(k => k + 1);
         setQuizKey(k => k + 1);
-        
-        // Ensure we are showing the story and hiding the quiz after reset
+
         setDisplayScene(true);
         setDisplayQuiz(false);
-        
-        const html = <img
-            src={`${import.meta.env.BASE_URL}${startingImage}`}   
-            alt="Story"
-            className="w-full rounded-b-[24px] object-cover select-none relative h-full saturate-75"
-        />
 
         lastImageRef.current = startingImage;
-        setImageHmtl(html);
-        
+        setImageFeed([`${import.meta.env.BASE_URL}${startingImage}`]);
     }
-    
-    useEffect(() => {
-        ResetGame();
-        setDisplayScene(true);
-        window.addEventListener("keydown", ResetKeyEvent);
-        return () => window.removeEventListener("keydown", ResetKeyEvent);
-    }, []);
-    
-    async function NavigateToNode(nodeName: string) {
-        
-        console.log("Navigating to: " + nodeName);
-        
-        await FetchSceneFromJson(nodeName);
-        await FetchQuizFromJson(nodeName);
-        
-        const image = sceneRef?.current?.image;
-         
-        if (image) {
-            
-            setDisplayScene(false);
-            setDisplayQuiz(false);
-            
-            const imgPath1 = `${import.meta.env.BASE_URL}${image}`
-            const imgPath2 = `${import.meta.env.BASE_URL}${lastImageRef.current}`
 
-            await ChangeImages(imgPath1, imgPath2);
+    useEffect(() => {
+        void resetGame();
+        setDisplayScene(true);
+        window.addEventListener("keydown", resetKeyEvent);
+        return () => window.removeEventListener("keydown", resetKeyEvent);
+    }, []);
+
+    async function navigateToNode(nodeName: string) {
+        await fetchSceneFromJson(nodeName);
+        await fetchQuizFromJson(nodeName);
+
+        const image = sceneRef.current?.image;
+
+        if (image && image !== lastImageRef.current) {
+            const nextImgPath = `${import.meta.env.BASE_URL}${image}`;
+            setImageFeed(prev => [...prev, nextImgPath]);
             lastImageRef.current = image;
         }
-        
+
         setSceneKey(k => k + 1);
         setQuizKey(k => k + 1);
 
         if (sceneRef.current) {
-            console.log(sceneRef.current);
             setDisplayScene(true);
             setDisplayQuiz(false);
         }
 
         if (quizRef.current) {
-            console.log(quizRef.current);
             setDisplayScene(false);
             setDisplayQuiz(true);
         }
     }
-    
-    return (
 
-        <>
-            {imageHmtl}
-            {displayScene &&
-                <InteractiveStory key={sceneKey} sceneRef={sceneRef} navigateToNode={NavigateToNode} LocalStorage={LocalStorage} />
-            }
-            {displayQuiz &&
-                <InteractiveQuiz key={quizKey} quizRef={quizRef} navigateToNode={NavigateToNode} LocalStorage={LocalStorage}/>
-            }
-        </>
-    )
+    return (
+        <div className="journal-stream">
+            {imageFeed.map((imgSrc, index) => (
+                <div key={`${imgSrc}-${index}`} className="photo-frame rounded-[18px] h-[24vh] w-[92%] mx-auto shrink-0 fade2">
+                    <img
+                        src={imgSrc}
+                        alt="Story"
+                        className="w-full h-full rounded-[14px] object-cover select-none saturate-75"
+                    />
+                </div>
+            ))}
+            {displayScene && (
+                <InteractiveStory key={sceneKey} sceneRef={sceneRef} navigateToNode={navigateToNode} LocalStorage={LocalStorage} />
+            )}
+            {displayQuiz && (
+                <InteractiveQuiz key={quizKey} quizRef={quizRef} navigateToNode={navigateToNode} LocalStorage={LocalStorage}/>
+            )}
+        </div>
+    );
 }
 
 export default LostInTranslation;
