@@ -110,7 +110,7 @@ function LostInTranslation() {
                 
                 if (entry.type === "image") {
                     return (
-                        <div key={entry.id} className="photo-frame rounded-[18px] h-[24vh] w-[92%] mx-auto shrink-0 fade2">
+                        <div key={entry.id} className="photo-frame rounded-[18px] h-[24vh] w-[92%] mx-auto shrink-0 short-fade">
                             <img
                                 src={entry.src}
                                 alt="Story"

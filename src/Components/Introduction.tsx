@@ -80,7 +80,7 @@ export default function Introduction({onComplete}: IntroductionProps) {
             {!showTitle && (
                 <div className={`transition-opacity duration-1000 ${introFadingOut ? "opacity-0" : "opacity-100"}`}>
                     {displayedSentences.map((sentence, index) => (
-                        <div key={index} className="chat-bubble fade2">
+                        <div key={index} className="chat-bubble short-fade">
                             {sentence}
                         </div>
                     ))}

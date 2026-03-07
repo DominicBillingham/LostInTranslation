@@ -69,7 +69,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
             </h2>
             <div className="border-b border-2 border-amber-800/20 w-1/2 mx-auto my-[0.2vh]"></div>
 
-            <div className="chat-bubble fade2">{quizText}</div>
+            <div className="chat-bubble short-fade">{quizText}</div>
             
             <div className="w-full flex flex-col items-center gap-[1vh] mt-[0.5vh]">
                 {Array.isArray(quiz?.quizAnswers) && (
@@ -78,7 +78,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
                             key={ans.answerText + i}
                             type="button"
                             disabled={!areOptionsEnabled || !active}
-                            className="choice-btn w-full sm:w-2/3 rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-center hover:cursor-pointer fade2 disabled:opacity-30 disabled:cursor-not-allowed"
+                            className="choice-btn w-full sm:w-2/3 rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-center hover:cursor-pointer short-fade disabled:opacity-30 disabled:cursor-not-allowed"
                             onClick={() => chooseAnswer(ans)}
                         >
                             {ans.answerText}
@@ -90,7 +90,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
             {!areOptionsEnabled && (
                 <>
                     {feedbackText && (
-                        <div className="chat-bubble fade2">
+                        <div className="chat-bubble short-fade">
                             <span className={selectedIsCorrect ? "text-green-700 font-semibold" : "text-red-700 font-semibold"}>
                                 {selectedIsCorrect ? "Correct: " : "Incorrect: "}
                             </span>
@@ -103,7 +103,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
                             <button
                                 type="button"
                                 disabled={!active}
-                                className="choice-btn rounded-[1vh] px-[3vh] py-[1vh] shadow-md hover:shadow-lg hover:cursor-pointer fade2 disabled:opacity-30 disabled:cursor-not-allowed"
+                                className="choice-btn rounded-[1vh] px-[3vh] py-[1vh] shadow-md hover:shadow-lg hover:cursor-pointer short-fade disabled:opacity-30 disabled:cursor-not-allowed"
                                 onClick={continueQuiz}
                             >
                                 Continue

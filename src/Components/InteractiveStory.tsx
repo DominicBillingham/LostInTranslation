@@ -116,7 +116,7 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
     return (
         <div className="journal-stream">
             {entries.map((entry, index) => (
-                <div key={index} className="chat-bubble fade2">
+                <div key={index} className="chat-bubble short-fade">
                     {entry}
                 </div>
             ))}
@@ -133,7 +133,7 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
                         <button
                             key={opt + i}
                             type="button"
-                            className="choice-btn w-full sm:w-2/3 rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-center hover:cursor-pointer fade2"
+                            className="choice-btn w-full sm:w-2/3 rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-center hover:cursor-pointer short-fade"
                             onClick={() => makeChoice(opt)}
                         >
                             {opt}

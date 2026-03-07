@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./animations.css";
 
 :root {
     --paper: #f9f2df;
@@ -162,18 +163,6 @@ body::before {
     cursor: pointer;
     display: none;
 }
-
-@keyframes fadeBlink {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 1;
-    }
-}
  
 /* Tooltip CSS */
 .custom-tooltip {
@@ -205,34 +194,4 @@ body::before {
 .custom-tooltip:hover::after {
     visibility: visible;
     opacity: 1;
-}
-
-.fade {
-    opacity: 0;
-    animation: fadeIn 2.5s ease forwards;
-}
-
-.fade2 {
-    opacity: 0;
-    animation: fadeIn 1.5s ease forwards;
-}
-
-.fly-in-bottom {
-    animation: flyInBottom 2.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
-@keyframes flyInBottom {
-    from {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
