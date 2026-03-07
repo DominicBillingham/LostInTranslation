@@ -7,22 +7,16 @@ interface InteractiveStoryProps {
     active: boolean;
     navigateToNode: any;
     LocalStorage: StorageAPI;
+    onContentUpdate: () => void;
 }
 
-export default function InteractiveStory({scene, active, navigateToNode, LocalStorage}: InteractiveStoryProps) {
+export default function InteractiveStory({scene, active, navigateToNode, LocalStorage, onContentUpdate}: InteractiveStoryProps) {
     const [displayIndicator, setDisplayIndicator] = useState(true);
     const [entries, setEntries] = useState<ReactNode[]>([]);
     const [displayOptions, setDisplayOptions] = useState(false);
 
     const indexRef = useRef(0);
     const optionsStartRef = useRef<number | null>(null);
-    const endRef = useRef<HTMLDivElement | null>(null);
-
-    function scrollToBottom() {
-        requestAnimationFrame(() => {
-            endRef.current?.scrollIntoView({behavior: "smooth", block: "end"});
-        });
-    }
 
     function escapeRegex(value: string) {
         return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -75,7 +69,7 @@ export default function InteractiveStory({scene, active, navigateToNode, LocalSt
             indexRef.current += 1;
             const nextSentence = sentences[indexRef.current];
             setEntries(prev => [...prev, renderSentence(nextSentence)]);
-            scrollToBottom();
+            onContentUpdate();
 
             if (indexRef.current === sentences.length - 1) {
                 setDisplayIndicator(false);
@@ -88,7 +82,7 @@ export default function InteractiveStory({scene, active, navigateToNode, LocalSt
                 if ((scene.nextNodeOptions ?? []).length > 0) {
                     setDisplayOptions(true);
                     optionsStartRef.current = (typeof performance !== "undefined" ? performance.now() : Date.now());
-                    scrollToBottom();
+                    onContentUpdate();
                 }
             }
         }
@@ -112,7 +106,7 @@ export default function InteractiveStory({scene, active, navigateToNode, LocalSt
     }, []);
 
     useEffect(() => {
-        scrollToBottom();
+        onContentUpdate();
     }, [entries, displayOptions]);
 
     async function makeChoice(choice: string) {
@@ -155,8 +149,6 @@ export default function InteractiveStory({scene, active, navigateToNode, LocalSt
                     ))}
                 </div>
             )}
-
-            <div ref={endRef}></div>
         </div>
     );
 }

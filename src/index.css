@@ -130,7 +130,7 @@ body::before {
 .journal-stream {
     display: flex;
     flex-direction: column;
-    gap: 1.2vh;
+    gap: 1.4vh;
     padding: 0.4vh 1vh 1vh 1vh;
     scroll-behavior: smooth;
 }
@@ -138,7 +138,7 @@ body::before {
 .journal-root {
     min-height: calc(100vh - 26vh);
     justify-content: flex-end;
-    padding-bottom: 6vh;
+    padding-bottom: 4vh;
 }
 
 .chat-bubble {

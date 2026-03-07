@@ -7,9 +7,10 @@ interface InteractiveQuizProps {
     active: boolean;
     navigateToNode: any;
     LocalStorage: StorageAPI;
+    onContentUpdate: () => void;
 }
 
-export default function InteractiveQuiz({quiz, active, navigateToNode, LocalStorage}: InteractiveQuizProps) {
+export default function InteractiveQuiz({quiz, active, navigateToNode, LocalStorage, onContentUpdate}: InteractiveQuizProps) {
     const [areOptionsEnabled, setAreOptionsEnabled] = useState<boolean>(true);
     const [quizText, setQuizText] = useState<string>("");
     const [feedbackText, setFeedbackText] = useState<string>("");
@@ -17,13 +18,6 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, LocalStor
     const [hasContinued, setHasContinued] = useState<boolean>(false);
 
     const answerStartRef = useRef<number | null>(null);
-    const endRef = useRef<HTMLDivElement | null>(null);
-
-    function scrollToBottom() {
-        requestAnimationFrame(() => {
-            endRef.current?.scrollIntoView({behavior: "smooth", block: "end"});
-        });
-    }
 
     useEffect(() => {
         if (quiz?.quizQuestion) {
@@ -33,12 +27,12 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, LocalStor
             setSelectedIsCorrect(null);
             setHasContinued(false);
             answerStartRef.current = (typeof performance !== "undefined" ? performance.now() : Date.now());
-            scrollToBottom();
+            onContentUpdate();
         }
     }, [quiz]);
 
     useEffect(() => {
-        scrollToBottom();
+        onContentUpdate();
     }, [areOptionsEnabled, feedbackText, quizText]);
 
     function chooseAnswer(quizAnswer: QuizOption) {
@@ -114,8 +108,6 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, LocalStor
                     )}
                 </>
             )}
-
-            <div ref={endRef}></div>
         </div>
     );
 }

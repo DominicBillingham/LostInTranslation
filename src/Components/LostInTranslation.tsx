@@ -14,8 +14,15 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
 
     const lastImageRef = useRef<string>(startingImage);
     const nextIdRef = useRef(1);
+    const endRef = useRef<HTMLDivElement | null>(null);
 
     const [timeline, setTimeline] = useState<TimelineItem[]>([]);
+
+    function scrollToBottom() {
+        requestAnimationFrame(() => {
+            endRef.current?.scrollIntoView({behavior: "smooth", block: "end"});
+        });
+    }
 
     async function fetchSceneFromJson(sceneName: string): Promise<Scene | null> {
         const response = await fetch("adventure.json");
@@ -94,11 +101,14 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
         if (shouldAppendImage && image) {
             lastImageRef.current = image;
         }
+
+        scrollToBottom();
     }
 
     return (
         <div className="journal-stream journal-root">
             {timeline.map((entry) => {
+                
                 if (entry.type === "image") {
                     return (
                         <div key={entry.id} className="photo-frame rounded-[18px] h-[24vh] w-[92%] mx-auto shrink-0 fade2">
@@ -119,6 +129,7 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
                             active={entry.active}
                             navigateToNode={navigateToNode}
                             LocalStorage={LocalStorage}
+                            onContentUpdate={scrollToBottom}
                         />
                     );
                 }
@@ -130,9 +141,15 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
                         active={entry.active}
                         navigateToNode={navigateToNode}
                         LocalStorage={LocalStorage}
+                        onContentUpdate={scrollToBottom}
                     />
                 );
+
             })}
+
+            {/* Add a 30vh spacer at the very bottom */}
+            <div ref={endRef} className="h-[15vh] w-full shrink-0" />
+            
         </div>
     );
 }
