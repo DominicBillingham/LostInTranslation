@@ -90,7 +90,7 @@ export default function Introduction({onComplete}: IntroductionProps) {
             
             {showTitle && (
                 <div className="fly-in-bottom">
-                    <div className="prata-regular tracking-wide text-center text-[8vh] font-bold mt-[6vh] leading-[1.1] uppercase">
+                    <div className="prata-regular tracking-wide text-center text-[8vh] font-bold mt-[3vh] leading-[1.1] uppercase">
                         <div>Lost <span className="text-[5.5vh] align-baseline">in</span></div>
                         <div>Translation</div>
                     </div>
