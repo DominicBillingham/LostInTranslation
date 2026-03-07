@@ -10,19 +10,16 @@ type TimelineItem =
     | { id: number; type: "quiz"; quiz: Quiz; active: boolean };
 
 function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
+    
+    // This game functions via a series of JSON nodes.
+    // Each node is either a chapter, a quiz, or a minigame.
+    // A node can then point to any other node in JSON, allowing for things to easily be stringed together.
+    // This is the high-level component that manages the state.
+    
     const startingImage = "start.jpg";
-
-    const lastImageRef = useRef<string>(startingImage);
     const nextIdRef = useRef(1);
     const endRef = useRef<HTMLDivElement | null>(null);
-
     const [timeline, setTimeline] = useState<TimelineItem[]>([]);
-
-    function scrollToBottom() {
-        requestAnimationFrame(() => {
-            endRef.current?.scrollIntoView({behavior: "smooth", block: "end"});
-        });
-    }
 
     async function fetchSceneFromJson(sceneName: string): Promise<Scene | null> {
         const response = await fetch("adventure.json");
@@ -43,12 +40,16 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
         }
     };
 
+    function scrollToBottom() {
+        requestAnimationFrame(() => {
+            endRef.current?.scrollIntoView({behavior: "smooth", block: "end"});
+        });
+    }
+
     async function resetGame() {
         LocalStorage?.incrementPlaythroughAttempts();
         const introScene = await fetchSceneFromJson("Intro");
-
-        lastImageRef.current = startingImage;
-
+        
         nextIdRef.current = 1;
         const newTimeline: TimelineItem[] = [
             {id: nextIdRef.current++, type: "image", src: `${import.meta.env.BASE_URL}${startingImage}`},
@@ -68,12 +69,11 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
     }, []);
 
     async function navigateToNode(nodeName: string) {
+        
         const nextScene = await fetchSceneFromJson(nodeName);
         const nextQuiz = await fetchQuizFromJson(nodeName);
-
         const image = nextScene?.image;
-        const shouldAppendImage = !!image && image !== lastImageRef.current;
-
+        
         setTimeline(prev => {
             const updated = prev.map((entry) => {
                 if ((entry.type === "scene" || entry.type === "quiz") && entry.active) {
@@ -82,7 +82,7 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
                 return entry;
             });
 
-            if (shouldAppendImage && image) {
+            if (image) {
                 updated.push({id: nextIdRef.current++, type: "image", src: `${import.meta.env.BASE_URL}${image}`});
             }
 
@@ -97,15 +97,11 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
 
             return updated;
         });
-
-        if (shouldAppendImage && image) {
-            lastImageRef.current = image;
-        }
-
         scrollToBottom();
     }
 
     return (
+        
         <div className="journal-stream journal-root">
             {timeline.map((entry) => {
                 
