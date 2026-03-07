@@ -1,9 +1,11 @@
 import {useEffect, useState} from "react";
 import LostInTranslation from "@/Components/LostInTranslation.tsx";
+import Introduction from "@/Components/Introduction.tsx";
 import Sound from "@/Managers/SoundManager.ts";
 import LocalStorage from "@/Managers/LocalStorage.ts";
 
 export default function OpeningMenu() {
+    const [introCompleted, setIntroCompleted] = useState(false);
     const [gameStarted, setGameStarted] = useState(false);
     const [username, setUsername] = useState<string>("");
     const [logKey, setLogKey] = useState<string>("");
@@ -38,22 +40,24 @@ export default function OpeningMenu() {
         const storedSoundVolume = LocalStorage.getSoundVolume(20);
         setSoundVolume(storedSoundVolume);
     }, []);
-    
+
     return (
         <div className="font-medium custom-font text-[2.5vh] min-h-screen">
             <div className="story-column max-w-[min(94vw,92vh)] m-auto py-[2.5vh]">
                 <div className="notebook-page pt-[2vh] min-h-[95vh] flex flex-col">
                     
-                    <h1 className="text-[4.4vh] font-bold text-center ink-title">
+                    <h1 className={`text-[4.4vh] font-bold text-center ink-title transition-all duration-1000 ${introCompleted ? "opacity-100" : "opacity-0"}`}>
                         Lost In Translation
                     </h1>
-                    <div className="border-b border-2 border-amber-800/20 w-1/2 mx-auto my-[0.5vh]"></div>
+                    <div className={`border-b border-2 border-amber-800/20 w-1/2 mx-auto my-[0.5vh] transition-all duration-1000 ${introCompleted ? "opacity-100" : "opacity-0"}`}></div>
                     
                     <div className="mt-[1.5vh] px-[1.5vh] pb-[1.5vh]">
                         {gameStarted ? (
                             <LostInTranslation />
+                        ) : !introCompleted ? (
+                            <Introduction onComplete={() => setIntroCompleted(true)} />
                         ) : (
-                            <div className={`journal-stream transition-all duration-500 ${isLeaving ? "opacity-0 translate-y-6" : "opacity-100 translate-y-0"}`}>
+                            <div className={`journal-stream transition-all duration-1000 ${isLeaving ? "opacity-0 translate-y-6" : "opacity-100 translate-y-0"}`}>
                                 
                                 <div className="chat-bubble">
                                     Before we begin, set up your journal details.
