@@ -1,15 +1,15 @@
 import {useEffect, useRef, useState} from "react";
-import {type StorageAPI} from "@/Managers/LocalStorage.ts";
 import InteractiveStory from "@/Components/InteractiveStory.tsx";
 import InteractiveQuiz from "@/Components/InteractiveQuiz.tsx";
 import type {Quiz, Scene} from "@/Interfaces.ts";
+import LocalStorage from "@/Managers/LocalStorage.ts";
 
 type TimelineItem =
     | { id: number; type: "image"; src: string }
     | { id: number; type: "scene"; scene: Scene; active: boolean }
     | { id: number; type: "quiz"; quiz: Quiz; active: boolean };
 
-function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
+function LostInTranslation() {
     
     // This game functions via a series of JSON nodes.
     // Each node is either a chapter, a quiz, or a minigame.
@@ -45,8 +45,8 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
         });
     }
 
-    async function SetupGame() {
-        LocalStorage?.incrementPlaythroughAttempts();
+    async function resetGame() {
+        LocalStorage.incrementPlaythroughAttempts();
         const introScene = await fetchSceneFromJson("Intro");
         
         nextIdRef.current = 1;
@@ -62,7 +62,7 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
     }
 
     useEffect(() => {
-        void SetupGame();
+        void resetGame();
         window.addEventListener("keydown", resetKeyEvent);
         return () => window.removeEventListener("keydown", resetKeyEvent);
     }, []);
@@ -123,7 +123,6 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
                             scene={entry.scene}
                             active={entry.active}
                             navigateToNode={navigateToNode}
-                            LocalStorage={LocalStorage}
                             onContentUpdate={scrollToBottom}
                         />
                     );
@@ -135,7 +134,6 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
                         quiz={entry.quiz}
                         active={entry.active}
                         navigateToNode={navigateToNode}
-                        LocalStorage={LocalStorage}
                         onContentUpdate={scrollToBottom}
                     />
                 );

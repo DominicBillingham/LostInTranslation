@@ -1,16 +1,15 @@
 import {useEffect, useRef, useState} from "react";
-import type {StorageAPI} from "@/Managers/LocalStorage.ts";
+import LocalStorage, {type StorageAPI} from "@/Managers/LocalStorage.ts";
 import type {Quiz, QuizOption} from "@/Interfaces.ts";
 
 interface InteractiveQuizProps {
     quiz: Quiz;
     active: boolean;
     navigateToNode: any;
-    LocalStorage: StorageAPI;
     onContentUpdate: () => void;
 }
 
-export default function InteractiveQuiz({quiz, active, navigateToNode, LocalStorage, onContentUpdate}: InteractiveQuizProps) {
+export default function InteractiveQuiz({quiz, active, navigateToNode, onContentUpdate}: InteractiveQuizProps) {
     const [areOptionsEnabled, setAreOptionsEnabled] = useState<boolean>(true);
     const [quizText, setQuizText] = useState<string>("");
     const [feedbackText, setFeedbackText] = useState<string>("");

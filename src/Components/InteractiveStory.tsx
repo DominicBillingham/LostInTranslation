@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState, type ReactNode} from "react";
-import type {StorageAPI} from "@/Managers/LocalStorage.ts";
+import LocalStorage, {type StorageAPI, StorageManager} from "@/Managers/LocalStorage.ts";
 import type {Scene} from "@/Interfaces.ts";
 import Sound from "@/Managers/SoundManager.ts";
 
@@ -7,11 +7,10 @@ interface InteractiveStoryProps {
     scene: Scene;
     active: boolean;
     navigateToNode: any;
-    LocalStorage: StorageAPI;
     onContentUpdate: () => void;
 }
 
-export default function InteractiveStory({scene, active, navigateToNode, LocalStorage, onContentUpdate}: InteractiveStoryProps) {
+export default function InteractiveStory({scene, active, navigateToNode, onContentUpdate}: InteractiveStoryProps) {
     const [displayIndicator, setDisplayIndicator] = useState(true);
     const [entries, setEntries] = useState<ReactNode[]>([]);
     const [displayOptions, setDisplayOptions] = useState(false);

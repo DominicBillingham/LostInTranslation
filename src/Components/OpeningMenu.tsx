@@ -51,7 +51,7 @@ export default function OpeningMenu() {
                     
                     <div className="mt-[1.5vh] px-[1.5vh] pb-[1.5vh]">
                         {gameStarted ? (
-                            <LostInTranslation LocalStorage={LocalStorage} />
+                            <LostInTranslation />
                         ) : (
                             <div className={`journal-stream transition-all duration-500 ${isLeaving ? "opacity-0 translate-y-6" : "opacity-100 translate-y-0"}`}>
                                 
