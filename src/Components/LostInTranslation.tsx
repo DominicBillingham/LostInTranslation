@@ -115,7 +115,7 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
                             <img
                                 src={entry.src}
                                 alt="Story"
-                                className="w-full h-full rounded-[14px] object-cover select-none saturate-75"
+                                className="w-full h-full rounded-[14px] object-cover select-none saturate-75 blur-[0.75px]"
                             />
                         </div>
                     );
