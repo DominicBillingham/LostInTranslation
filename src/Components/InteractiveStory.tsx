@@ -15,7 +15,7 @@ export default function InteractiveStory({scene, active, navigateToNode, LocalSt
     const [entries, setEntries] = useState<ReactNode[]>([]);
     const [displayOptions, setDisplayOptions] = useState(false);
 
-    const indexRef = useRef(0);
+    const indexRef = useRef(-1);
     const optionsStartRef = useRef<number | null>(null);
 
     function escapeRegex(value: string) {
@@ -89,17 +89,12 @@ export default function InteractiveStory({scene, active, navigateToNode, LocalSt
     };
 
     useEffect(() => {
-        indexRef.current = 0;
+        indexRef.current = -1;
         setDisplayIndicator(true);
         setDisplayOptions(false);
         optionsStartRef.current = null;
 
-        const firstSentence = scene.sentences?.[0];
-        if (firstSentence) {
-            setEntries([renderSentence(firstSentence)]);
-        } else {
-            setEntries([]);
-        }
+        setEntries([]);
 
         window.addEventListener("keydown", onSpacePress);
         return () => window.removeEventListener("keydown", onSpacePress);
