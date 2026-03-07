@@ -69,7 +69,7 @@ export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage}:
 
                 <div
                     id="storyTextBox"
-                    className={`relative bg-white/90 rounded-[1vh] p-[1vh] ps-[2vh] text-gray-800 h-[10vh] shadow-md fade2 transition-all duration-500 ease-out transform`}
+                    className={`relative notebook-panel rounded-[1vh] p-[1vh] ps-[2vh] ink-body h-[10vh] fade2 transition-all duration-500 ease-out transform`}
                 >
                     <p className="fade" key={refreshAnimations}>
                         <span className={!areOptionsEnabled ? 'text-gray-500' : ''}>{quizText}</span>
@@ -98,7 +98,7 @@ export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage}:
                                 key={ans.answerText + i}
                                 type="button"
                                 disabled={!areOptionsEnabled}
-                                className="bg-orange-100/95 rounded-[1vh] p-[1vh] pl-3 text-gray-900 shadow-md hover:shadow-lg  border-[#FF7F50] border-3 text-left hover:cursor-pointer hover:bg-orange-200/95 fade "
+                                className="choice-btn rounded-[1vh] p-[1vh] pl-3 shadow-md hover:shadow-lg text-left hover:cursor-pointer fade"
                                 onClick={() => ChooseAnswer(ans)}
                             >
                                 {ans.answerText}
@@ -112,10 +112,10 @@ export default function InteractiveQuiz({quizRef, navigateToNode, LocalStorage}:
                     <button
                         type="button"
                         disabled={areOptionsEnabled}
-                        className={`5 rounded-[1vh] px-[4vh] py-[1vh] text-gray-900 shadow-md border-[rgba(255,127,80,0.4)] border-3 text-center fade ${
+                        className={`rounded-[1vh] px-[4vh] py-[1vh] text-gray-900 shadow-md border-2 border-amber-900/40 text-center fade ${
                             areOptionsEnabled
-                                ? 'pointer-events-none bg-orange-200/40  border-[#FF7F200] cursor-not-allowed'
-                                : 'hover:shadow-lg bg-orange-200/90 hover:bg-orange-300/95 hover:cursor-pointer  '
+                                ? 'pointer-events-none bg-amber-200/40 cursor-not-allowed'
+                                : 'choice-btn hover:shadow-lg hover:cursor-pointer'
                         }`}
                         onClick={Continue}
                     >

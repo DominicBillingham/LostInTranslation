@@ -38,7 +38,7 @@ function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
         const htmlFade = <img
             src={oldImageSrc ?? ""}
             alt="Story"
-            className="w-full rounded-b-xl object-cover select-none relative h-full opacity-0 transition-opacity duration-[1500ms]"
+            className="w-full rounded-b-[24px] object-cover select-none relative h-full opacity-0 transition-opacity duration-[1500ms] saturate-75"
         />
 
         setImageHmtl(htmlFade);
@@ -48,7 +48,7 @@ function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
         const htmlUnfade = <img
             src={imageSrc ?? ""}
             alt="Story"
-            className="w-full rounded-b-xl object-cover select-none relative h-full opacity-100 transition-opacity duration-[1500ms]"
+            className="w-full rounded-b-[24px] object-cover select-none relative h-full opacity-100 transition-opacity duration-[1500ms] saturate-75"
         />
 
         setImageHmtl(htmlUnfade);
@@ -79,7 +79,7 @@ function LostInTranslation({ LocalStorage }: { LocalStorage?: StorageAPI }) {
         const html = <img
             src={`${import.meta.env.BASE_URL}${startingImage}`}   
             alt="Story"
-            className="w-full rounded-b-xl object-cover select-none relative h-full"
+            className="w-full rounded-b-[24px] object-cover select-none relative h-full saturate-75"
         />
 
         lastImageRef.current = startingImage;
