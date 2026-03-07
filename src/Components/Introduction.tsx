@@ -91,7 +91,7 @@ export default function Introduction({onComplete}: IntroductionProps) {
             {showTitle && (
                 <div className="fly-in-bottom">
                     <div className="prata-regular tracking-wide text-center text-[8vh] font-bold mt-[6vh] leading-[1.1] uppercase">
-                        <div>Lost <span className="text-[0.6em] align-baseline">in</span></div>
+                        <div>Lost <span className="text-[5.5vh] align-baseline">in</span></div>
                         <div>Translation</div>
                     </div>
                     <div className="border-b border-2 border-amber-800/20 w-1/2 mx-auto my-[0.2vh] mb-[2vh]"></div>
@@ -99,7 +99,7 @@ export default function Introduction({onComplete}: IntroductionProps) {
             )}
 
             {showIndicator && (
-                <div className={`ink-body text-[2.1vh] italic px-[0.5vh] text-center pointer-events-none ${delayedIndicator ? "fade" : "fade2"}`}>
+                <div className={`ink-body text-[2.3vh] italic px-[0.5vh] text-center pointer-events-none ${delayedIndicator ? "fade" : "fade2"}`}>
                     Press space to continue...
                 </div>
             )}
