@@ -33,6 +33,9 @@ export default function OpeningMenu() {
         setMusicVolume(storedMusicVolume);
     }, []);
 
+    
+    // Test commit
+    
     return (
         <div className="font-medium custom-font text-[2.5vh] min-h-screen">
             <div className="story-column max-w-[min(94vw,92vh)] m-auto py-[2.5vh]">
