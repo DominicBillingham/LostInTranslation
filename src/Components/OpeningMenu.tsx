@@ -32,9 +32,6 @@ export default function OpeningMenu() {
         const storedMusicVolume = LocalStorage.getMusicVolume(20);
         setMusicVolume(storedMusicVolume);
     }, []);
-
-    
-    // Test commit
     
     return (
         <div className="font-medium custom-font text-[2.5vh] min-h-screen">
