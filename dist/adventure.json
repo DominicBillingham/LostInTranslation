@@ -1,0 +1,246 @@
+[
+    
+    {
+        
+        "nodeName": "Intro",
+        "storyDecision": "Does Cinderella choose to stay or leave?",
+        
+        "sentences": [
+            "Once upon a time, there was a beautiful girl who lived with her father and her stepmother and stepsisters.",
+            "One day, her father sadly passed away, leaving her heartbroken at the mercy of the woman her father had remarried.",
+            "She became their personal maid. She was made to cook, clean, and take care of the house, while they laughed at her and ridiculed her."
+        ],
+        "hints": {
+            "stepmother ": "Her dad's new wife",
+            "stepsisters": "Her stepmother's daughters",
+            "passed away": "Died",
+            "heartbroken": "Very sad",
+            "at the mercy of": "Under the power of her stepmom",
+            "maid" : "Servant",
+            "ridiculed" : "Made fun of"
+        },
+        "nextNodeOptions": [
+            "Run away",
+            "Continue to do her work",
+            "Try to complain"
+        ],
+        "image": "start.jpg"
+    },    
+    
+    {
+        "nodeName": "Run away",
+        
+        "sentences": [
+            "Cinderella decides to escape, run away from everyone and everything.",
+            "She stumbles across a monastery, and she decides to join the nuns there, going on to live a peaceful life surrounded by kind women.",
+            "Ending: Ran away. Press (R) to restart the game!"
+        ],
+        "hints": {
+            "stumbles across ": "accidentally found",
+            "monastery": "Place where religious people live",
+            "nuns": "Very religious women"
+        },
+        "image": "forest.jpg"
+    },
+    
+    {
+        "nodeName": "Continue to do her work",
+        
+        "sentences": [
+            "Sadly, she knew that any complaints would fall on deaf ears.",
+            "She worked diligently, no matter how sad she felt about her situation.",
+            "She hoped that one day things would get better.",
+            "(Chapter End)"
+        ],
+        "hints": {
+            "fall on deaf ears": "No one would listen",
+            "diligently": "She worked hard"
+        },
+        "quizName": "cinderellaQuiz1",
+        "image": "kitchen.jpg"
+    },    
+        
+    {
+        "nodeName": "Try to complain",
+        "sentences": [
+            "Sadly, she knew that any complaints would fall on deaf ears.",
+            "She worked diligently, no matter how sad she felt about her situation.",
+            "She hoped that one day things would get better."
+        ],
+        "hints": {
+            "fall on deaf ears": "No one would listen",
+            "diligently": "She worked hard"
+        },
+        "quizName": "cinderellaQuiz1",
+        "image": "kitchen.jpg"
+    },
+
+    {
+        
+        "nodeName": "Ball",
+        "storyDecision": "Does Cinderella accept her Godmother's help?",
+        
+        "sentences": [
+            "One night, Cinderella’s stepmother and stepsisters left her behind to tend to the house as they went to a ball to try to meet the prince.",
+            "Cinderella was disappointed, because she had also wanted to go, but she continued cleaning, without complaining.",
+            "That’s when, out of nowhere, a fairy appeared! She said she was Cinderella’s godmother, and that she would help her get ready for the ball."
+        ],
+        "hints": {
+            "left her behind": "Didn't take her to the ball",
+            "ball": "A formal dance",
+            "disappointed": "Sad",
+            "fairy ": "A magical creature"
+        },
+        "nextNodeOptions": [
+            "Decline her help",
+            "Jump enthusiastically at the offer",
+            "Hesitantly agree"
+        ],
+        "image": "mountain.jpg"
+    },
+
+    {
+        "nodeName": "Decline her help",
+        "sentences": [
+            "The fairy respects her wishes and leaves. Cinderella continues to scrub the dirty floors.",
+            "She spends her life taking care of her stepsisters and their offspring",
+            "She dies alone, her family too busy to visit her.",
+            "Ending: Died alone. Press (R) to restart the game!"
+        ],
+        "hints": {
+            "scrub ": "Clean well",
+            "offspring": "Sons and Daughters (children)"
+        },
+        "image": "start.jpg"
+    },
+
+    {
+        "nodeName": "Jump enthusiastically at the offer",
+        "sentences": [
+            "“I promise you’ll love your new look!” The fairy’s excitement is contagious, and Cinderella ended up accepting her offer.",
+            "“Abracadabra!” and with a flick of her wand, the fairy transformed Cinderella’s raggedy clothes into a beautiful gown. ",
+            "Cinderella beamed and thanked her godmother.",
+            "“It’s my pleasure, darling! Just remember, all the magic will fade at midnight, so make sure to be back by then!”",
+            "And so, Cinderella left in a magical carriage, into a night she would never forget.",
+            "(Chapter End)"
+        ],
+        "hints": {
+            "contagious ": "It made Cinderella feel excited too",
+            "flick": "A wrist movement",
+            "raggedy": "Dirty, messy",
+            "gown": "Fancy dress",
+            "beamed ": "Smiled happily",
+            "fade ": "Disappear",
+            "carriage": "A classical vehicle pulled by a horse"
+        },
+        "image": "pumpkin.jpg",
+        "quizName": "cinderellaQuiz4"
+    },
+
+    {
+        "nodeName": "Hesitantly agree",
+        "sentences": [
+            "“I promise you’ll love your new look!” The fairy’s excitement is contagious, and Cinderella ended up accepting her offer.",
+            "“Abracadabra!” and with a flick of her wand, the fairy transformed Cinderella’s raggedy clothes into a beautiful gown. ",
+            "Cinderella beamed and thanked her godmother.",
+            "“It’s my pleasure, darling! Just remember, all the magic will fade at midnight, so make sure to be back by then!”",
+            "And so, Cinderella left in a magical carriage, into a night she would never forget."
+        ],
+        "hints": {
+            "contagious ": "It made Cinderella feel excited too",
+            "flick": "A wrist movement",
+            "raggedy": "Dirty, messy",
+            "gown": "Fancy dress",
+            "beamed ": "Smiled happily",
+            "fade ": "Disappear",
+            "carriage": "A classical vehicle pulled by a horse"
+        },
+        "image": "start.jpg",
+        "quizName": "cinderellaQuiz4"
+    },
+    
+    {
+        
+        "nodeName": "Prince",
+        "storyDecision": "Does Cinderella run away or stay at the ball?",
+
+        "sentences": [
+            "Cinderella arrived at the ball, and everyone turned to look at her. Her family didn’t recognize her, because they had never seen her dolled up.",
+            "The prince was awestruck by Cinderella’s beauty, and he asked her to dance, while her jealous stepsisters watched.",
+            "Cinderella and the prince danced together for hours. She had stolen his heart. He asked her to come back to the palace with him, but just as he did, the clock struck midnight."
+        ],
+        "hints": {
+            "dolled up": "Dressed in fancy or formal clothing",
+            "awestruck": "Very impressed",
+            "stolen his heart": "He fell in love with her",
+            "the clock struck midnight": "It was 00:00"
+        },
+        "nextNodeOptions": [
+            "Panic and run away",
+            "Tell him she will see him again",
+            "Stay"
+        ],
+        "image": "market.jpg"
+    },
+
+    {
+        "nodeName": "Stay",
+        "sentences": [
+            "Cinderella’s dress converts back to the rags that she was dressed in before the dance.",
+            "Since the usage of magic is prohibited in the castle,. the prince orders her to be locked up in the dungeon.",
+            "He never sees her again.",
+            "Ending: Locked away... Press (R) to restart the game!"
+        ],
+        "hints": {
+            "prohibited": "Banned",
+            "converts": "Changes shape",
+            "dungeon": "An old prison"
+        },
+        "image": "start.jpg"
+    },
+
+    {
+        "nodeName": "Panic and run away",
+        "sentences": [
+            "She ran back to her carriage and arrived home just in time. However, in her rush, she didn’t realize she had forgotten her shoe.",
+            "The prince went all over the kingdom searching for the shoe owner, hoping to find the girl who he had fallen in love with the night of the ball.",
+            "When he found her at last, and despite her stepsisters’ complaints, he married her and they lived happily ever after.",
+            "Ending: Happily Ever After... Press (R) to restart the game!"
+        ],
+        "hints": {
+            "rush": "To have to go somewhere quickly",
+            "kingdom": "Land ruled by a king",
+            "happily ever after": "Happy for the rest of their lives"
+        },
+        "image": "start.jpg",
+        "quizName": "cinderellaQuiz7"
+    },
+
+    {
+        "nodeName": "Tell him she will see him again",
+        "sentences": [
+            "She ran back to her carriage and arrived home just in time. However, in her rush, she didn’t realize she had forgotten her shoe.",
+            "The prince went all over the kingdom searching for the shoe owner, hoping to find the girl who he had fallen in love with the night of the ball.",
+            "When he found her at last, and despite her stepsisters’ complaints, he married her and they lived happily ever after..."
+        ],
+        "hints": {
+            "rush": "To have to go somewhere quickly",
+            "kingdom": "Land ruled by a king",
+            "happily ever after": "Happy for the rest of their lives"
+        },
+        "image": "start.jpg",
+        "quizName": "cinderellaQuiz7"
+    },
+
+    {
+        "nodeName": "End",
+        "sentences": [
+            "Ending: Happily ever after. Press (R) to restart!"
+        ],
+        "hints": {
+            "test": "test"
+        },
+        "image": "start.jpg"
+    }
+    
+]
