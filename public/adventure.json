@@ -49,7 +49,8 @@
         "sentences": [
             "Sadly, she knew that any complaints would fall on deaf ears.",
             "She worked diligently, no matter how sad she felt about her situation.",
-            "She hoped that one day things would get better."
+            "She hoped that one day things would get better.",
+            "(Chapter End)"
         ],
         "hints": {
             "fall on deaf ears": "No one would listen",
@@ -120,7 +121,8 @@
             "“Abracadabra!” and with a flick of her wand, the fairy transformed Cinderella’s raggedy clothes into a beautiful gown. ",
             "Cinderella beamed and thanked her godmother.",
             "“It’s my pleasure, darling! Just remember, all the magic will fade at midnight, so make sure to be back by then!”",
-            "And so, Cinderella left in a magical carriage, into a night she would never forget."
+            "And so, Cinderella left in a magical carriage, into a night she would never forget.",
+            "(Chapter End)"
         ],
         "hints": {
             "contagious ": "It made Cinderella feel excited too",
@@ -156,8 +158,7 @@
         "image": "start.jpg",
         "quizName": "cinderellaQuiz4"
     },
-
-
+    
     {
         
         "nodeName": "Prince",

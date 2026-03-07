@@ -65,9 +65,11 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, LocalStor
 
     return (
         <div className="journal-stream">
-            <h2 className="text-[3.2vh] font-bold text-center ink-title mb-[1vh]">
+            <h2 className="text-[3.2vh] font-bold text-center ink-title">
                 Mini Quiz!
             </h2>
+            <div className="border-b border-2 border-amber-800/20 w-1/2 mx-auto my-[0.2vh]"></div>
+
             <div className="chat-bubble fade2">{quizText}</div>
 
             {areOptionsEnabled ? (
