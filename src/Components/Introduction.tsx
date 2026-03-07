@@ -61,10 +61,7 @@ export default function Introduction({onComplete}: IntroductionProps) {
                     if (!delayedIndicator) return prevStep;
                     
                     setShowIndicator(false);
-                    setIsFadingOut(true);
-                    setTimeout(() => {
-                        onComplete();
-                    }, 1000);
+                    onComplete();
                     return nextStep;
                 }
                 return prevStep;
@@ -76,7 +73,7 @@ export default function Introduction({onComplete}: IntroductionProps) {
     }, [isFadingOut, introSentences, delayedIndicator, onComplete]);
 
     return (
-        <div className={`mt-[8vh] journal-stream transition-opacity duration-1000 ${isFadingOut ? "opacity-0" : "opacity-100"}`}>
+        <div className={`mt-[8vh] journal-stream transition-opacity duration-1000`}>
             
             {!showTitle && (
                 <div className={`transition-opacity duration-1000 ${introFadingOut ? "opacity-0" : "opacity-100"}`}>

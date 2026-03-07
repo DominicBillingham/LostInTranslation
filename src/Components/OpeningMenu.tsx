@@ -54,6 +54,14 @@ export default function OpeningMenu() {
                             <Introduction onComplete={() => setIntroCompleted(true)} />
                         ) : (
                             <div className={`journal-stream transition-all duration-1000 ${isLeaving ? "opacity-0" : "opacity-100"}`}>
+                                
+                                <div className="mt-[8vh]">
+                                    <div className="prata-regular tracking-wide text-center text-[8vh] font-bold  leading-[1.1] uppercase">
+                                        <div>Lost <span className="text-[5.5vh] align-baseline">in</span></div>
+                                        <div>Translation</div>
+                                    </div>
+                                    <div className="border-b border-2 border-amber-800/20 w-1/2 mx-auto my-[0.2vh] mb-[2vh]"></div>
+                                </div>
             
                                 <div className="notebook-panel rounded-[12px] p-[2vh] flex flex-col gap-[1.5vh]">
                                     <label className="flex flex-col gap-[0.6vh]">
