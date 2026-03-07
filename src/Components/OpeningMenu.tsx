@@ -37,19 +37,18 @@ export default function OpeningMenu() {
         <div className="font-medium custom-font text-[2.5vh] min-h-screen">
             <div className="story-column max-w-[min(94vw,92vh)] m-auto py-[2.5vh]">
                 <div className="notebook-page pt-[2vh] min-h-[95vh] flex flex-col">
+                    
                     <h1 className="text-[4.4vh] font-bold text-center ink-title">
                         Lost In Translation
                     </h1>
                     <div className="border-b border-2 border-amber-800/20 w-1/2 mx-auto my-[0.5vh]"></div>
-                    <div className="text-center ink-body px-[2vh]">
-                        Press space to continue story lines. Highlighted words still show hints on hover.
-                    </div>
-
+                    
                     <div className="mt-[1.5vh] px-[1.5vh] pb-[1.5vh]">
                         {gameStarted ? (
                             <LostInTranslation LocalStorage={LocalStorage} />
                         ) : (
                             <div className={`journal-stream transition-all duration-500 ${isLeaving ? "opacity-0 translate-y-6" : "opacity-100 translate-y-0"}`}>
+                                
                                 <div className="chat-bubble fade2">
                                     Before we begin, set up your journal details.
                                 </div>
@@ -68,12 +67,12 @@ export default function OpeningMenu() {
                                     </label>
 
                                     <label className="flex flex-col gap-[0.6vh]">
-                                        <span className="ink-body">LogKey <span className="text-amber-800/50">(optional)</span></span>
+                                        <span className="ink-body">Log Key <span className="text-amber-800/50">(optional)</span></span>
                                         <input
                                             type="text"
                                             value={logKey}
                                             onChange={(e) => setLogKey(e.target.value)}
-                                            placeholder="Enter your LogKey"
+                                            placeholder="Enter a log key so we can gather data on story decisions!"
                                             className="rounded-lg border-amber-800/30 border-2 bg-amber-50/40 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-amber-700/40"
                                         />
                                     </label>
@@ -101,7 +100,7 @@ export default function OpeningMenu() {
                                         />
                                     </label>
                                 </div>
-
+                                
                                 <div className="pt-[0.4vh] flex justify-start">
                                     <button
                                         type="button"
