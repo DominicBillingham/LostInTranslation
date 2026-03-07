@@ -115,8 +115,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.2vh;
-    padding: 0.4vh 1vh 30vh 1vh;
+    padding: 0.4vh 1vh 1vh 1vh;
     scroll-behavior: smooth;
+}
+
+.journal-root {
+    min-height: calc(100vh - 26vh);
+    justify-content: flex-end;
+    padding-bottom: 6vh;
 }
 
 .chat-bubble {

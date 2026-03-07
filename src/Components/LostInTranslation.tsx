@@ -97,7 +97,7 @@ function LostInTranslation({LocalStorage}: { LocalStorage?: StorageAPI }) {
     }
 
     return (
-        <div className="journal-stream">
+        <div className="journal-stream journal-root">
             {timeline.map((entry) => {
                 if (entry.type === "image") {
                     return (
