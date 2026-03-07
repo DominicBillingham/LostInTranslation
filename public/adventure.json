@@ -24,6 +24,9 @@
             "Continue to do her work",
             "Try to complain"
         ],
+        "nextNodeMap": {
+            "Run away": "Run away Bubble Order"
+        },
         "image": "start.jpg"
     },    
     

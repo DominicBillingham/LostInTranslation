@@ -1,0 +1,13 @@
+[
+    {
+        "nodeName": "Run away Bubble Order",
+        "prompt": "Drag these three messages into the order that makes sense.",
+        "bubbles": [
+            "I need to leave before they catch me.",
+            "Wait, I should grab my bag first.",
+            "Okay, now run to the monastery."
+        ],
+        "nextNode": "Run away",
+        "image": "forest.jpg"
+    }
+]

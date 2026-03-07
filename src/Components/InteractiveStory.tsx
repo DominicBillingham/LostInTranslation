@@ -98,7 +98,8 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
 
         optionsStartRef.current = null;
         setDisplayOptions(false);
-        navigateToNode(choice);
+        const targetNode = scene.nextNodeMap?.[choice] ?? choice;
+        navigateToNode(targetNode);
     }
     
     useEffect(() => {
@@ -144,3 +145,5 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
         </div>
     );
 }
+
+

@@ -1,21 +1,23 @@
 import {useEffect, useRef, useState} from "react";
 import InteractiveStory from "@/Components/InteractiveStory.tsx";
 import InteractiveQuiz from "@/Components/InteractiveQuiz.tsx";
-import type {Quiz, Scene} from "@/Interfaces.ts";
+import InteractiveBubbleOrder from "@/Components/InteractiveBubbleOrder.tsx";
+import type {BubbleOrderNode, Quiz, Scene} from "@/Interfaces.ts";
 import LocalStorage from "@/Managers/LocalStorage.ts";
 
 type TimelineItem =
     | { id: number; type: "image"; src: string }
     | { id: number; type: "scene"; scene: Scene; active: boolean }
-    | { id: number; type: "quiz"; quiz: Quiz; active: boolean };
+    | { id: number; type: "quiz"; quiz: Quiz; active: boolean }
+    | { id: number; type: "bubbleOrder"; node: BubbleOrderNode; active: boolean };
 
 function LostInTranslation() {
-    
+
     // This game functions via a series of JSON nodes.
     // Each node is either a chapter, a quiz, or a minigame.
     // A node can then point to any other node in JSON, allowing for things to easily be stringed together.
     // This is the high-level component that manages the state.
-    
+
     const startingImage = "start.jpg";
     const nextIdRef = useRef(1);
     const endRef = useRef<HTMLDivElement | null>(null);
@@ -33,6 +35,12 @@ function LostInTranslation() {
         return json.find(q => q.nodeName === quizName) ?? null;
     }
 
+    async function fetchBubbleOrderFromJson(nodeName: string): Promise<BubbleOrderNode | null> {
+        const response = await fetch("bubble-order.json");
+        const json: BubbleOrderNode[] = await response.json();
+        return json.find(node => node.nodeName === nodeName) ?? null;
+    }
+
     const resetKeyEvent = (event: KeyboardEvent) => {
         if (event.key === "r" || event.key === "R") {
             window.location.reload();
@@ -48,7 +56,7 @@ function LostInTranslation() {
     async function resetGame() {
         LocalStorage.incrementPlaythroughAttempts();
         const introScene = await fetchSceneFromJson("Intro");
-        
+
         nextIdRef.current = 1;
         const newTimeline: TimelineItem[] = [
             {id: nextIdRef.current++, type: "image", src: `${import.meta.env.BASE_URL}${startingImage}`},
@@ -68,14 +76,15 @@ function LostInTranslation() {
     }, []);
 
     async function navigateToNode(nodeName: string) {
-        
+
         const nextScene = await fetchSceneFromJson(nodeName);
         const nextQuiz = await fetchQuizFromJson(nodeName);
-        const image = nextScene?.image;
-        
+        const nextBubbleOrder = await fetchBubbleOrderFromJson(nodeName);
+        const image = nextScene?.image ?? nextBubbleOrder?.image;
+
         setTimeline(prev => {
             const updated = prev.map((entry) => {
-                if ((entry.type === "scene" || entry.type === "quiz") && entry.active) {
+                if ((entry.type === "scene" || entry.type === "quiz" || entry.type === "bubbleOrder") && entry.active) {
                     return {...entry, active: false};
                 }
                 return entry;
@@ -90,6 +99,11 @@ function LostInTranslation() {
                 return updated;
             }
 
+            if (nextBubbleOrder) {
+                updated.push({id: nextIdRef.current++, type: "bubbleOrder", node: nextBubbleOrder, active: true});
+                return updated;
+            }
+
             if (nextScene) {
                 updated.push({id: nextIdRef.current++, type: "scene", scene: nextScene, active: true});
             }
@@ -100,10 +114,10 @@ function LostInTranslation() {
     }
 
     return (
-        
+
         <div className="journal-stream journal-root">
             {timeline.map((entry) => {
-                
+
                 if (entry.type === "image") {
                     return (
                         <div key={entry.id} className="photo-frame rounded-[18px] h-[24vh] w-[92%] mx-auto shrink-0 fade2">
@@ -128,6 +142,18 @@ function LostInTranslation() {
                     );
                 }
 
+                if (entry.type === "bubbleOrder") {
+                    return (
+                        <InteractiveBubbleOrder
+                            key={entry.id}
+                            node={entry.node}
+                            active={entry.active}
+                            navigateToNode={navigateToNode}
+                            onContentUpdate={scrollToBottom}
+                        />
+                    );
+                }
+
                 return (
                     <InteractiveQuiz
                         key={entry.id}
@@ -142,7 +168,7 @@ function LostInTranslation() {
 
             {/* Add a 30vh spacer at the very bottom */}
             <div ref={endRef} className="h-[25vh] w-full shrink-0" />
-            
+
         </div>
     );
 }
