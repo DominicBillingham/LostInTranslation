@@ -19,14 +19,14 @@ export default function NotebookContainer() {
     };
 
     return (
-        <div className="font-medium custom-font text-[2.5vh] min-h-screen">
+        <div className="font-medium custom-font text-[2.5vh] min-h-screen relative">
+            <LanguageSwitcher />
             <div className="story-column max-w-[min(94vw,92vh)] m-auto py-[2.5vh]">
-                <div className="notebook-page pt-[2vh] min-h-[95vh] flex flex-col">
-                    <div className="mt-[1.5vh] px-[1.5vh] pb-[1.5vh]">
+                <div className="notebook-page pt-[2vh] min-h-[95vh] flex flex-col relative">
+                    <div className="mt-[1.5vh] px-[1.5vh] pb-[1.5vh] flex flex-col flex-grow">
                         
                         {!introCompleted && (
                             <>
-                                <LanguageSwitcher />
                                 <Introduction onComplete={handleIntroComplete} />
                             </>
                         )}

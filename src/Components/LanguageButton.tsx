@@ -1,24 +1,42 @@
 ﻿import { useTranslation } from "react-i18next";
-import { Globe } from "lucide-react";
 
 export default function LanguageSwitcher() {
     const { i18n } = useTranslation();
 
-    const toggleLanguage = () => {
-        const nextLang = i18n.language === "en" ? "ca" : "en";
-        i18n.changeLanguage(nextLang);
+    const changeLanguage = (lang: string) => {
+        i18n.changeLanguage(lang);
     };
 
+    const isEn = i18n.language === "en";
+
     return (
-        <button 
-            onClick={toggleLanguage}
-            className="fixed bottom-6 right-6 z-50 p-3 bg-amber-800/80 hover:bg-amber-800 text-white rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center group"
-            title={i18n.language === "en" ? "Switch to Catalan" : "Canvia a l'Anglès"}
-        >
-            <Globe size={24} className="group-hover:rotate-12 transition-transform duration-300" />
-            <span className="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-2 transition-all duration-300 whitespace-nowrap text-sm font-medium">
-                {i18n.language === "en" ? "EN" : "CA"}
-            </span>
-        </button>
+        <div className="fixed bottom-[4vh] right-[calc(50%-min(47vw,46vh)-2vh)] flex flex-col gap-[1vh] z-[100] pointer-events-none">
+            <button
+                onClick={() => changeLanguage("en")}
+                className={`pointer-events-auto transition-all duration-300 pl-[3.5vh] pr-[2.5vh] py-[1vh] text-[1.8vh] font-bold uppercase tracking-wider shadow-md hover:translate-x-[0.5vh] ${
+                    isEn
+                        ? "bg-amber-800 text-white translate-x-[1vh]"
+                        : "bg-amber-100/90 text-amber-900 hover:bg-amber-200 translate-x-[0vh]"
+                }`}
+                style={{
+                    clipPath: "polygon(15% 0%, 100% 0%, 100% 100%, 15% 100%, 0% 50%)",
+                }}
+            >
+                English
+            </button>
+            <button
+                onClick={() => changeLanguage("ca")}
+                className={`pointer-events-auto transition-all duration-300 pl-[3.5vh] pr-[2.5vh] py-[1vh] text-[1.8vh] font-bold uppercase tracking-wider shadow-md hover:translate-x-[0.5vh] ${
+                    !isEn
+                        ? "bg-amber-800 text-white translate-x-[1vh]"
+                        : "bg-amber-100/90 text-amber-900 hover:bg-amber-200 translate-x-[0vh]"
+                }`}
+                style={{
+                    clipPath: "polygon(15% 0%, 100% 0%, 100% 100%, 15% 100%, 0% 50%)",
+                }}
+            >
+                Catalan
+            </button>
+        </div>
     );
 }
