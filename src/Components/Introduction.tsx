@@ -1,32 +1,38 @@
 ﻿import {useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
+import LanguageSwitcher from "@/Components/LanguageButton.tsx";
 
 interface IntroductionProps {
     onComplete: () => void;
 }
 
 export default function Introduction({onComplete}: IntroductionProps) {
+
+    const { t } = useTranslation();
+
     const [introStep, setIntroStep] = useState(0);
-    const [displayedSentences, setDisplayedSentences] = useState<string[]>([]);
     const [showIndicator, setShowIndicator] = useState(true);
     const [isFadingOut, setIsFadingOut] = useState(false);
     const [showTitle, setShowTitle] = useState(false);
     const [introFadingOut, setIntroFadingOut] = useState(false);
     const [delayedIndicator, setDelayedIndicator] = useState(false);
 
-    const introSentences = [
-        "Once upon a time, in a dusty basement...",
-        "You came across an old journal that seemed to take on a life of its own!",
-        "Will you uncover its secrets?",
-        "Or will you get..."
+    const introKeys = [
+        "dustyBasement",
+        "oldJournal",
+        "uncoverSecrets",
+        "willGet",
     ];
+
+    const introSentences = introKeys.map(key => t(key));
+
 
     useEffect(() => {
         // Show the first sentence immediately if nothing is displayed yet
-        if (introStep === 0 && displayedSentences.length === 0) {
+        if (introStep === 0) {
             setIntroStep(1);
-            setDisplayedSentences([introSentences[0]]);
         }
-    }, [introStep, displayedSentences, introSentences]);
+    }, [introStep]);
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
@@ -36,12 +42,11 @@ export default function Introduction({onComplete}: IntroductionProps) {
             setIntroStep(prevStep => {
                 const nextStep = prevStep + 1;
                 
-                if (nextStep <= introSentences.length) {
-                    setDisplayedSentences(introSentences.slice(0, nextStep));
+                if (nextStep <= introKeys.length) {
                     return nextStep;
                 } 
                 
-                if (nextStep === introSentences.length + 1) {
+                if (nextStep === introKeys.length + 1) {
                     // Start fading out the intro sentences
                     setIntroFadingOut(true);
                     setShowIndicator(false);
@@ -56,7 +61,7 @@ export default function Introduction({onComplete}: IntroductionProps) {
                     return nextStep;
                 } 
                 
-                if (nextStep === introSentences.length + 2) {
+                if (nextStep === introKeys.length + 2) {
                     // Only allow final press if the indicator is shown (meaning delay finished)
                     if (!delayedIndicator) return prevStep;
                     
@@ -70,16 +75,18 @@ export default function Introduction({onComplete}: IntroductionProps) {
 
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [isFadingOut, introSentences, delayedIndicator, onComplete]);
+    }, [isFadingOut, introKeys.length, delayedIndicator, onComplete]);
 
     return (
         <div className={`mt-[6vh] journal-stream transition-opacity duration-1000`}>
             
+            <LanguageSwitcher />
+            
             {!showTitle && (
                 <div className={`transition-opacity duration-1000 ${introFadingOut ? "opacity-0" : "opacity-100"}`}>
-                    {displayedSentences.map((sentence, index) => (
+                    {introKeys.slice(0, introStep).map((key, index) => (
                         <div key={index} className="prata-regular tracking-wide text-center text-[3.5vh] px-[10vh] leading-[1.4] short-fade m-auto mb-4">
-                            {sentence}
+                            {t(key)}
                         </div>
                     ))}
                 </div>
@@ -97,7 +104,7 @@ export default function Introduction({onComplete}: IntroductionProps) {
 
             {showIndicator && (
                 <div className={`ink-body text-[2.3vh] italic px-[0.5vh] text-center pointer-events-none ${delayedIndicator ? "fade" : "fade2"}`}>
-                    Press space to continue...
+                    {t("pressSpaceToContinue")}
                 </div>
             )}
         </div>
