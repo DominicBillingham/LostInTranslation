@@ -22,7 +22,7 @@ function LostInTranslation() {
     const [timeline, setTimeline] = useState<TimelineItem[]>([]);
 
     async function fetchSceneFromJson(sceneName: string): Promise<Scene | null> {
-        const response = await fetch("adventure.json");
+        const response = await fetch("adventure-eng.json");
         const json: Scene[] = await response.json();
         return json.find(s => s.nodeName === sceneName) ?? null;
     }

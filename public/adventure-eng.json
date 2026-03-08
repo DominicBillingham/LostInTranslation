@@ -1,10 +1,7 @@
 [
-    
     {
-        
         "nodeName": "Intro",
         "storyDecision": "Does Cinderella choose to stay or leave?",
-        
         "sentences": [
             "Once upon a time, there was a beautiful girl who lived with her father and her stepmother and stepsisters.",
             "One day, her father sadly passed away, leaving her heartbroken at the mercy of the woman her father had remarried.",
@@ -20,9 +17,9 @@
             "ridiculed" : "Made fun of"
         },
         "nextNodeOptions": [
-            "Run away",
-            "Continue to do her work",
-            "Try to complain"
+            { "nodeName": "Run away", "displayText": "Run away" },
+            { "nodeName": "Continue to do her work", "displayText": "Continue to do her work" },
+            { "nodeName": "Try to complain", "displayText": "Try to complain" }
         ],
         "image": "start.jpg"
     },    
@@ -92,9 +89,9 @@
             "fairy ": "A magical creature"
         },
         "nextNodeOptions": [
-            "Decline her help",
-            "Jump enthusiastically at the offer",
-            "Hesitantly agree"
+            { "nodeName": "Decline her help", "displayText": "Decline her help" },
+            { "nodeName": "Jump enthusiastically at the offer", "displayText": "Jump enthusiastically at the offer" },
+            { "nodeName": "Hesitantly agree", "displayText": "Hesitantly agree" }
         ],
         "image": "mountain.jpg"
     },
@@ -176,9 +173,9 @@
             "the clock struck midnight": "It was 00:00"
         },
         "nextNodeOptions": [
-            "Panic and run away",
-            "Tell him she will see him again",
-            "Stay"
+            { "nodeName": "Panic and run away", "displayText": "Panic and run away" },
+            { "nodeName": "Tell him she will see him again", "displayText": "Tell him she will see him again" },
+            { "nodeName": "Stay", "displayText": "Stay" }
         ],
         "image": "market.jpg"
     },
