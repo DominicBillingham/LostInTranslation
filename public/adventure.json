@@ -1,0 +1,234 @@
+﻿[
+    {
+        "nodeName": "Intro",
+        "storyDecision": "Does Cinderella choose to stay or leave?",
+        "sentences": [
+            "onceUponTime",
+            "fatherPassedAway",
+            "personalMaid"
+        ],
+        "hints": {
+            "stepmother ": "stepmotherHint",
+            "stepsisters": "stepsistersHint",
+            "passedAway": "passedAwayHint",
+            "heartbroken": "heartbrokenHint",
+            "at the mercy of": "mercyOfHint",
+            "maid" : "maidHint",
+            "ridiculed" : "ridiculedHint"
+        },
+        "nextNodeOptions": [
+            { "nodeName": "Run away", "displayText": "runAway" },
+            { "nodeName": "Continue to do her work", "displayText": "continueWork" },
+            { "nodeName": "Try to complain", "displayText": "tryComplain" }
+        ],
+        "image": "start.jpg"
+    },    
+    
+    {
+        "nodeName": "Run away",
+        "sentences": [
+            "cinderellaEscapes",
+            "stumblesMonastery",
+            "endingRanAway"
+        ],
+        "hints": {
+            "stumblesAcross ": "stumblesAcrossHint",
+            "monastery": "monasteryHint",
+            "nuns": "nunsHint"
+        },
+        "image": "forest.jpg"
+    },
+    
+    {
+        "nodeName": "Continue to do her work",
+        "sentences": [
+            "fallDeafEars",
+            "workedDiligently",
+            "hopedBetter",
+            "chapterEnd"
+        ],
+        "hints": {
+            "fall on deaf ears": "deafEarsHint",
+            "diligently": "diligentlyHint"
+        },
+        "quizName": "cinderellaQuiz1",
+        "image": "kitchen.jpg"
+    },    
+        
+    {
+        "nodeName": "Try to complain",
+        "sentences": [
+            "fallDeafEars",
+            "workedDiligently",
+            "hopedBetter"
+        ],
+        "hints": {
+            "fall on deaf ears": "deafEarsHint",
+            "diligently": "diligentlyHint"
+        },
+        "quizName": "cinderellaQuiz1",
+        "image": "kitchen.jpg"
+    },
+
+    {
+        "nodeName": "Ball",
+        "storyDecision": "Does Cinderella accept her Godmother's help?",
+        "sentences": [
+            "ballLeftBehind",
+            "disappointedWantedGo",
+            "fairyAppeared"
+        ],
+        "hints": {
+            "left her behind": "leftBehindHint",
+            "ball": "ballHint",
+            "disappointed": "disappointedHint",
+            "fairy ": "fairyHint"
+        },
+        "nextNodeOptions": [
+            { "nodeName": "Decline her help", "displayText": "declineHelp" },
+            { "nodeName": "Jump enthusiastically at the offer", "displayText": "jumpEnthusiastically" },
+            { "nodeName": "Hesitantly agree", "displayText": "hesitantlyAgree" }
+        ],
+        "image": "mountain.jpg"
+    },
+
+    {
+        "nodeName": "Decline her help",
+        "sentences": [
+            "fairyRespects",
+            "spendsLife",
+            "diesAlone",
+            "endingDiedAlone"
+        ],
+        "hints": {
+            "scrub ": "scrubHint",
+            "offspring": "offspringHint"
+        },
+        "image": "start.jpg"
+    },
+
+    {
+        "nodeName": "Jump enthusiastically at the offer",
+        "sentences": [
+            "promiseLove",
+            "abracadabra",
+            "beamedThanked",
+            "pleasureDarling",
+            "leftCarriage",
+            "chapterEnd"
+        ],
+        "hints": {
+            "contagious ": "contagiousHint",
+            "flick": "flickHint",
+            "raggedy": "raggedyHint",
+            "gown": "gownHint",
+            "beamed ": "beamedHint",
+            "fade ": "fadeHint",
+            "carriage": "carriageHint"
+        },
+        "image": "pumpkin.jpg",
+        "quizName": "cinderellaQuiz4"
+    },
+
+    {
+        "nodeName": "Hesitantly agree",
+        "sentences": [
+            "promiseLove",
+            "abracadabra",
+            "beamedThanked",
+            "pleasureDarling",
+            "leftCarriage"
+        ],
+        "hints": {
+            "contagious ": "contagiousHint",
+            "flick": "flickHint",
+            "raggedy": "raggedyHint",
+            "gown": "gownHint",
+            "beamed ": "beamedHint",
+            "fade ": "fadeHint",
+            "carriage": "carriageHint"
+        },
+        "image": "start.jpg",
+        "quizName": "cinderellaQuiz4"
+    },
+    
+    {
+        "nodeName": "Prince",
+        "storyDecision": "Does Cinderella run away or stay at the ball?",
+        "sentences": [
+            "arrivedBall",
+            "princeAwestruck",
+            "stolenHeart"
+        ],
+        "hints": {
+            "dolled up": "dolledUpHint",
+            "awestruck": "awestruckHint",
+            "stolen his heart": "stolenHeartHint",
+            "the clock struck midnight": "clockMidnightHint"
+        },
+        "nextNodeOptions": [
+            { "nodeName": "Panic and run away", "displayText": "panicRun" },
+            { "nodeName": "Tell him she will see him again", "displayText": "tellSeeAgain" },
+            { "nodeName": "Stay", "displayText": "stay" }
+        ],
+        "image": "market.jpg"
+    },
+
+    {
+        "nodeName": "Stay",
+        "sentences": [
+            "dressConverts",
+            "prohibitedCastle",
+            "neverSeesAgain",
+            "endingLockedAway"
+        ],
+        "hints": {
+            "prohibited": "prohibitedHint",
+            "converts": "convertsHint",
+            "dungeon": "dungeonHint"
+        },
+        "image": "start.jpg"
+    },
+
+    {
+        "nodeName": "Panic and run away",
+        "sentences": [
+            "forgottenShoe",
+            "searchingOwner",
+            "foundMarried",
+            "endingHappilyEver"
+        ],
+        "hints": {
+            "rush": "rushHint",
+            "kingdom": "kingdomHint",
+            "happily ever after": "happilyEverHint"
+        },
+        "image": "start.jpg",
+        "quizName": "cinderellaQuiz7"
+    },
+
+    {
+        "nodeName": "Tell him she will see him again",
+        "sentences": [
+            "forgottenShoe",
+            "searchingOwner",
+            "foundMarried"
+        ],
+        "hints": {
+            "rush": "rushHint",
+            "kingdom": "kingdomHint",
+            "happily ever after": "happilyEverHint"
+        },
+        "image": "start.jpg",
+        "quizName": "cinderellaQuiz7"
+    },
+
+    {
+        "nodeName": "End",
+        "sentences": [
+            "endingHappilyEver"
+        ],
+        "hints": {},
+        "image": "start.jpg"
+    }
+]

@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState, type ReactNode} from "react";
+import {useTranslation} from "react-i18next";
 import LocalStorage, {type StorageAPI, StorageManager} from "@/Managers/LocalStorage.ts";
 import type {Scene} from "@/Interfaces.ts";
 import Sound from "@/Managers/SoundManager.ts";
@@ -11,6 +12,7 @@ interface InteractiveStoryProps {
 }
 
 export default function InteractiveStory({scene, active, navigateToNode, onContentUpdate}: InteractiveStoryProps) {
+    const {t} = useTranslation();
     const [displayIndicator, setDisplayIndicator] = useState(true);
     const [entries, setEntries] = useState<ReactNode[]>([]);
     const [displayOptions, setDisplayOptions] = useState(false);
@@ -23,29 +25,32 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
     }
 
     function renderSentence(text: string): ReactNode {
+        const translatedText = t(text);
         if (!scene.hints) {
-            return <span>{text}</span>;
+            return <span>{translatedText}</span>;
         }
 
         const hints = scene.hints;
         const keys = Object.keys(hints);
         if (keys.length === 0) {
-            return <span>{text}</span>;
+            return <span>{translatedText}</span>;
         }
 
         const regex = new RegExp(`\\b(${keys.map(escapeRegex).join("|")})\\b`, "gi");
-        const parts = text.split(regex);
+        const parts = translatedText.split(regex);
 
         return (
             <>
                 {parts.map((part, i) => {
-                    const key = part.toLowerCase();
-                    if (hints[key]) {
+                    const lowPart = part.toLowerCase().trim();
+                    // We need to find the key in hints that matches (case-insensitive and trimming spaces)
+                    const hintKey = keys.find(k => k.toLowerCase().trim() === lowPart);
+                    if (hintKey && hints[hintKey]) {
                         return (
                             <span
                                 key={i}
                                 className="custom-tooltip"
-                                data-tooltip={hints[key]}
+                                data-tooltip={t(hints[hintKey])}
                             >
                                 {part}
                             </span>
@@ -112,6 +117,14 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
         window.addEventListener("keydown", onSpacePress);
         return () => window.removeEventListener("keydown", onSpacePress);
     }, []);
+
+    // Re-render entries when language changes to update translations and hints
+    useEffect(() => {
+        if (indexRef.current >= 0) {
+            const currentSentences = scene.sentences.slice(0, indexRef.current + 1);
+            setEntries(currentSentences.map(s => renderSentence(s)));
+        }
+    }, [t]);
     
     return (
         <div className="journal-stream">
@@ -123,7 +136,7 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
 
             {displayIndicator && active && (
                 <div className="ink-body text-[2.1vh] italic px-[0.5vh] text-center fade">
-                    Press space to continue...
+                    {t("pressSpaceToContinue")}
                 </div>
             )}
 
@@ -136,7 +149,7 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
                             className="choice-btn w-full sm:w-2/3 rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-center hover:cursor-pointer short-fade"
                             onClick={() => makeChoice(opt.nodeName)}
                         >
-                            {opt.displayText}
+                            {t(opt.displayText)}
                         </button>
                     ))}
                 </div>

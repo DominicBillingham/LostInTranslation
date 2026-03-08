@@ -79,9 +79,10 @@ export default function Introduction({onComplete}: IntroductionProps) {
 
     return (
         <div className={`mt-[6vh] journal-stream transition-opacity duration-1000`}>
-            
+
             <LanguageSwitcher />
-            
+
+
             {!showTitle && (
                 <div className={`transition-opacity duration-1000 ${introFadingOut ? "opacity-0" : "opacity-100"}`}>
                     {introKeys.slice(0, introStep).map((key, index) => (
