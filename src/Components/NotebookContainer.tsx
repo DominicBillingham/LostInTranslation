@@ -15,22 +15,8 @@ export default function NotebookContainer() {
         setShowTitle(true);
         setTimeout(() => {
             setDelayedIndicator(true);
-        }, 1000);
+        }, 2000);
     };
-
-    const handleTitleSpacePress = (event: KeyboardEvent) => {
-        if (event.key === " " && introCompleted && !optionsCompleted && delayedIndicator) {
-            // Note: StoryOptions itself handles the "Start Writing" button, 
-            // so we don't strictly need space here to "complete" options, 
-            // but we might want it to reveal the options menu if it's hidden.
-            // Actually, StoryOptions is already rendered when delayedIndicator is true.
-        }
-    };
-
-    useEffect(() => {
-        window.addEventListener("keydown", handleTitleSpacePress);
-        return () => window.removeEventListener("keydown", handleTitleSpacePress);
-    }, [introCompleted, optionsCompleted, delayedIndicator]);
 
     return (
         <div className="font-medium custom-font text-[2.5vh] min-h-screen">
