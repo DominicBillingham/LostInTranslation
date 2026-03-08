@@ -40,12 +40,11 @@ function AdventureTimeline() {
     };
 
     function scrollToBottom() {
-        // Wait for 500 ms before executing scrollIntoView
         setTimeout(() => {
             requestAnimationFrame(() => {
                 endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
             });
-        }, 70);
+        }, 120);
     }
 
 
