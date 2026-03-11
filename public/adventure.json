@@ -14,7 +14,13 @@
             "heartbroken": "heartbrokenHint",
             "at the mercy of": "mercyOfHint",
             "maid" : "maidHint",
-            "ridiculed" : "ridiculedHint"
+            "ridiculed" : "ridiculedHint",
+            
+            "preciosa" : "molt bonica",
+            "madrastra":"dona casada amb el seu pare",
+            "germanastres" : "filles de la dona casada amb el seu pare",
+            "desconsolada a la mercè de": "molt trista",
+            "minyona": "persona que fa les tasques de la casa"
         },
         "nextNodeOptions": [
             { "nodeName": "Run away", "displayText": "runAway" },
@@ -49,7 +55,11 @@
         ],
         "hints": {
             "fall on deaf ears": "deafEarsHint",
-            "diligently": "diligentlyHint"
+            "diligently": "diligentlyHint",
+            
+            "ignorada" : "no la escoltarien",
+            "diligentment": "sense parar",
+            "milloressin": "anessin millor"
         },
         "quizName": "cinderellaQuiz1",
         "image": "kitchen.jpg"
@@ -64,7 +74,11 @@
         ],
         "hints": {
             "fall on deaf ears": "deafEarsHint",
-            "diligently": "diligentlyHint"
+            "diligently": "diligentlyHint",
+            
+            "ignorada" : "no la escoltarien",
+            "diligentment": "sense parar",
+            "milloressin": "anessin millor"
         },
         "quizName": "cinderellaQuiz1",
         "image": "kitchen.jpg"
