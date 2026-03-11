@@ -62,7 +62,7 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
                         type="text"
                         value={logKey}
                         onChange={(e) => setLogKey(e.target.value)}
-                        placeholder="Enter a log key so we can gather data on story decisions!"
+                        // placeholder="Enter a log key so we can gather data on story decisions!"
                         className="rounded-lg border-amber-800/30 border-2 bg-amber-50/40 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-amber-700/40"
                     />
                 </label>
