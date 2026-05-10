@@ -101,14 +101,14 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
                     )}
 
                     {!hasContinued && (
-                        <div className="mt-[0.5vh] flex justify-end">
+                        <div className="mt-[0.5vh] flex m-auto">
                             <button
                                 type="button"
                                 disabled={!active}
                                 className="choice-btn rounded-[1vh] px-[3vh] py-[1vh] shadow-md hover:shadow-lg hover:cursor-pointer short-fade disabled:opacity-30 disabled:cursor-not-allowed"
                                 onClick={continueQuiz}
                             >
-                                {t("continue")}
+                                {t("pressSpaceToContinue")}
                             </button>
                         </div>
                     )}

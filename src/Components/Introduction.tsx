@@ -29,30 +29,36 @@ export default function Introduction({onComplete}: IntroductionProps) {
         }
     }, [introStep]);
 
+    const advanceStep = () => {
+        if (isFadingOut) return;
+
+        setIntroStep(prevStep => {
+            const nextStep = prevStep + 1;
+
+            if (nextStep <= introKeys.length) {
+                return nextStep;
+            }
+
+            if (nextStep === introKeys.length + 1) {
+                // Start fading out the intro sentences
+                setIntroFadingOut(true);
+                setShowIndicator(false);
+                setTimeout(() => {
+                    onComplete();
+                }, 1000); // Wait for intro to fade out
+                return nextStep;
+            }
+
+            return prevStep;
+        });
+    };
+
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key !== " " || isFadingOut) return;
             event.preventDefault();
 
-            setIntroStep(prevStep => {
-                const nextStep = prevStep + 1;
-                
-                if (nextStep <= introKeys.length) {
-                    return nextStep;
-                } 
-                
-                if (nextStep === introKeys.length + 1) {
-                    // Start fading out the intro sentences
-                    setIntroFadingOut(true);
-                    setShowIndicator(false);
-                    setTimeout(() => {
-                        onComplete();
-                    }, 1000); // Wait for intro to fade out
-                    return nextStep;
-                } 
-                
-                return prevStep;
-            });
+            advanceStep();
         };
 
         window.addEventListener("keydown", handleKeyDown);
@@ -70,9 +76,13 @@ export default function Introduction({onComplete}: IntroductionProps) {
             </div>
 
             {showIndicator && !introFadingOut && (
-                <div className={`ink-body text-[2.3vh] italic px-[0.5vh] text-center pointer-events-none fade`}>
+                <button
+                    type="button"
+                    className="choice-btn rounded-[1vh] px-[3vh] py-[1vh] shadow-md hover:shadow-lg hover:cursor-pointer short-fade mx-auto block"
+                    onClick={advanceStep}
+                >
                     {t("pressSpaceToContinue")}
-                </div>
+                </button>
             )}
         </div>
     );

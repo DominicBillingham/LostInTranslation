@@ -62,11 +62,7 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
         );
     }
 
-    const onSpacePress = async (event: KeyboardEvent) => {
-        if (event.key !== " ") return;
-
-        event.preventDefault();
-
+    const advanceStory = () => {
         if (!active || displayOptions) return;
 
         const sentences = scene.sentences;
@@ -91,6 +87,13 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
                 }
             }
         }
+    };
+
+    const onSpacePress = async (event: KeyboardEvent) => {
+        if (event.key !== " ") return;
+
+        event.preventDefault();
+        advanceStory();
     };
     
     async function makeChoice(choice: string) {
@@ -135,9 +138,13 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
             ))}
 
             {displayIndicator && active && (
-                <div className="ink-body text-[2.1vh] italic px-[0.5vh] text-center fade">
+                <button
+                    type="button"
+                    className="choice-btn rounded-[1vh] px-[3vh] py-[1vh] shadow-md hover:shadow-lg hover:cursor-pointer short-fade mx-auto block"
+                    onClick={advanceStory}
+                >
                     {t("pressSpaceToContinue")}
-                </div>
+                </button>
             )}
 
             {displayOptions && active && (
