@@ -20,6 +20,7 @@ function AdventureTimeline() {
     const nextIdRef = useRef(1);
     const endRef = useRef<HTMLDivElement | null>(null);
     const [timeline, setTimeline] = useState<TimelineItem[]>([]);
+    const [resetCounter, setResetCounter] = useState(0);
 
     async function fetchSceneFromJson(sceneName: string): Promise<Scene | null> {
         const response = await fetch("adventure.json");
@@ -35,7 +36,7 @@ function AdventureTimeline() {
 
     const resetKeyEvent = (event: KeyboardEvent) => {
         if (event.key === "r" || event.key === "R") {
-            window.location.reload();
+            void resetGame(true);
         }
     };
 
@@ -66,8 +67,11 @@ function AdventureTimeline() {
         }, 480);
     }
     
-    async function resetGame() {
-        LocalStorage.incrementPlaythroughAttempts();
+    async function resetGame(incrementCounter: boolean = false) {
+        if (incrementCounter) {
+            LocalStorage.incrementPlaythroughAttempts();
+        }
+        setResetCounter(prev => prev + 1);
         const introScene = await fetchSceneFromJson("Intro");
         
         nextIdRef.current = 1;
@@ -128,7 +132,7 @@ function AdventureTimeline() {
                 
                 if (entry.type === "image") {
                     return (
-                        <div key={entry.id} className="photo-frame rounded-[18px] h-[24vh] w-[92%] mx-auto shrink-0 short-fade">
+                        <div key={`${resetCounter}-${entry.id}`} className="photo-frame rounded-[18px] h-[24vh] w-[92%] mx-auto shrink-0 short-fade">
                             <img
                                 src={entry.src}
                                 alt="Story"
@@ -141,7 +145,7 @@ function AdventureTimeline() {
                 if (entry.type === "scene") {
                     return (
                         <InteractiveStory
-                            key={entry.id}
+                            key={`${resetCounter}-${entry.id}`}
                             scene={entry.scene}
                             active={entry.active}
                             navigateToNode={navigateToNode}
@@ -152,7 +156,7 @@ function AdventureTimeline() {
 
                 return (
                     <InteractiveQuiz
-                        key={entry.id}
+                        key={`${resetCounter}-${entry.id}`}
                         quiz={entry.quiz}
                         active={entry.active}
                         navigateToNode={navigateToNode}

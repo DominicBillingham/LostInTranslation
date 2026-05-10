@@ -15,6 +15,7 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
     const [isLeaving, setIsLeaving] = useState<boolean>(false);
 
     async function onContinue() {
+        LocalStorage.incrementPlaythroughAttempts();
         LocalStorage.setUsername(username.trim());
         LocalStorage.setMusicVolume(musicVolume);
         LocalStorage.setSoundVolume(soundVolume);

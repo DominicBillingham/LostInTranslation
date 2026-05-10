@@ -3,7 +3,6 @@ import Introduction from "@/Components/Introduction.tsx";
 import StoryOptions from "@/Components/StoryOptions.tsx";
 import AdventureTimeline from "@/Components/AdventureTimeline.tsx";
 import LanguageSwitcher from "@/Components/LanguageButton.tsx";
-import ResetButton from "@/Components/ResetButton.tsx";
 import {HintManager} from "@/Managers/HintManager.ts";
 
 export default function NotebookContainer() {
@@ -27,7 +26,6 @@ export default function NotebookContainer() {
     return (
         <div className="font-medium custom-font text-[2.5vh] min-h-screen relative">
             <LanguageSwitcher />
-            <ResetButton />
             <div className="story-column max-w-[min(94vw,92vh)] m-auto py-[2.5vh] relative z-20">
                 <div className="notebook-page pt-[2vh] min-h-[95vh] flex flex-col relative">
                     <div className="mt-[1.5vh] px-[1.5vh] pb-[1.5vh] flex flex-col flex-grow">

@@ -83,7 +83,7 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
 
         window.addEventListener("keydown", onSpacePress);
         return () => window.removeEventListener("keydown", onSpacePress);
-    }, []);
+    }, [scene]);
 
     // Re-render entries when language changes to update translations and hints
     useEffect(() => {
