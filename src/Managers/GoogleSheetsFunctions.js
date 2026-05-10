@@ -37,7 +37,8 @@ function logStory(data) {
         data.StoryChoice,
         data.StoryDecisionCount,
         data.TimeSpentChoosing,
-        data.PlaythroughCount
+        data.PlaythroughCount,
+        data.PaperFirst
     ]);
 }
 
@@ -54,6 +55,7 @@ function logQuiz(data) {
         data.WasCorrect,
         data.QuizAnswerCount,
         data.TimeSpentChoosing,
-        data.PlaythroughCount
+        data.PlaythroughCount,
+        data.PaperFirst
     ]);
 }
