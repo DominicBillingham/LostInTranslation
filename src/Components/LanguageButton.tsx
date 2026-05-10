@@ -51,7 +51,7 @@ export default function LanguageSwitcher() {
                     clipPath: "polygon(0% 0%, 100% 0%, 85% 50%, 100% 100%, 0% 100%)",
                 }}
             >
-                French (B1)
+                [TextMissing] (B1)
             </button>
 
             <button
@@ -65,7 +65,7 @@ export default function LanguageSwitcher() {
                     clipPath: "polygon(0% 0%, 100% 0%, 85% 50%, 100% 100%, 0% 100%)",
                 }}
             >
-                French (A2)
+                [TextMissing] (A2)
             </button>
             
         </div>

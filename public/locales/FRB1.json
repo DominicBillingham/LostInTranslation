@@ -9,9 +9,9 @@
     "miniQuiz": "Quiz!",
     "correct": "Exact: ",
     "incorrect": "Faux: ",
-    
-    
-    
+    "resetGame": "Réinitialiser",
+
+
     "onceUponTime": "Il était une fois une fille très jolie qui vivait avec son père, sa belle-mère, et ses demi-sœurs. Elle s’appelait Cendrillon.",
     "fatherPassedAway": "Un jour, son père est décédé, la laissant le cœur brisé entre les mains de sa belle-mère.",
     "personalMaid": "Elle est devenue leur employée de maison. Elle devait cuisiner, nettoyer et s'occuper de la maison, tandis que ses demi-sœurs  se moquaient d’elle.",
@@ -22,7 +22,7 @@
 
     "cinderellaEscapes": "Cendrillon a décidé de s'échapper et de fuir le monde.",
     "stumblesMonastery": "Elle a découvert par hasard un monastère et a décidé de rejoindre les nonnes, menant ainsi une vie paisible pour le restant de ses jours.",
-    "endingRanAway": "Ending: Ran away. Press (R) to restart the game!",
+    "endingRanAway": "[TextMissing]",
 
     "fallDeafEars": "Malheureusement, elle savait que ses protestations seraient ignorées.",
     "workedDiligently": "Elle travaillait assidûment, malgré la tristesse qu’elle ressentait . ",
@@ -69,7 +69,8 @@
     "searchingOwner": "Le prince a cherché la propriétaire de la chaussure dans tout le royaume, car il voulait trouver la femme qu'il aimait.",
     "foundMarried": "Quand il l'a enfin trouvée, il l’a épousée. Ils ont vécu heureux et ils ont eu beaucoup d’enfants.",
     "endingHappilyEver": "[TextMissing]",
-
+    
+    
     
     
     "quizFallDeafEars": "What does the expression 'fall on deaf ears' mean?",
