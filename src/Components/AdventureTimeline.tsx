@@ -40,14 +40,32 @@ function AdventureTimeline() {
     };
 
     function scrollToBottom() {
+        
         setTimeout(() => {
             requestAnimationFrame(() => {
                 endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
             });
         }, 120);
+
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+            });
+        }, 240);
+        
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+            });
+        }, 360);
+
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+            });
+        }, 480);
     }
-
-
+    
     async function resetGame() {
         LocalStorage.incrementPlaythroughAttempts();
         const introScene = await fetchSceneFromJson("Intro");
