@@ -86,7 +86,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
                             className="choice-btn w-full sm:w-2/3 rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-center hover:cursor-pointer short-fade disabled:opacity-30 disabled:cursor-not-allowed"
                             onClick={() => chooseAnswer(ans)}
                         >
-                            {t(ans.answerText)}
+                            {renderSentenceWithHints(t(ans.answerText))}
                         </button>
                     ))
                 )}

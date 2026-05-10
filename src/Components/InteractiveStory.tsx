@@ -121,7 +121,7 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
                             className="choice-btn w-full sm:w-2/3 rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-center hover:cursor-pointer short-fade"
                             onClick={() => makeChoice(opt.nodeName)}
                         >
-                            {t(opt.displayText)}
+                            {renderSentenceWithHints(t(opt.displayText))}
                         </button>
                     ))}
                 </div>
