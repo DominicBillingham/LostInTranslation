@@ -4,7 +4,7 @@
     "uncoverSecrets": "Descobriràs els secrets que amaga?",
     "willGet": "O potser et quedaràs...",
 
-    "pressSpaceToContinue": "[TextMissing]",
+    "pressSpaceToContinue": "Fes clic per continuar",
     "lostInTranslation": "Lost in Translation",
     "miniQuiz": "Quiz!",
     "correct": "Exact: ",
@@ -22,7 +22,7 @@
 
     "cinderellaEscapes": "Cendrillon a décidé de s'échapper et de fuir le monde.",
     "stumblesMonastery": "Elle a découvert par hasard un monastère et a décidé de rejoindre les nonnes, menant ainsi une vie paisible pour le restant de ses jours.",
-    "endingRanAway": "[TextMissing]",
+    "endingRanAway": "Pulsa R per començar de nou",
 
     "fallDeafEars": "Malheureusement, elle savait que ses protestations seraient ignorées.",
     "workedDiligently": "Elle travaillait assidûment, malgré la tristesse qu’elle ressentait . ",
@@ -40,7 +40,7 @@
 
     "fairyRespects": "La fée a accepté sa décision et est partie. Cendrillon a continué à travailler dur.",
     "spendsLife": "Elle a passé sa vie à prendre soin de ses demi-sœurs et de leurs enfants. Elle s’est sentie seule toute sa vie.",
-    "endingDiedAlone": "[TextMissing]",
+    "endingDiedAlone": "Pulsa R per començar de nou",
 
     "promiseLove": "Tu vas aimer ta nouvelle tenue, c’est promis!”.",
     "abracadabra": "L’enthousiasme de la fée était contagieux, et Cendrillon a fini par accepter son offre.",
@@ -61,12 +61,12 @@
     "dressConverts": "La robe de Cendrillon est redevenue de vieux haillons.",
     "prohibitedCastle": "Comme la magie est interdite au château, le prince l'a envoyé en prison.",
     "neverSeesAgain": " Il ne l’a jamais revue.",
-    "endingLockedAway": "[TextMissing]",
+    "endingLockedAway": "Pulsa R per començar de nou",
 
     "forgottenShoe": "Elle a couru vers son carrosse et elle est rentrée chez elle juste à temps. Cependant, dans la précipitation, elle a perdu sa chaussure.",
     "searchingOwner": "Le prince a cherché la propriétaire de la chaussure dans tout le royaume, car il voulait trouver la femme qu'il aimait.",
     "foundMarried": "Quand il l'a enfin trouvée, il l’a épousée. Ils ont vécu heureux et ils ont eu beaucoup d’enfants.",
-    "endingHappilyEver": "[TextMissing]",
+    "endingHappilyEver": "Pulsa R per començar de nou",
     
     
     
