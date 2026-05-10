@@ -45,7 +45,7 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
         <div className={`journal-stream transition-all duration-1000 ${isLeaving ? "opacity-0" : "opacity-100"}`}>
             <div className="notebook-panel rounded-[12px] p-[2vh] flex flex-col gap-[1.5vh] fade">
                 <label className="flex flex-col gap-[0.6vh]">
-                    <span className="ink-body">Username</span>
+                    <span className="ink-body">Usuari</span>
                     <input
                         type="text"
                         value={username}
@@ -57,7 +57,7 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
                 </label>
 
                 <label className="flex flex-col gap-[0.6vh]">
-                    <span className="ink-body">Log Key <span className="text-amber-800/50">(optional)</span></span>
+                    <span className="ink-body">Contrasenya<span className="text-amber-800/50"></span></span>
                     <input
                         type="text"
                         value={logKey}
@@ -69,7 +69,7 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
 
                 <label className="flex flex-col gap-[0.8vh] bg-amber-100/45 p-[1.5vh] rounded-[1.5vh] border border-amber-800/20">
                     <div className="flex items-center justify-between px-1">
-                        <span className="ink-body font-semibold">Music Volume</span>
+                        <span className="ink-body font-semibold">Música </span>
                         <span className="text-amber-900 font-bold bg-amber-50 px-[1.5vh] py-[0.2vh] rounded-full text-[2.1vh]">{musicVolume}%</span>
                     </div>
                     <input
@@ -92,7 +92,7 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
 
                 <label className="flex flex-col gap-[0.8vh] bg-amber-100/45 p-[1.5vh] rounded-[1.5vh] border border-amber-800/20">
                     <div className="flex items-center justify-between px-1">
-                        <span className="ink-body font-semibold">SFX Volume</span>
+                        <span className="ink-body font-semibold">Efectes de so</span>
                         <span className="text-amber-900 font-bold bg-amber-50 px-[1.5vh] py-[0.2vh] rounded-full text-[2.1vh]">{soundVolume}%</span>
                     </div>
                     <input
@@ -119,9 +119,10 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
                     type="button"
                     onClick={onContinue}
                     disabled={username.trim() === "" || isLeaving}
-                    className="me-[2vh] pencil-btn rounded-full px-[6vh] py-[1.2vh] shadow-lg active:border-b-0 active:translate-y-[0.6vh] font-bold text-[2.4vh] hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="me-[2vh] pencil-btn rounded-full px-[6vh] py-[1.2vh] shadow-lg active:border-b-0 
+                    :translate-y-[0.6vh] font-bold text-[2.4vh] hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                    Start Writing
+                    Comença a escriure
                 </button>
             </div>
         </div>
