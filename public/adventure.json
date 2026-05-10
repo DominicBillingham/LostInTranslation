@@ -30,8 +30,7 @@
         "sentences": [
             "fallDeafEars",
             "workedDiligently",
-            "hopedBetter",
-            "chapterEnd"
+            "hopedBetter"
         ],
         "quizName": "cinderellaQuiz1",
         "image": "kitchen.jpg"
@@ -69,7 +68,6 @@
         "sentences": [
             "fairyRespects",
             "spendsLife",
-            "diesAlone",
             "endingDiedAlone"
         ],
         "image": "start.jpg"
@@ -82,8 +80,7 @@
             "abracadabra",
             "beamedThanked",
             "pleasureDarling",
-            "leftCarriage",
-            "chapterEnd"
+            "leftCarriage"
         ],
         "image": "pumpkin.jpg",
         "quizName": "cinderellaQuiz4"
@@ -146,7 +143,8 @@
         "sentences": [
             "forgottenShoe",
             "searchingOwner",
-            "foundMarried"
+            "foundMarried",
+            "endingHappilyEver"
         ],
         "image": "start.jpg",
         "quizName": "cinderellaQuiz7"

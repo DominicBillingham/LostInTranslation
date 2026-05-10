@@ -27,7 +27,6 @@
     "fallDeafEars": "Malheureusement, elle savait que ses protestations seraient ignorées.",
     "workedDiligently": "Elle travaillait assidûment, malgré la tristesse qu’elle ressentait . ",
     "hopedBetter": "Elle gardait l’espoir qu’un jour les choses s'amélioreraient.",
-    "chapterEnd": "[TextMissing]",
 
 
 
@@ -41,7 +40,6 @@
 
     "fairyRespects": "La fée a accepté sa décision et est partie. Cendrillon a continué à travailler dur.",
     "spendsLife": "Elle a passé sa vie à prendre soin de ses demi-sœurs et de leurs enfants. Elle s’est sentie seule toute sa vie.",
-    "diesAlone": "She dies alone, her family too busy to visit her.",
     "endingDiedAlone": "[TextMissing]",
 
     "promiseLove": "Tu vas aimer ta nouvelle tenue, c’est promis!”.",
@@ -61,8 +59,8 @@
     "stay": "Rester au palais.",
 
     "dressConverts": "La robe de Cendrillon est redevenue de vieux haillons.",
-    "prohibitedCastle": "Comme la magie est interdite au château, le prince l'a envoyé en prison. Il ne l’a jamais revue.",
-    "neverSeesAgain": "[TextMissing]",
+    "prohibitedCastle": "Comme la magie est interdite au château, le prince l'a envoyé en prison.",
+    "neverSeesAgain": " Il ne l’a jamais revue.",
     "endingLockedAway": "[TextMissing]",
 
     "forgottenShoe": "Elle a couru vers son carrosse et elle est rentrée chez elle juste à temps. Cependant, dans la précipitation, elle a perdu sa chaussure.",
