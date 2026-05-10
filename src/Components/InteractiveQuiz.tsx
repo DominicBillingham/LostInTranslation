@@ -3,6 +3,9 @@ import {useTranslation} from "react-i18next";
 import LocalStorage, {type StorageAPI} from "@/Managers/LocalStorage.ts";
 import type {Quiz, QuizOption} from "@/Interfaces.ts";
 
+import {HintManager} from "@/Managers/HintManager.ts";
+import {renderSentenceWithHints} from "@/Components/SentenceRenderer.tsx";
+
 interface InteractiveQuizProps {
     quiz: Quiz;
     active: boolean;
@@ -71,7 +74,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
             </h2>
             <div className="border-b border-2 border-amber-800/20 w-1/2 mx-auto my-[0.2vh]"></div>
 
-            <div className="chat-bubble short-fade">{t(quizText)}</div>
+            <div className="chat-bubble short-fade">{renderSentenceWithHints(t(quizText))}</div>
             
             <div className="w-full flex flex-col items-center gap-[1vh] mt-[0.5vh]">
                 {Array.isArray(quiz?.quizAnswers) && (

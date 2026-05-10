@@ -3,6 +3,8 @@ import {useTranslation} from "react-i18next";
 import LocalStorage, {type StorageAPI, StorageManager} from "@/Managers/LocalStorage.ts";
 import type {Scene} from "@/Interfaces.ts";
 import Sound from "@/Managers/SoundManager.ts";
+import {HintManager} from "@/Managers/HintManager.ts";
+import {renderSentenceWithHints} from "@/Components/SentenceRenderer.tsx";
 
 interface InteractiveStoryProps {
     scene: Scene;
@@ -20,46 +22,9 @@ export default function InteractiveStory({scene, active, navigateToNode, onConte
     const indexRef = useRef(-1);
     const optionsStartRef = useRef<number | null>(null);
 
-    function escapeRegex(value: string) {
-        return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
-
     function renderSentence(text: string): ReactNode {
         const translatedText = t(text);
-        if (!scene.hints) {
-            return <span>{translatedText}</span>;
-        }
-
-        const hints = scene.hints;
-        const keys = Object.keys(hints);
-        if (keys.length === 0) {
-            return <span>{translatedText}</span>;
-        }
-
-        const regex = new RegExp(`\\b(${keys.map(escapeRegex).join("|")})\\b`, "gi");
-        const parts = translatedText.split(regex);
-
-        return (
-            <>
-                {parts.map((part, i) => {
-                    const lowPart = part.toLowerCase().trim();
-                    // We need to find the key in hints that matches (case-insensitive and trimming spaces)
-                    const hintKey = keys.find(k => k.toLowerCase().trim() === lowPart);
-                    if (hintKey && hints[hintKey]) {
-                        return (
-                            <span
-                                key={i}
-                                className="custom-tooltip"
-                                data-tooltip={t(hints[hintKey])}
-                            >
-                                {part}
-                            </span>
-                        );
-                    }
-                    return <span key={i}>{part}</span>;
-                })}
-            </>
-        );
+        return renderSentenceWithHints(translatedText);
     }
 
     const advanceStory = () => {

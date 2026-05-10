@@ -3,12 +3,17 @@ import Introduction from "@/Components/Introduction.tsx";
 import StoryOptions from "@/Components/StoryOptions.tsx";
 import AdventureTimeline from "@/Components/AdventureTimeline.tsx";
 import LanguageSwitcher from "@/Components/LanguageButton.tsx";
+import {HintManager} from "@/Managers/HintManager.ts";
 
 export default function NotebookContainer() {
     const [introCompleted, setIntroCompleted] = useState(false);
     const [optionsCompleted, setOptionsCompleted] = useState(false);
     const [showTitle, setShowTitle] = useState(false);
     const [delayedIndicator, setDelayedIndicator] = useState(false);
+
+    useEffect(() => {
+        HintManager.loadHints();
+    }, []);
 
     const handleIntroComplete = () => {
         setIntroCompleted(true);
