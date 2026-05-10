@@ -72,15 +72,15 @@ body::before {
     z-index: -1;
     box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
     pointer-events: none;
-}
+}  
 
 .notebook-page::before {
-    transform: translateX(-3px) rotate(-0.3deg);
+    transform: translateX(-3px);
     filter: brightness(0.98);
 }
 
 .notebook-page::after {
-    transform: translateX(-6px) rotate(0.2deg);
+    transform: translateX(-5px);
     filter: brightness(0.96);
 }
 
