@@ -63,7 +63,7 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
                     </label>
 
                     <label className="flex flex-col gap-[0.6vh] justify-center items-center cursor-pointer pb-[0.5vh]">
-                        <span className="ink-body">Paper First?</span>
+                        <span className="ink-body">[TextMissing]</span>
                         <input
                             type="checkbox"
                             checked={paperFirst}

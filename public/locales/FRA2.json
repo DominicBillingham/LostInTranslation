@@ -4,7 +4,7 @@
     "uncoverSecrets": "Descobriràs els secrets que amaga?",
     "willGet": "O potser et quedaràs...",
     
-    "pressSpaceToContinue": "Click to continue...",
+    "pressSpaceToContinue": "[TextMissing]",
     "lostInTranslation": "Lost in Translation",
     "miniQuiz": "Quiz!",
     "correct": "Exact: ",
@@ -22,12 +22,12 @@
     
     "cinderellaEscapes": "Cendrillon décide de s'échapper et de fuir le monde.",
     "stumblesMonastery": "Elle découvre un monastère et décide de rejoindre les nonnes, et vit heureuse pour le reste de sa vie.",
-    "endingRanAway": "Ending: Ran away. Press (R) to restart the game!",
+    "endingRanAway": "[TextMissing]",
     
     "fallDeafEars": "Elle sait que ses protestations seront ignorées.",
     "workedDiligently": "Elle travaille beaucoup, même si elle est triste.",
     "hopedBetter": "Elle garde l’espoir qu’un jour les choses s’amélioreront.",
-    "chapterEnd": "(Chapter End)",
+    "chapterEnd": "[TextMissing]",
     
     
     
@@ -42,7 +42,7 @@
     "fairyRespects": "La fée accepte sa décision et part. Cendrillon continue à travailler",
     "spendsLife": "Elle prend soin de ses demi-sœurs et de leurs enfants pendant toute sa vie.",
     "diesAlone": "She dies alone, her family too busy to visit her.",
-    "endingDiedAlone": "Ending: Died alone. Press (R) to restart the game!",
+    "endingDiedAlone": "[TextMissing]",
     
     "promiseLove": "“Tu vas aimer ta nouvelle tenue, c’est promis!”",
     "abracadabra": "Cendrillon finit par accepter son offre.",
@@ -63,12 +63,12 @@
     "dressConverts": "La robe de Cendrillon redevient de vieux haillons.",
     "prohibitedCastle": "La magie est interdite au château, donc elle va en prison.",
     "neverSeesAgain": "Le prince ne la revoit jamais.",
-    "endingLockedAway": "Ending: Locked away... Press (R) to restart the game!",
+    "endingLockedAway": "[TextMissing]",
     
     "forgottenShoe": "Elle court vers son carrosse et arrive à la maison juste à temps. Mais, elle perd sa chaussure dans la précipitation.",
     "searchingOwner": "Le prince cherche la propriétaire de la chaussure dans tout le royaume. Il veut trouver la femme qu'il aime. ",
     "foundMarried": "Quand il la trouve enfin, il l’épouse. Ils vivent heureux pour toujours.",
-    "endingHappilyEver": "Ending: Happily Ever After... Press (R) to restart the game!",
+    "endingHappilyEver": "[TextMissing]",
     
     
     
