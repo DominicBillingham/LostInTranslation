@@ -1,9 +1,8 @@
 import {useEffect, useRef, useState, type ReactNode} from "react";
 import {useTranslation} from "react-i18next";
-import LocalStorage, {type StorageAPI, StorageManager} from "@/Managers/LocalStorage.ts";
+import LocalStorage from "@/Managers/LocalStorage.ts";
 import type {Scene} from "@/Interfaces.ts";
 import Sound from "@/Managers/SoundManager.ts";
-import {HintManager} from "@/Managers/HintManager.ts";
 import {renderSentenceWithHints} from "@/Components/SentenceRenderer.tsx";
 
 interface InteractiveStoryProps {

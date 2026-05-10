@@ -9,6 +9,7 @@ interface StoryOptionsProps {
 export default function StoryOptions({onStart}: StoryOptionsProps) {
     const [username, setUsername] = useState<string>("");
     const [logKey, setLogKey] = useState<string>("");
+    const [paperFirst, setPaperFirst] = useState<boolean>(false);
     const [musicVolume, setMusicVolume] = useState<number>(20);
     const [soundVolume, setSoundVolume] = useState<number>(20);
     const [isLeaving, setIsLeaving] = useState<boolean>(false);
@@ -18,6 +19,7 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
         LocalStorage.setMusicVolume(musicVolume);
         LocalStorage.setSoundVolume(soundVolume);
         LocalStorage.setLogKey(logKey);
+        LocalStorage.setPaperFirst(paperFirst);
 
         void Sound.playSfx();
         setIsLeaving(true);
@@ -34,6 +36,9 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
         const storedLogKey = LocalStorage.getLogKey();
         setLogKey(storedLogKey ?? "");
 
+        const storedPaperFirst = LocalStorage.getPaperFirst();
+        setPaperFirst(storedPaperFirst);
+
         const storedMusicVolume = LocalStorage.getMusicVolume(20);
         setMusicVolume(storedMusicVolume);
 
@@ -44,25 +49,36 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
     return (
         <div className={`journal-stream transition-all duration-1000 ${isLeaving ? "opacity-0" : "opacity-100"}`}>
             <div className="notebook-panel rounded-[12px] p-[2vh] flex flex-col gap-[1.5vh] fade">
-                <label className="flex flex-col gap-[0.6vh]">
-                    <span className="ink-body">Usuari</span>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="Enter your name"
-                        autoFocus
-                        className="rounded-lg border-amber-800/30 border-2 bg-amber-50/40 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-amber-700/40"
-                    />
-                </label>
+                <div className="flex gap-[1.5vh] w-full items-end">
+                    <label className="flex flex-col gap-[0.6vh] flex-1">
+                        <span className="ink-body">Usuari</span>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="Enter your name"
+                            autoFocus
+                            className="rounded-lg border-amber-800/30 border-2 bg-amber-50/40 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-amber-700/40"
+                        />
+                    </label>
+
+                    <label className="flex flex-col gap-[0.6vh] justify-center items-center cursor-pointer pb-[0.5vh]">
+                        <span className="ink-body">Paper First?</span>
+                        <input
+                            type="checkbox"
+                            checked={paperFirst}
+                            onChange={(e) => setPaperFirst(e.target.checked)}
+                            className="w-[5vh] h-[5vh] rounded border-amber-800/30 border-2 bg-amber-50/40 accent-amber-800 cursor-pointer"
+                        />
+                    </label>
+                </div>
 
                 <label className="flex flex-col gap-[0.6vh]">
-                    <span className="ink-body">Contrasenya<span className="text-amber-800/50"></span></span>
+                    <span className="ink-body">Contrasenya</span>
                     <input
                         type="text"
                         value={logKey}
                         onChange={(e) => setLogKey(e.target.value)}
-                        // placeholder="Enter a log key so we can gather data on story decisions!"
                         className="rounded-lg border-amber-800/30 border-2 bg-amber-50/40 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-amber-700/40"
                     />
                 </label>

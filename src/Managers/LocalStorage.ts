@@ -8,6 +8,7 @@ const KEYS = {
     music: "musicVolume",
     plays: "playthroughAttempts",
     logKey: "logKey",
+    paperFirst: "paperFirst",
 };
 
 
@@ -25,6 +26,9 @@ export interface StorageAPI {
     
     getLogKey(): string | null;
     setLogKey(name: string): void;
+
+    getPaperFirst(): boolean;
+    setPaperFirst(value: boolean): void;
 
     getSoundVolume(defaultValue?: number): number; // 0..100
     setSoundVolume(value: number): void;           // clamps 0..100
@@ -115,6 +119,13 @@ export const StorageManager: StorageAPI = {
         safeSet(KEYS.logKey, v);
     },
     
+    getPaperFirst() {
+        return safeGet(KEYS.paperFirst) === "true";
+    },
+    setPaperFirst(value: boolean) {
+        safeSet(KEYS.paperFirst, String(value));
+    },
+    
     getSoundVolume(defaultValue = 20) {
         return clamp(getNumber(KEYS.sound, defaultValue), 0, 100);
     },
@@ -149,6 +160,7 @@ export const StorageManager: StorageAPI = {
                 TimeSpentChoosing: timeMs ?? null,
                 PlaythroughCount: this.getPlaythroughAttempts(0),
                 LogKey: this.getLogKey() || null,
+                PaperFirst: this.getPaperFirst(),
             } as const;
             
             console.log(payload);
@@ -173,6 +185,7 @@ export const StorageManager: StorageAPI = {
                 TimeSpentChoosing: timeMs ?? null,
                 PlaythroughCount: this.getPlaythroughAttempts(0),
                 LogKey: this.getLogKey() || null,
+                PaperFirst: this.getPaperFirst(),
             } as const;
             
             console.log(payload);
