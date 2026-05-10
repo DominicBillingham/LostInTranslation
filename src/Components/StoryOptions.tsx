@@ -31,11 +31,14 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
     }
 
     useEffect(() => {
+        const queryParams = new URLSearchParams(window.location.search);
+        const urlLogKey = queryParams.get("key") || queryParams.get("logKey");
+
         const storedName = LocalStorage.getUsername();
         setUsername(storedName ?? "");
 
         const storedLogKey = LocalStorage.getLogKey();
-        setLogKey(storedLogKey ?? "");
+        setLogKey(urlLogKey || storedLogKey || "");
 
         const storedPaperFirst = LocalStorage.getPaperFirst();
         setPaperFirst(storedPaperFirst);
@@ -79,8 +82,8 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
                     <input
                         type="text"
                         value={logKey}
-                        onChange={(e) => setLogKey(e.target.value)}
-                        className="rounded-lg border-amber-800/30 border-2 bg-amber-50/40 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-amber-700/40"
+                        readOnly
+                        className={`rounded-lg border-amber-800/30 border-2 bg-amber-50/40 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-amber-700/40 cursor-not-allowed transition-opacity ${logKey ? "opacity-40" : "opacity-70"}`}
                     />
                 </label>
 
@@ -135,7 +138,7 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
                 <button
                     type="button"
                     onClick={onContinue}
-                    disabled={username.trim() === "" || isLeaving}
+                    disabled={username.trim() === "" || logKey.trim() === "" || isLeaving}
                     className="me-[2vh] pencil-btn rounded-full px-[6vh] py-[1.2vh] shadow-lg active:border-b-0 
                     :translate-y-[0.6vh] font-bold text-[2.4vh] hover:scale-105 active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
