@@ -5,7 +5,6 @@
     image?: string;
     sentences: string[];
     quizName?: string;
-    hints?: Record<string, string>;
 }
 
 export interface NextNodeOption {

@@ -1,4 +1,4 @@
-﻿[
+[
     {
         "nodeName": "Intro",
         "storyDecision": "Does Cinderella choose to stay or leave?",
@@ -7,21 +7,6 @@
             "fatherPassedAway",
             "personalMaid"
         ],
-        "hints": {
-            "stepmother ": "stepmotherHint",
-            "stepsisters": "stepsistersHint",
-            "passedAway": "passedAwayHint",
-            "heartbroken": "heartbrokenHint",
-            "at the mercy of": "mercyOfHint",
-            "maid" : "maidHint",
-            "ridiculed" : "ridiculedHint",
-            
-            "preciosa" : "molt bonica",
-            "madrastra":"dona casada amb el seu pare",
-            "germanastres" : "filles de la dona casada amb el seu pare",
-            "desconsolada a la mercè de": "molt trista",
-            "minyona": "persona que fa les tasques de la casa"
-        },
         "nextNodeOptions": [
             { "nodeName": "Run away", "displayText": "runAway" },
             { "nodeName": "Continue to do her work", "displayText": "continueWork" },
@@ -37,11 +22,6 @@
             "stumblesMonastery",
             "endingRanAway"
         ],
-        "hints": {
-            "stumblesAcross ": "stumblesAcrossHint",
-            "monastery": "monasteryHint",
-            "nuns": "nunsHint"
-        },
         "image": "forest.jpg"
     },
     
@@ -53,14 +33,6 @@
             "hopedBetter",
             "chapterEnd"
         ],
-        "hints": {
-            "fall on deaf ears": "deafEarsHint",
-            "diligently": "diligentlyHint",
-            
-            "ignorada" : "no la escoltarien",
-            "diligentment": "sense parar",
-            "milloressin": "anessin millor"
-        },
         "quizName": "cinderellaQuiz1",
         "image": "kitchen.jpg"
     },    
@@ -72,14 +44,6 @@
             "workedDiligently",
             "hopedBetter"
         ],
-        "hints": {
-            "fall on deaf ears": "deafEarsHint",
-            "diligently": "diligentlyHint",
-            
-            "ignorada" : "no la escoltarien",
-            "diligentment": "sense parar",
-            "milloressin": "anessin millor"
-        },
         "quizName": "cinderellaQuiz1",
         "image": "kitchen.jpg"
     },
@@ -92,12 +56,6 @@
             "disappointedWantedGo",
             "fairyAppeared"
         ],
-        "hints": {
-            "left her behind": "leftBehindHint",
-            "ball": "ballHint",
-            "disappointed": "disappointedHint",
-            "fairy ": "fairyHint"
-        },
         "nextNodeOptions": [
             { "nodeName": "Decline her help", "displayText": "declineHelp" },
             { "nodeName": "Jump enthusiastically at the offer", "displayText": "jumpEnthusiastically" },
@@ -114,10 +72,6 @@
             "diesAlone",
             "endingDiedAlone"
         ],
-        "hints": {
-            "scrub ": "scrubHint",
-            "offspring": "offspringHint"
-        },
         "image": "start.jpg"
     },
 
@@ -131,15 +85,6 @@
             "leftCarriage",
             "chapterEnd"
         ],
-        "hints": {
-            "contagious ": "contagiousHint",
-            "flick": "flickHint",
-            "raggedy": "raggedyHint",
-            "gown": "gownHint",
-            "beamed ": "beamedHint",
-            "fade ": "fadeHint",
-            "carriage": "carriageHint"
-        },
         "image": "pumpkin.jpg",
         "quizName": "cinderellaQuiz4"
     },
@@ -153,15 +98,6 @@
             "pleasureDarling",
             "leftCarriage"
         ],
-        "hints": {
-            "contagious ": "contagiousHint",
-            "flick": "flickHint",
-            "raggedy": "raggedyHint",
-            "gown": "gownHint",
-            "beamed ": "beamedHint",
-            "fade ": "fadeHint",
-            "carriage": "carriageHint"
-        },
         "image": "start.jpg",
         "quizName": "cinderellaQuiz4"
     },
@@ -174,12 +110,6 @@
             "princeAwestruck",
             "stolenHeart"
         ],
-        "hints": {
-            "dolled up": "dolledUpHint",
-            "awestruck": "awestruckHint",
-            "stolen his heart": "stolenHeartHint",
-            "the clock struck midnight": "clockMidnightHint"
-        },
         "nextNodeOptions": [
             { "nodeName": "Panic and run away", "displayText": "panicRun" },
             { "nodeName": "Tell him she will see him again", "displayText": "tellSeeAgain" },
@@ -196,11 +126,6 @@
             "neverSeesAgain",
             "endingLockedAway"
         ],
-        "hints": {
-            "prohibited": "prohibitedHint",
-            "converts": "convertsHint",
-            "dungeon": "dungeonHint"
-        },
         "image": "start.jpg"
     },
 
@@ -212,11 +137,6 @@
             "foundMarried",
             "endingHappilyEver"
         ],
-        "hints": {
-            "rush": "rushHint",
-            "kingdom": "kingdomHint",
-            "happily ever after": "happilyEverHint"
-        },
         "image": "start.jpg",
         "quizName": "cinderellaQuiz7"
     },
@@ -228,11 +148,6 @@
             "searchingOwner",
             "foundMarried"
         ],
-        "hints": {
-            "rush": "rushHint",
-            "kingdom": "kingdomHint",
-            "happily ever after": "happilyEverHint"
-        },
         "image": "start.jpg",
         "quizName": "cinderellaQuiz7"
     },
@@ -242,7 +157,6 @@
         "sentences": [
             "endingHappilyEver"
         ],
-        "hints": {},
         "image": "start.jpg"
     }
 ]
