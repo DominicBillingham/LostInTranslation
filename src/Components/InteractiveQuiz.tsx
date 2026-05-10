@@ -3,6 +3,7 @@ import {useTranslation} from "react-i18next";
 import LocalStorage, {type StorageAPI} from "@/Managers/LocalStorage.ts";
 import type {Quiz, QuizOption} from "@/Interfaces.ts";
 
+import {Check, X} from "lucide-react";
 import {HintManager} from "@/Managers/HintManager.ts";
 import {renderSentenceWithHints} from "@/Components/SentenceRenderer.tsx";
 
@@ -18,6 +19,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
     const [areOptionsEnabled, setAreOptionsEnabled] = useState<boolean>(true);
     const [quizText, setQuizText] = useState<string>("");
     const [feedbackText, setFeedbackText] = useState<string>("");
+    const [selectedAnswer, setSelectedAnswer] = useState<QuizOption | null>(null);
     const [selectedIsCorrect, setSelectedIsCorrect] = useState<boolean | null>(null);
     const [hasContinued, setHasContinued] = useState<boolean>(false);
 
@@ -29,6 +31,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
             setAreOptionsEnabled(true);
             setFeedbackText("");
             setSelectedIsCorrect(null);
+            setSelectedAnswer(null);
             setHasContinued(false);
             answerStartRef.current = (typeof performance !== "undefined" ? performance.now() : Date.now());
             onContentUpdate();
@@ -42,6 +45,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
     function chooseAnswer(quizAnswer: QuizOption) {
         if (!active) return;
         setAreOptionsEnabled(false);
+        setSelectedAnswer(quizAnswer);
 
         setFeedbackText(quizAnswer.reason || quizAnswer.answerText || "");
         setSelectedIsCorrect(!!quizAnswer.isCorrectAnswer);
@@ -83,10 +87,26 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
                             key={ans.answerText + i}
                             type="button"
                             disabled={!areOptionsEnabled || !active}
-                            className="choice-btn w-full sm:w-2/3 rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-center hover:cursor-pointer short-fade disabled:opacity-30 disabled:cursor-not-allowed"
+                            className={`choice-btn w-full sm:w-2/3 rounded-[1vh] p-[1.2vh] shadow-md hover:shadow-lg text-center hover:cursor-pointer short-fade disabled:cursor-not-allowed ${
+                                !areOptionsEnabled
+                                    ? ans.isCorrectAnswer
+                                        ? "!bg-green-100 !border-green-600 !opacity-90 !grayscale-0"
+                                        : selectedAnswer === ans
+                                            ? "!bg-red-100 !border-red-400 !opacity-90 !grayscale-0"
+                                            : "opacity-30"
+                                    : ""
+                            }`}
                             onClick={() => chooseAnswer(ans)}
                         >
-                            {renderSentenceWithHints(t(ans.answerText))}
+                            <div className="flex items-center justify-center gap-2">
+                                {renderSentenceWithHints(t(ans.answerText))}
+                                {!areOptionsEnabled && ans.isCorrectAnswer && (
+                                    <Check className="w-5 h-5 text-green-700" />
+                                )}
+                                {!areOptionsEnabled && selectedAnswer === ans && !ans.isCorrectAnswer && (
+                                    <X className="w-5 h-5 text-red-700" />
+                                )}
+                            </div>
                         </button>
                     ))
                 )}
@@ -94,15 +114,6 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
 
             {!areOptionsEnabled && (
                 <>
-                    {feedbackText && (
-                        <div className="chat-bubble short-fade">
-                            <span className={selectedIsCorrect ? "text-green-700 font-semibold" : "text-red-700 font-semibold"}>
-                                {selectedIsCorrect ? t("correct") : t("incorrect")}
-                            </span>
-                            <span>{t(feedbackText)}</span>
-                        </div>
-                    )}
-
                     {!hasContinued && (
                         <div className="mt-[0.5vh] flex m-auto">
                             <button
