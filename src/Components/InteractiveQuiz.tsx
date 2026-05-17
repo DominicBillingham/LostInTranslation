@@ -98,7 +98,7 @@ export default function InteractiveQuiz({quiz, active, navigateToNode, onContent
                             }`}
                             onClick={() => chooseAnswer(ans)}
                         >
-                            <div className="flex items-center justify-center gap-2">
+                            <div className="flex items-center justify-center gap-2 flex-wrap text-center">
                                 {renderSentenceWithHints(t(ans.answerText))}
                                 {!areOptionsEnabled && ans.isCorrectAnswer && (
                                     <Check className="w-5 h-5 text-green-700" />
