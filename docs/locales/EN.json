@@ -3,12 +3,18 @@
     "oldJournal": "You came across an old journal that seemed to take on a life of its own!",
     "uncoverSecrets": "Will you uncover its secrets?",
     "willGet": "Or will you get...",
-    "pressSpaceToContinue": "Press space to continue...",
+    
+    
+    
+    "pressSpaceToContinue": "Click to continue...",
     "lostInTranslation": "Lost in Translation",
     "miniQuiz": "Mini Quiz!",
     "correct": "Correct: ",
     "incorrect": "Incorrect: ",
     "continue": "Continue",
+    "resetGame": "Reset Game",
+
+
     "onceUponTime": "Once upon a time, there was a beautiful girl who lived with her father and her stepmother and stepsisters.",
     "fatherPassedAway": "One day, her father sadly passed away, leaving her heartbroken at the mercy of the woman her father had remarried.",
     "personalMaid": "She became their personal maid. She was made to cook, clean, and take care of the house, while they laughed at her and ridiculed her.",
@@ -83,6 +89,8 @@
     "searchingOwner": "The prince went all over the kingdom searching for the shoe owner, hoping to find the girl who he had fallen in love with the night of the ball.",
     "foundMarried": "When he found her at last, and despite her stepsisters’ complaints, he married her and they lived happily ever after.",
     "endingHappilyEver": "Ending: Happily Ever After... Press (R) to restart the game!",
+
+
     "rushHint": "To have to go somewhere quickly",
     "kingdomHint": "Land ruled by a king",
     "happilyEverHint": "Happy for the rest of their lives",

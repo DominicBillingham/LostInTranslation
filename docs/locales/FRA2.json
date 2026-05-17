@@ -1,0 +1,120 @@
+﻿{
+    "dustyBasement": "Hi havia una vegada, en un soterrani ple de pols...",
+    "oldJournal": "Un diari esgrogueït que semblava tenir vida pròpia!",
+    "uncoverSecrets": "Descobriràs els secrets que amaga?",
+    "willGet": "O potser et quedaràs...",
+    
+    "pressSpaceToContinue": "Fes clic per continuar",
+    "lostInTranslation": "Lost in Translation",
+    "miniQuiz": "Quiz!",
+    "correct": "Exact: ",
+    "incorrect": "Faux: ",
+    "resetGame": "Réinitialiser",
+
+
+    "onceUponTime": "Cendrillon est une fille très jolie qui vit avec son père, sa belle-mère, et ses demi-sœurs.",
+    "fatherPassedAway": "Un jour, son père meurt, et elle souffre beaucoup. Maintenant, elle doit dépendre de sa méchante belle-mère.",
+    "personalMaid": "Elle devient son employée de maison. Elle doit cuisiner, nettoyer et s'occuper de la maison, et ses demi-sœurs  se moquent d’elle.",
+    
+    "runAway": "Fuir.",
+    "continueWork": "Continuer à travailler.",
+    "tryComplain": "Essayer de se plaindre.",
+    
+    "cinderellaEscapes": "Cendrillon décide de s'échapper et de fuir le monde.",
+    "stumblesMonastery": "Elle découvre un monastère et décide de rejoindre les nonnes, et vit heureuse pour le reste de sa vie.",
+    "endingRanAway": "Pulsa R per començar de nou",
+    
+    "fallDeafEars": "Elle sait que ses protestations seront ignorées.",
+    "workedDiligently": "Elle travaille beaucoup, même si elle est triste.",
+    "hopedBetter": "Elle garde l’espoir qu’un jour les choses s’amélioreront.",
+    
+    
+    
+    "ballLeftBehind": "Un soir, la belle-mère et les demi-sœurs de Cendrillon la laissent seule à la maison.  Elles se rendent à un bal pour rencontrer le prince.",
+    "disappointedWantedGo": "Cendrillon est déçue, parce qu'elle veut y aller aussi, mais elle continue à travailler sans se plaindre.",
+    "fairyAppeared": "Soudain, une fée apparaît! Elle est la marraine de Cendrillon et elle veut l’aider à se préparer pour le bal.",
+    
+    "declineHelp": "Refuser son aide.",
+    "jumpEnthusiastically": "Accepter l'offre avec enthousiasme.",
+    "hesitantlyAgree": "Accepter à contrecœur.",
+    
+    "fairyRespects": "La fée accepte sa décision et part. Cendrillon continue à travailler",
+    "spendsLife": "Elle prend soin de ses demi-sœurs et de leurs enfants pendant toute sa vie.",
+    "endingDiedAlone": "Pulsa R per començar de nou",
+    
+    "promiseLove": "“Tu vas aimer ta nouvelle tenue, c’est promis!”",
+    "abracadabra": "Cendrillon finit par accepter son offre.",
+    "beamedThanked": "“Abracadabra!” La fée transforme les haillons de Cendrillon en une robe magnifique. Cendrillon est très heureuse et remercie sa marraine. ",
+    "pleasureDarling": "“De rien, ma chérie! Mais attention, toute la magie s'arrête à minuit. Tu dois être de retour avant!”",
+    "leftCarriage": "Et ainsi, Cendrillon part dans un carrosse magique pour une nuit inoubliable.",
+    
+
+    
+    "arrivedBall": " Cendrillon arrive au bal et tout le monde la regarde. Sa famille ne la reconnaît pas, parce qu'elle est très élégante.",
+    "princeAwestruck": "Le prince est impressionné par sa beauté. Il demande à Cendrillon de danser, pendant que ses sœurs jalouses les regardent.",
+    "stolenHeart": "Cendrillon et le prince dansent ensemble pendant des heures. Il tombe amoureux d'elle. Le prince lui demande de rester au palais, mais à ce moment-là, minuit sonne à l’horloge.",
+    
+    "panicRun": "Fuir en courant.",
+    "tellSeeAgain": "Dire au prince qu'elle va revenir, mais elle part.",
+    "stay": "Rester.",
+    
+    "dressConverts": "La robe de Cendrillon redevient de vieux haillons.",
+    "prohibitedCastle": "La magie est interdite au château, donc elle va en prison.",
+    "neverSeesAgain": "Le prince ne la revoit jamais.",
+    "endingLockedAway": "Pulsa R per començar de nou",
+    
+    "forgottenShoe": "Elle court vers son carrosse et arrive à la maison juste à temps. Mais, elle perd sa chaussure dans la précipitation.",
+    "searchingOwner": "Le prince cherche la propriétaire de la chaussure dans tout le royaume. Il veut trouver la femme qu'il aime. ",
+    "foundMarried": "Quand il la trouve enfin, il l’épouse. Ils vivent heureux pour toujours.",
+    "endingHappilyEver": "Pulsa R per començar de nou",
+    
+    
+    
+    "quizFallDeafEars": "Qu’est-ce que ça veut dire “se moquer”?",
+    "ansEarsFellOff": "Pleurer parce qu’on est tristes",
+    "ansNoOneListened": "Rire d'une personne de façon méchante ou pas gentille",
+    "ansNotExplainedWell": "Rire ensemble avec quelqu’un ",
+    
+    "quizMercyStepmother": "Qu’est-ce que ça veut dire “méchant”? ",
+    "ansStepmotherPowerful": "Une personne qui n'est pas gentille",
+    "ansStepmotherBeautiful": "Quelqu’un un peu étrange",
+    "ansStepmotherWeaker": "Une personne qui est gentille",
+    
+    "quizRidiculed": "Que doit faire Cendrillon à la maison?",
+    "ansStoppedLeaving": "Se réposer un peu",
+    "ansFunnyStories": "Voyager avec sa famille",
+    "ansMockedHer": "Travailler beaucoup",
+    
+    
+    "quizClothingBefore": "Qu’est-ce que ça veut dire “marraine”?",
+    "ansRackety": "Quelqu’un qui ne se douche pas.",
+    "ansRatchet": "Une femme étrange.",
+    "ansRaggedy": "Une femme qui aide un enfant",
+    
+    "quizBeamedGodmother": "Qu’est-ce que ça veut dire “haillons”?",
+    "ansLaughed": "La femme de ton père",
+    "ansCried": "Des nouveaux vêtements qu’un vient d’acheter.",
+    "ansSmiled": "Des vieux vêtements déchirés et sales. ",
+    
+    "quizWand": "Qu’est-ce que la marraine de Cendrillon décide de faire?",
+    "ansBeamedIt": "Rien, elle décide juste de regarder.",
+    "ansSwungIt": "Elle dit qu’elle doit parler avec sa belle-mère.",
+    "ansFlickedIt": "Elle aide Cendrillon.",
+    
+    
+    "quizAwestruck": "Qu’est-ce que ça veut dire “tomber amoureux”? ",
+    "ansVeryImpressed": "Commencer à aimer une personne de façon romantique.",
+    "ansVeryHappy": "Se faire du mal.",
+    "ansDistraught": "Ne pas aimer quelqu’un non plus.",
+    
+    "quizRush": "Qu’est-ce que ça veut dire “dans la précipitation”?",
+    "ansHungry": "Une manière polie et formelle de dire qu'une personne est morte.",
+    "ansStepsistersCalled": "Dans la pluie.",
+    "ansSpellWearOff": "Faire les choses trop vite.",
+    
+    "quizWhoMarry": "Who did the prince marry?",
+    "ansStepmother": "Une des demi-soeurs se marie avec le prince.",
+    "ansStepsister": "La marraine de Cendrillon l’aide à s’échapper.",
+    "ansCinderella": "Cendrillon se marie avec le prince."
+    
+}
