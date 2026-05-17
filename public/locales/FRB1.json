@@ -70,31 +70,22 @@
     
     
     
+    "quizFallDeafEars": "Qu’est-ce que ça veut dire “se moquer”? ",
+    "ansEarsFellOff": "Pleurer parce qu’on est tristes.",
+    "ansNoOneListened": "Rire d'une personne de façon méchante ou pas gentille.",
+    "ansNotExplainedWell": "Rire ensemble avec quelqu’un.",
+
+    "quizMercyStepmother": "Qu’est-ce que ça veut dire “le coeur brisé”? ",
+    "ansStepmotherPowerful": "Ressentir une immense tristesse ou une grande souffrance.",
+    "ansStepmotherBeautiful": "Exprimer son mécontentement ou sa douleur par des paroles.",
+    "ansStepmotherWeaker": "Rire d'une personne de façon méprisante ou blessante.",
+
+    "quizRidiculed": "Que doit faire Cendrillon à la maison?",
+    "ansStoppedLeaving": "Se réposer un peu.",
+    "ansFunnyStories": "Voyager avec sa famille.",
+    "ansMockedHer": "Travailler beaucoup.",
+
     
-    "quizFallDeafEars": "What does the expression 'fall on deaf ears' mean?",
-    "ansEarsFellOff": "Her ears fell off",
-    "reasonFigurative": "It's a figurative expression, not literal.",
-    "ansNoOneListened": "No one listened to her",
-    "reasonPaidAttention": "'Fall on deaf ears' means nobody paid attention to her.",
-    "ansNotExplainedWell": "She didn’t explain it well",
-    "reasonAudienceNotListening": "The phrase is about the audience not listening, not the explanation.",
-
-    "quizMercyStepmother": "What does 'at the mercy of her stepmother' mean?",
-    "ansStepmotherPowerful": "Her stepmother is more powerful than her.",
-    "reasonDependsStronger": "Being 'at the mercy' means she depends on someone stronger.",
-    "ansStepmotherBeautiful": "Her stepmother is more beautiful than her.",
-    "reasonRefersControl": "'At the mercy' refers to power or control, not beauty.",
-    "ansStepmotherWeaker": "Her stepmother is weaker than her.",
-    "reasonOppositeStronger": "It's the opposite—the stepmother is stronger.",
-
-    "quizRidiculed": "What did they do to Cinderella when they 'ridiculed' her?",
-    "ansStoppedLeaving": "They stopped her from leaving.",
-    "reasonNotMeaning": "That’s not what 'ridiculed' means.",
-    "ansFunnyStories": "They told her funny stories.",
-    "reasonMocking": "Ridiculing means mocking or making fun of her.",
-    "ansMockedHer": "They mocked or made fun of her",
-    "reasonRidiculeMock": "'Ridicule' someone is to mock them or make fun of them.",
-
     "quizClothingBefore": "What did Cinderella’s clothing look like before the fairy transformed her?",
     "ansRackety": "Rackety",
     "ansRatchet": "Ratchet",
@@ -109,6 +100,7 @@
     "ansBeamedIt": "She beamed it",
     "ansSwungIt": "She swung it",
     "ansFlickedIt": " She flicked it",
+    
 
     "quizAwestruck": "What does awestruck mean?",
     "ansVeryImpressed": "Very impressed",
