@@ -86,35 +86,35 @@
     "ansMockedHer": "Travailler beaucoup.",
 
     
-    "quizClothingBefore": "What did Cinderella’s clothing look like before the fairy transformed her?",
-    "ansRackety": "Rackety",
-    "ansRatchet": "Ratchet",
-    "ansRaggedy": "Raggedy",
+    "quizClothingBefore": "Qu’est-ce que ça veut dire “marraine”? ",
+    "ansRackety": "Une femme étrange.",
+    "ansRatchet": "Quelqu’un qui ne se douche pas.",
+    "ansRaggedy": "Une femme qui aide un enfant.",
 
     "quizBeamedGodmother": "What did Cinderella do when she “Beamed” at her godmother?",
     "ansLaughed": "She laughed",
     "ansCried": "She cried",
     "ansSmiled": "She smiled",
 
-    "quizWand": "What did the fairy godmother do with her wand? ",
-    "ansBeamedIt": "She beamed it",
-    "ansSwungIt": "She swung it",
-    "ansFlickedIt": " She flicked it",
+    "quizWand": "Qu’est-ce que ça veut dire “haillons”?",
+    "ansBeamedIt": "La femme de ton père.",
+    "ansSwungIt": "Des nouveaux vêtements qu’un vient d’acheter.",
+    "ansFlickedIt": "Des vieux vêtements déchirés et sales. ",
     
 
-    "quizAwestruck": "What does awestruck mean?",
-    "ansVeryImpressed": "Very impressed",
-    "ansVeryHappy": "Very happy",
-    "ansDistraught": "Distraught",
+    "quizAwestruck": "Qu’est-ce que ça veut dire “tomber amoureux”? ",
+    "ansVeryImpressed": "Commencer à aimer une personne de façon romantique. ",
+    "ansVeryHappy": "Se faire du mal.",
+    "ansDistraught": "Ne pas aimer quelqu’un non plus.",
 
-    "quizRush": "Why was the princess in a rush?",
-    "ansHungry": "She was hungry",
-    "ansStepsistersCalled": "Her stepsisters called her",
-    "ansSpellWearOff": "The spell would wear off soon",
+    "quizRush": "Qu’est-ce que ça veut dire “dans la précipitation”?",
+    "ansHungry": "Dans la pluie.",
+    "ansStepsistersCalled": "Une manière polie et formelle de dire qu'une personne est morte.",
+    "ansSpellWearOff": "Faire les choses trop vite.",
 
-    "quizWhoMarry": "Who did the prince marry?",
-    "ansStepmother": "Cinderella’s stepmother",
-    "ansStepsister": "Cinderella’s stepsister",
-    "ansCinderella": "Cinderella"
+    "quizWhoMarry": "Comment est-ce que finit l’histoire?",
+    "ansStepmother": "La marraine de Cendrillon l’aide à s’échapper.",
+    "ansStepsister": "Une des demi-soeurs se marie avec le prince.",
+    "ansCinderella": "Cendrillon se marie avec le prince."
 
 }
