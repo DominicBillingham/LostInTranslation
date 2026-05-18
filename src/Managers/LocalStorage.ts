@@ -1,6 +1,6 @@
 ﻿// Centralized, safe LocalStorage helper + logging utilities
 
-const API_URL = "https://script.google.com/macros/s/AKfycby1strZyLPE2Rty0twFCLcWd2G9a242eSwnNolgj4BX1gPAv5lNRKubzfzCIl9IeRZlRw/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwODkEHhL69vEfVKHTAIVK6RuXVafezq596ME75Em-aa4onoMPyDqAdWJSTwWefBNPdfg/exec";
 
 const KEYS = {
     username: "username",
