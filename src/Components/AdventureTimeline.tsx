@@ -40,31 +40,26 @@ function AdventureTimeline() {
         }
     };
 
+    const containerRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        const observer = new ResizeObserver(() => {
+            requestAnimationFrame(() => {
+                endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+            });
+        });
+
+        observer.observe(container);
+        return () => observer.disconnect();
+    }, []);
+
     function scrollToBottom() {
-        
-        setTimeout(() => {
-            requestAnimationFrame(() => {
-                endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-            });
-        }, 120);
-
-        setTimeout(() => {
-            requestAnimationFrame(() => {
-                endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-            });
-        }, 240);
-        
-        setTimeout(() => {
-            requestAnimationFrame(() => {
-                endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-            });
-        }, 360);
-
-        setTimeout(() => {
-            requestAnimationFrame(() => {
-                endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-            });
-        }, 480);
+        requestAnimationFrame(() => {
+            endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+        });
     }
     
     async function resetGame(incrementCounter: boolean = false) {
@@ -126,7 +121,7 @@ function AdventureTimeline() {
 
     return (
         
-        <div className="journal-stream">
+        <div ref={containerRef} className="journal-stream">
             
             {timeline.map((entry) => {
                 
