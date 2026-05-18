@@ -154,6 +154,7 @@ export const StorageManager: StorageAPI = {
             const payload = {
                 Type: "Story",
                 UserId: userId,
+                Timestamp: new Date().toISOString(),
                 StoryDecision: decision,
                 StoryChoice: choice,
                 StoryDecisionCount: count,
@@ -178,6 +179,7 @@ export const StorageManager: StorageAPI = {
             const payload = {
                 Type: "Quiz",
                 UserId: userId,
+                Timestamp: new Date().toISOString(),
                 QuizQuestion: question,
                 QuizAnswer: answer,
                 WasCorrect: wasCorrect,

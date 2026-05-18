@@ -32,6 +32,7 @@ function logStory(data) {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("StoryChoices");
 
     sheet.appendRow([
+        data.Timestamp,
         data.UserId,
         data.StoryDecision,
         data.StoryChoice,
@@ -49,6 +50,7 @@ function logQuiz(data) {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("QuizChoices");
 
     sheet.appendRow([
+        data.Timestamp,
         data.UserId,
         data.QuizQuestion,
         data.QuizAnswer,
