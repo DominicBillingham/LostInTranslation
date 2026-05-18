@@ -91,15 +91,15 @@
     "ansRatchet": "Quelqu’un qui ne se douche pas.",
     "ansRaggedy": "Une femme qui aide un enfant.",
 
-    "quizBeamedGodmother": "What did Cinderella do when she “Beamed” at her godmother?",
-    "ansLaughed": "She laughed",
-    "ansCried": "She cried",
-    "ansSmiled": "She smiled",
+    "quizBeamedGodmother": "Qu’est-ce que ça veut dire “haillons”?",
+    "ansLaughed": "Des nouveaux vêtements qu’un vient d’acheter.",
+    "ansCried": "La femme de ton père.",
+    "ansSmiled": "Des vieux vêtements déchirés et sales.",
 
-    "quizWand": "Qu’est-ce que ça veut dire “haillons”?",
-    "ansBeamedIt": "La femme de ton père.",
-    "ansSwungIt": "Des nouveaux vêtements qu’un vient d’acheter.",
-    "ansFlickedIt": "Des vieux vêtements déchirés et sales. ",
+    "quizWand": "Qu’est-ce que la marraine de Cendrillon décide de faire?",
+    "ansBeamedIt": "Rien, elle décide juste de regarder.",
+    "ansSwungIt": "Elle dit qu’elle doit parler avec sa belle-mère.",
+    "ansFlickedIt": "Elle aide Cendrillon.",
     
 
     "quizAwestruck": "Qu’est-ce que ça veut dire “tomber amoureux”? ",
