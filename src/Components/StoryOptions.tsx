@@ -34,8 +34,12 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
         const queryParams = new URLSearchParams(window.location.search);
         const urlLogKey = queryParams.get("key") || queryParams.get("logKey");
 
-        const storedName = LocalStorage.getUsername();
-        setUsername(storedName ?? "");
+        let storedName = LocalStorage.getUsername();
+        if (!storedName) {
+            storedName = crypto.randomUUID().split("-")[0];
+            LocalStorage.setUsername(storedName);
+        }
+        setUsername(storedName);
 
         const storedLogKey = LocalStorage.getLogKey();
         setLogKey(urlLogKey || storedLogKey || "");
@@ -59,10 +63,9 @@ export default function StoryOptions({onStart}: StoryOptionsProps) {
                         <input
                             type="text"
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Enter your name"
-                            autoFocus
-                            className="rounded-lg border-amber-800/30 border-2 bg-amber-50/40 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-amber-700/40"
+                            readOnly
+                            placeholder="Generating name..."
+                            className={`rounded-lg border-amber-800/30 border-2 bg-amber-50/40 px-[2vh] py-[1vh] focus:outline-none focus:ring-2 focus:ring-amber-700/40 cursor-not-allowed transition-opacity ${username ? "opacity-40" : "opacity-70"}`}
                         />
                     </label>
 
